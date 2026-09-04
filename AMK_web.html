@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AMK Vehículos Selectos — Importación directa desde Corea · Iquique</title>
+<meta name="description" content="Vehículos coreanos importados y elegidos en persona en origen. Stock en Iquique, Zona Franca. SUV, camionetas y vehículos de trabajo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --n900:#041219;--n800:#0B1C23;--n700:#152B35;--n600:#183640;--n500:#223B46;--n400:#2E4752;
+ --steel:#51686E;--line:#3D5D6B;--s300:#7B8B8E;--s200:#9DACB2;--s100:#B4BCBE;--s050:#C8D2D4;
+ --ok:#46C97D;--azul:#6AA9E0;--ambar:#E8B04B;--disp:'Archivo',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--n700);color:var(--s050);font-family:var(--body);line-height:1.5}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--s200);outline-offset:2px}
+.logo{height:34px;width:auto;display:block}
+
+header{position:sticky;top:0;z-index:60;background:linear-gradient(120deg,#0B1C23,#1C3E4C 70%,#245560);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:26px;height:68px}
+nav{margin-left:auto;display:flex;gap:24px;font-size:14.5px;font-weight:500}
+nav a{text-decoration:none;color:var(--s200)}nav a:hover{color:var(--s050)}
+.wa{background:var(--s050);color:var(--n800);text-decoration:none;font-weight:700;font-size:14px;padding:10px 17px;border-radius:8px;white-space:nowrap}
+.wa:hover{background:#fff}
+@media(max-width:900px){nav{display:none}}
+
+.hero{position:relative;min-height:420px;display:flex;align-items:flex-end;
+ background:linear-gradient(180deg,rgba(11,28,35,.1),rgba(11,28,35,.55) 55%,rgba(21,43,53,1) 100%),
+            linear-gradient(125deg,#2E4752,#152B35 60%,#0B1C23)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(118deg,transparent 44%,rgba(157,172,178,.14) 45%,transparent 46%),
+            linear-gradient(118deg,transparent 63%,rgba(157,172,178,.08) 64%,transparent 65%)}
+.hero .wrap{position:relative;z-index:2;padding-top:70px;padding-bottom:44px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--s300);margin-bottom:18px}
+h1{font-family:var(--disp);font-weight:900;letter-spacing:-.035em;line-height:.96;text-transform:uppercase;
+ font-size:clamp(38px,7.5vw,80px);margin:0 0 18px;color:#EAF0F1}
+.lede{color:var(--s200);max-width:52ch;margin:0;font-size:clamp(15px,2vw,17px)}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--n800);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip div{padding:20px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:none}
+.strip b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(24px,3.4vw,32px);color:var(--s050);font-variant-numeric:tabular-nums}
+.strip.banda{grid-template-columns:repeat(3,1fr)}
+.strip.banda b{font-size:16px;letter-spacing:-.01em;margin-bottom:3px}
+.strip.banda span{text-transform:none;letter-spacing:0;font-size:13px;color:var(--s200)}
+@media(max-width:700px){.strip.banda{grid-template-columns:1fr}.strip.banda div{border-right:none;border-bottom:1px solid var(--line);padding:15px 20px}}
+.strip span{font-size:11.5px;color:var(--s300);letter-spacing:.09em;text-transform:uppercase}
+@media(max-width:700px){.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:none}}
+
+section{padding:52px 0}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(22px,3vw,30px);letter-spacing:-.025em;margin:0}
+.sub{color:var(--s300);font-size:14.5px;margin:7px 0 0}
+.tabs{display:flex;gap:8px;margin:22px 0 16px;flex-wrap:wrap}
+.tab{font-family:var(--body);font-weight:700;font-size:14.5px;padding:11px 19px;border-radius:999px;
+ border:1px solid var(--line);background:var(--n600);color:var(--s200);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--s050);border-color:var(--s050);color:var(--n800)}
+.tab .n{font-variant-numeric:tabular-nums;opacity:.65;margin-left:4px}
+.filters{background:var(--n600);border:1px solid var(--line);border-radius:14px;padding:16px}
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.f label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--s300);margin-bottom:5px}
+.f select,.f input{width:100%;font-family:var(--body);font-size:14.5px;padding:10px 11px;border:1px solid var(--line);
+ border-radius:9px;background:var(--n700);color:var(--s050);appearance:none}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;align-items:center}
+.chip{font-size:13px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--line);
+ background:var(--n700);color:var(--s200);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#EAF0F1}
+.clear{margin-left:auto;background:none;border:none;font-family:var(--body);font-size:13px;color:var(--s300);cursor:pointer;text-decoration:underline}
+.count{font-family:var(--mono);font-size:12.5px;color:var(--s300);margin:18px 0 14px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:18px}
+.card{background:var(--n600);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card:hover{border-color:var(--steel)}
+.thumb{height:140px;position:relative;background-image:linear-gradient(135deg,rgba(255,255,255,.28),rgba(0,0,0,.22))}
+.badges{position:absolute;top:11px;left:11px;display:flex;gap:6px;flex-wrap:wrap}
+.b{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 8px;border-radius:5px}
+.b{box-shadow:0 1px 4px rgba(4,18,25,.5)}
+.b-sv{background:#2E8B57;color:#EAF7EF}
+.b-tr{background:#B07C1E;color:#FFF6E4}
+.b-or{background:#2F6797;color:#EAF2FA}
+.b-of{background:#C8D2D4;color:var(--n800)}
+.cbody{padding:15px;flex:1;display:flex;flex-direction:column}
+.ctitle{font-family:var(--disp);font-weight:800;font-size:17.5px;letter-spacing:-.015em;text-transform:uppercase;color:#EAF0F1}
+.ctitle .y{color:var(--s300)}
+.chas{font-family:var(--mono);font-size:11px;color:var(--s300);letter-spacing:.06em;margin-top:4px}
+.specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.sp{font-size:11.5px;font-weight:500;background:var(--n700);border:1px solid var(--line);color:var(--s200);padding:3px 8px;border-radius:6px}
+.price{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price .v{font-family:var(--disp);font-weight:800;font-size:19px;font-variant-numeric:tabular-nums;color:#EAF0F1}
+.price .ask{font-size:14px;font-weight:600;color:var(--s300)}
+.price a{font-size:12.5px;font-weight:700;color:var(--s050);text-decoration:none;white-space:nowrap;
+ border:1px solid var(--line);padding:8px 12px;border-radius:8px}
+.price a:hover{background:var(--n500)}
+.empty{grid-column:1/-1;padding:56px 20px;text-align:center;color:var(--s300);background:var(--n600);border:1px dashed var(--line);border-radius:14px}
+
+#spot{padding:40px 0}
+.spotcard{display:grid;grid-template-columns:280px 1fr;gap:26px;background:var(--n600);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.spotthumb{position:relative;min-height:220px;background-image:linear-gradient(135deg,rgba(255,255,255,.28),rgba(0,0,0,.22))}
+.spotbody{padding:22px 26px 26px}
+.verstock{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;color:var(--s200);text-decoration:none}
+.verstock:hover{color:var(--s050)}
+@media(max-width:700px){.spotcard{grid-template-columns:1fr}.spotthumb{min-height:160px}}
+
+.band{background:var(--n800);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;margin-top:26px}
+.col .num{font-family:var(--mono);font-size:11px;color:var(--steel);letter-spacing:.16em;margin-bottom:9px}
+.col h3{font-family:var(--disp);font-weight:700;font-size:18px;margin:0 0 8px}
+.col p{margin:0;color:var(--s200);font-size:14.5px}
+.note{background:var(--n600);border-left:3px solid var(--steel);padding:14px 17px;border-radius:0 10px 10px 0;
+ font-size:13.5px;color:var(--s200);margin-top:26px}
+.cta{background:linear-gradient(125deg,#2E4752,#152B35 65%,#0B1C23);text-align:center}
+.cta h2{color:#EAF0F1}
+.cta p{color:var(--s200);max-width:48ch;margin:12px auto 24px}
+.ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+footer{background:var(--n900);color:var(--s300);padding:44px 0;font-size:13.5px;border-top:1px solid var(--line)}
+footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
+footer b{color:var(--s050);display:block;margin-bottom:7px;font-family:var(--disp);font-size:15px}
+footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
+</style></head><body>
+
+<header><div class="wrap">
+  <a href="#top" aria-label="Inicio"><svg viewBox="0 2 673 309" xmlns="http://www.w3.org/2000/svg" class="logo" aria-label="AMK Vehículos Selectos"><path fill="#C8D2D4" d="M 115 9 L 6 227 L 49 227 L 114 90 L 180 226 L 224 226 Z M 267 9 L 267 226 L 303 198 L 304 84 L 376 140 L 450 84 L 452 199 L 488 226 L 487 8 L 377 93 Z M 621 8 L 534 115 L 620 226 L 667 227 L 581 115 L 667 9 Z"/><path fill="#9DACB2" fill-rule="evenodd" d="M 488 291 L 488 293 L 489 294 L 503 294 L 503 290 L 489 290 Z M 414 291 L 414 293 L 415 294 L 428 294 L 429 293 L 429 291 L 428 290 L 415 290 Z M 63 291 L 63 293 L 64 294 L 77 294 L 77 293 L 78 292 L 77 291 L 77 290 L 64 290 Z M 636 280 L 633 284 L 634 291 L 638 294 L 652 294 L 655 299 L 651 302 L 635 301 L 633 305 L 656 304 L 659 296 L 655 291 L 637 288 L 639 283 L 656 283 L 656 279 Z M 596 280 L 591 287 L 591 296 L 593 301 L 598 305 L 615 304 L 619 299 L 618 283 L 612 279 Z M 599 283 L 602 282 L 610 282 L 615 286 L 616 288 L 616 297 L 612 301 L 610 302 L 600 302 L 595 297 L 595 288 Z M 554 279 L 555 283 L 565 284 L 565 305 L 568 305 L 568 286 L 570 283 L 579 283 L 580 280 Z M 521 280 L 519 283 L 520 303 L 523 305 L 542 305 L 542 302 L 539 301 L 526 302 L 522 299 L 522 286 L 525 283 L 541 283 L 542 279 Z M 483 279 L 482 302 L 486 305 L 505 305 L 505 302 L 487 301 L 485 299 L 485 284 L 504 283 L 505 279 Z M 445 279 L 445 304 L 469 305 L 469 302 L 467 301 L 454 302 L 449 300 L 449 279 Z M 407 280 L 408 302 L 411 305 L 430 305 L 431 303 L 428 301 L 413 301 L 411 299 L 411 284 L 430 283 L 431 280 Z M 371 280 L 368 284 L 369 291 L 373 294 L 387 294 L 390 299 L 386 302 L 371 301 L 368 304 L 391 304 L 394 300 L 393 294 L 388 290 L 374 290 L 372 285 L 374 283 L 391 283 L 392 279 Z M 312 280 L 309 284 L 310 291 L 314 294 L 328 294 L 331 299 L 326 302 L 311 301 L 309 305 L 332 304 L 335 296 L 331 291 L 313 288 L 315 283 L 331 283 L 332 279 Z M 272 280 L 268 284 L 267 288 L 268 300 L 274 305 L 291 304 L 295 299 L 295 285 L 293 282 L 288 279 Z M 275 283 L 277 282 L 286 282 L 291 286 L 291 298 L 286 302 L 277 302 L 272 299 L 271 297 L 271 288 Z M 232 279 L 232 304 L 255 305 L 256 302 L 240 301 L 239 302 L 236 300 L 236 280 Z M 191 279 L 192 299 L 200 305 L 216 305 L 217 280 L 213 279 L 213 299 L 211 301 L 200 301 L 194 294 L 194 279 Z M 156 280 L 154 282 L 154 302 L 158 305 L 177 305 L 177 302 L 161 302 L 157 299 L 157 285 L 159 283 L 177 283 L 177 279 Z M 135 279 L 135 305 L 138 305 L 139 304 L 139 280 L 138 279 Z M 94 279 L 94 305 L 98 304 L 99 294 L 115 294 L 116 304 L 120 305 L 120 279 L 116 280 L 115 290 L 99 290 L 98 280 Z M 57 279 L 57 302 L 61 305 L 80 305 L 80 302 L 64 302 L 60 300 L 60 284 L 79 283 L 80 279 Z M 16 279 L 27 303 L 31 305 L 43 282 L 43 279 L 39 280 L 30 297 L 27 295 L 20 279 Z"/></svg></a>
+  <nav>
+    <a href="#stock">Stock</a><a href="#trabajo">Vehículos de trabajo</a>
+    <a href="#proceso">Cómo trabajamos</a><a href="#franquicia">Franquicias</a>
+  </nav>
+  <a class="wa" href="https://wa.me/56989116510" target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">Importadora · Corea del Sur → Iquique</div>
+  <h1>Corea<br>directo a<br>Iquique</h1>
+  <p class="lede">Importación propia, sin intermediarios. Alguien de la familia revisa cada vehículo en origen antes de subirlo al contenedor.</p>
+</div></section>
+
+<section id="spot" hidden></section>
+
+<div class="strip" id="stripNum" hidden>
+  <div><b id="sIqq">–</b><span>Disponibles en Iquique</span></div>
+  <div><b id="sOri">–</b><span>En camino desde Corea</span></div>
+  <div><b id="sTr">–</b><span>Vehículos de trabajo</span></div>
+  <div><b id="sSv">–</b><span>Con sello verde</span></div>
+</div>
+<div class="strip banda" id="stripTxt">
+  <div><b>Elegidos en persona</b><span>Revisamos cada vehículo en Corea</span></div>
+  <div><b>Importación propia</b><span>Sin intermediarios</span></div>
+  <div><b>Preparados en Iquique</b><span>Mecánica, pintura y detallado</span></div>
+</div>
+
+<section id="stock"><div class="wrap">
+  <h2>Nuestro stock</h2>
+  <p class="sub">Filtra por lo que necesitas. Sin registro y sin formularios.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-seg="pas" aria-selected="true">Autos y SUV <span class="n" id="nPas"></span></button>
+    <button class="tab" role="tab" data-seg="trab" aria-selected="false" id="trabajo">De trabajo <span class="n" id="nTrab"></span></button>
+    <button class="tab" role="tab" data-seg="all" aria-selected="false">Todo <span class="n" id="nAll"></span></button>
+  </div>
+
+  <div class="filters">
+    <div class="frow">
+      <div class="f"><label for="q">Buscar</label><input id="q" placeholder="Modelo o chasis" autocomplete="off"></div>
+      <div class="f"><label for="fMa">Marca</label><select id="fMa"></select></div>
+      <div class="f"><label for="fMo">Modelo</label><select id="fMo"></select></div>
+      <div class="f"><label for="fCat">Categoría</label><select id="fCat"></select></div>
+      <div class="f"><label for="fAn">Año desde</label><select id="fAn"></select></div>
+      <div class="f"><label for="fTr">Tracción</label><select id="fTr"></select></div>
+      <div class="f"><label for="fPa">Pasajeros</label><select id="fPa"></select></div>
+      <div class="f" id="wCa" hidden><label for="fCa">Carrocería</label><select id="fCa"></select></div>
+    </div>
+    <div class="chips">
+      <button class="chip" id="cSv" aria-pressed="false">Circula en Santiago, V y VI</button>
+      <button class="chip" id="cIqq" aria-pressed="false">Solo disponibles ahora</button>
+      <button class="chip" id="cOf" aria-pressed="false">Solo ofertas</button>
+      <button class="clear" id="clr">Limpiar filtros</button>
+    </div>
+  </div>
+
+  <p class="count" id="cnt"></p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="band" id="proceso"><div class="wrap">
+  <h2>Cómo trabajamos</h2>
+  <p class="sub">Un proceso corto, con alguien de la familia en cada punta.</p>
+  <div class="cols">
+    <div class="col"><div class="num">01</div><h3>Selección en Corea</h3>
+      <p>Vemos el vehículo físicamente y revisamos su estado antes de comprarlo. No trabajamos con fotos de terceros.</p></div>
+    <div class="col"><div class="num">02</div><h3>Envío en contenedor</h3>
+      <p>Viajan en contenedor, no como carga suelta. Llegan protegidos y en mejores condiciones.</p></div>
+    <div class="col"><div class="num">03</div><h3>Preparación en Iquique</h3>
+      <p>Mecánica, pintura, sistema eléctrico y detallado antes de mostrarlo a un cliente.</p></div>
+    <div class="col"><div class="num">04</div><h3>Entrega y trámites</h3>
+      <p>Te acompañamos en la liberación desde Zona Franca y en el traslado a tu ciudad.</p></div>
+  </div>
+</div></section>
+
+<section id="franquicia"><div class="wrap">
+  <h2>Franquicias y circulación</h2>
+  <p class="sub">Dos cosas distintas que conviene no confundir.</p>
+  <div class="cols">
+    <div class="col"><h3>Franquicia por discapacidad</h3>
+      <p>Todos nuestros vehículos pueden liberarse acogiéndose a la Ley 20.422. Te asesoramos en el proceso completo,
+         desde la documentación hasta la salida de Zona Franca, y te entregamos la cotización con todos los costos antes de que decidas.</p></div>
+    <div class="col"><h3>Sello verde</h3>
+      <p>Para circular en la Región Metropolitana, Valparaíso y O'Higgins el vehículo necesita sello verde:
+         año 2018 en adelante y menos de 2.700 kg. Usa el filtro del catálogo para ver solo esas unidades.</p></div>
+  </div>
+  <div class="note"><strong>Importante:</strong> la información de circulación es referencial y corresponde a la normativa vigente. La certificación se emite en la revisión técnica correspondiente.</div>
+</div></section>
+
+<section class="cta" id="contacto"><div class="wrap">
+  <h2>¿Buscas algo puntual?</h2>
+  <p>Si no está en el stock, lo traemos a pedido desde Corea. Cuéntanos qué necesitas y te avisamos apenas aparezca.</p>
+  <div class="ctas">
+    <a class="wa" href="https://wa.me/56989116510" target="_blank" rel="noopener">Andre · +56 9 8911 6510</a>
+    <a class="wa" href="https://wa.me/56977272269" target="_blank" rel="noopener">Víctor · +56 9 7727 2269</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b>AMK Vehículos Selectos</b>Importación directa desde Corea del Sur<br>Of. Buenaventura C-20<br>Barrio Industrial Zofri, Iquique</div>
+  <div><b>Catálogo</b><a href="#stock">Autos y SUV</a><a href="#trabajo">Vehículos de trabajo</a><a href="#franquicia">Franquicias</a></div>
+  <div><b>Contacto</b><a href="https://wa.me/56989116510">Andre · +56 9 8911 6510</a><a href="https://wa.me/56977272269">Víctor · +56 9 7727 2269</a></div>
+  <div><b>Marcas</b>Hyundai · Kia · Jeep<br>SsangYong · BMW · Chevrolet</div>
+</div></footer>
+
+<script>
+const V=[{"ch":"BA123290","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2011,"ce":"Beige","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"DK504125","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2013,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EK554658","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2014,"ce":"Gris","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BK028291","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2011,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA103893","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EK527135","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2014,"ce":"Azul","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU217513","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2014,"ce":"Negro","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GK021203","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2016,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EP183068","st":"IQQ","ma":"SSANGYONG","mo":"KORANDO SPORTS","an":2014,"ce":"Rojo","cat":"CAMIONETA","tr":"4X4","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"KK309932","st":"IQQ","ma":"KIA","mo":"BONGO","an":2019,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"GK084924","st":"IQQ","ma":"KIA","mo":"BONGO","an":2016,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"GU218601","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2016,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"AU580981","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2010,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"KK288125","st":"IQQ","ma":"KIA","mo":"BONGO","an":2019,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"EF706197","st":"IQQ","ma":"BMW","mo":"320D","an":2014,"ce":"Azul","cat":"SEDÁN","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":300000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA017418","st":"ORIGEN","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Beige","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CU826429","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2012,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CK44844","st":"ORIGEN","ma":"KIA","mo":"SPORTAGE","an":2012,"ce":"Negro","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU596814","st":"ORIGEN","ma":"HYUNDAI","mo":"STAREX","an":2014,"ce":"Amarillo","cat":"FURGÓN","tr":"4X2","pa":12,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EA842557","st":"ORIGEN","ma":"HYUNDAI","mo":"TUCSON","an":2014,"ce":"Naranja","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FW600736","st":"IQQ","ma":"JEEP","mo":"CHEROKEE","an":2015,"ce":"Rojo","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"JK","st":"ORIGEN","ma":"KIA","mo":"BONGO","an":2018,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CU477090","st":"ORIGEN","ma":"HYUNDAI","mo":"TUCSON","an":2012,"ce":"Rojo","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":false,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU373842","st":"ORIGEN","ma":"HYUNDAI","mo":"SANTA FE","an":2015,"ce":"Beige","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":20000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FK961974","st":"ORIGEN","ma":"KIA","mo":"BONGO","an":2015,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CA320818","st":"ORIGEN","ma":"KIA","mo":"SORENTO","an":2012,"ce":"Dorado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"DK410737","st":"ORIGEN","ma":"KIA","mo":"SPORTAGE","an":2013,"ce":"Negro","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"HK161203","st":"ORIGEN","ma":"KIA","mo":"BONGO","an":2017,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"GAVIOTA","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"GU303420","st":"ORIGEN","ma":"HYUNDAI","mo":"PORTER","an":2016,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"7U243999","st":"ORIGEN","ma":"HYUNDAI","mo":"PORTER","an":2007,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"EU987768","st":"ORIGEN","ma":"HYUNDAI","mo":"PORTER","an":2014,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"GK074898","st":"ORIGEN","ma":"KIA","mo":"SPORTAGE","an":2016,"ce":"Azul","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GS232774","st":"ORIGEN","ma":"KIA","mo":"CARNIVAL","an":2016,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":9,"ca":"S/N","tp":false,"km":130000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GS176426","st":"ORIGEN","ma":"KIA","mo":"CARNIVAL","an":2016,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":9,"ca":"S/N","tp":false,"km":130000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FS056766","st":"ORIGEN","ma":"KIA","mo":"CARNIVAL","an":2015,"ce":"Burdeo","cat":"SUV","tr":"4X2","pa":11,"ca":"S/N","tp":false,"km":130000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA067859","st":"ORIGEN","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Negro","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA006709","st":"ORIGEN","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"HB098077","st":"ORIGEN","ma":"CHEVROLET","mo":"TRAX","an":2017,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"DP121905","st":"ORIGEN","ma":"SSANGYONG","mo":"KORANDO","an":2013,"ce":"Blanco","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CU608750","st":"ORIGEN","ma":"HYUNDAI","mo":"AVANTE","an":2012,"ce":"Plateado","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BA152745","st":"ORIGEN","ma":"KIA","mo":"SORENTO","an":2011,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CU021219","st":"IQQ","ma":"HYUNDAI","mo":"VELOSTER","an":2012,"ce":"Blanco","cat":"HATCHBACK","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EA796913","st":"IQQ","ma":"MERC.BENZ","mo":"E220","an":2014,"ce":"Blanco","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU258357","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2014,"ce":"Verde","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":20000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CK163065","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2012,"ce":"Naranja","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU104724","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2015,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"E0B42949","st":"IQQ","ma":"BMW","mo":"X6","an":2014,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":300000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"HA944230","st":"IQQ","ma":"JAGUAR","mo":"XE","an":2017,"ce":"Blanco","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GU295795","st":"IQQ","ma":"HYUNDAI","mo":"i30","an":2016,"ce":"Azul","cat":"HATCHBACK","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FW641759","st":"IQQ","ma":"JEEP","mo":"CHEROKEE","an":2015,"ce":"Blanco","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CK322436","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2012,"ce":"Negro","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"JK216336","st":"IQQ","ma":"KIA","mo":"BONGO","an":2018,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"DU536181","st":"IQQ","ma":"HYUNDAI","mo":"STAREX","an":2013,"ce":"Amarillo","cat":"FURGÓN","tr":"4X2","pa":12,"ca":"S/N","tp":false,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU842557","st":"IQQ","ma":"HYUNDAI","mo":"TUCSON","an":2014,"ce":"Naranja","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA027418","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Beige","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU263984","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2014,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU369755","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2015,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":20000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA098425","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA010359","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FP5488","st":"ORIGEN","ma":"JEEP","mo":"CHEROKEE","an":2015,"ce":"Blanco","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BK109695","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2011,"ce":"Azul","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"JK212184","st":"IQQ","ma":"KIA","mo":"BONGO","an":2018,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"GAVIOTA","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"JU447983","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2018,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"HK144620","st":"IQQ","ma":"KIA","mo":"BONGO","an":2017,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"JK184556","st":"IQQ","ma":"KIA","mo":"BONGO","an":2018,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CK134844","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2012,"ce":"Marrón","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"KSZ00002","st":"IQQ","ma":"KIA","mo":"BONGO","an":2019,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CA263680","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2012,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU407879","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2015,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":20000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BA170814","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2011,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU193226","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2014,"ce":"Blanco","cat":"SUV","tr":"4X4","pa":7,"ca":"S/N","tp":false,"km":20000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GU223794","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2016,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"FU090558","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2015,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"JK249988","st":"IQQ","ma":"KIA","mo":"BONGO","an":2018,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"EU051132","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2014,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CU773941","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2012,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"KK392511","st":"IQQ","ma":"KIA","mo":"BONGO","an":2019,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"EC282505","st":"IQQ","ma":"JEEP","mo":"G CHEROKEE","an":2014,"ce":"Azul","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FW533746","st":"IQQ","ma":"JEEP","mo":"CHEROKEE","an":2015,"ce":"Blanco","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GK014872","st":"IQQ","ma":"KIA","mo":"BONGO","an":2016,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"AA001982","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Negro","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CA283790","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2012,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BA203956","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2011,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BK056007","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2011,"ce":"Naranja","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BA228323","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2011,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GU590752","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2016,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"HK127486","st":"IQQ","ma":"KIA","mo":"BONGO","an":2017,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"FU138229","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2015,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CU038770","st":"IQQ","ma":"HYUNDAI","mo":"VELOSTER","an":2012,"ce":"Blanco","cat":"HATCHBACK","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA003398","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Negro","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA076900","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"JU447272","st":"IQQ","ma":"HYUNDAI","mo":"AVANTE","an":2018,"ce":"Plateado","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"FK985159","st":"IQQ","ma":"KIA","mo":"BONGO","an":2015,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"FREEZER","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"CK324227","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2012,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"DU033580","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2013,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EK568968","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2014,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"JU850270","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2018,"ce":"Verde","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"JU578958","st":"IQQ","ma":"HYUNDAI","mo":"AVANTE","an":2018,"ce":"Gris","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"LU132655","st":"IQQ","ma":"HYUNDAI","mo":"PALISADE","an":2020,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":20000,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"HS252155","st":"IQQ","ma":"KIA","mo":"CARNIVAL","an":2017,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":9,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"HU350222","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2017,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"S/N","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"FU119443","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2015,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"FU216854","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2015,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":6,"ca":"BARANDA","tp":false,"km":null,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"KS461008","st":"IQQ","ma":"KIA","mo":"CARNIVAL","an":2019,"ce":"Negro","cat":"SUV","tr":"4X2","pa":9,"ca":"S/N","tp":false,"km":20000,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"CA312083","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2012,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU842923","st":"IQQ","ma":"HYUNDAI","mo":"AVANTE","an":2014,"ce":"Blanco","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU419670","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2015,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU946531","st":"IQQ","ma":"HYUNDAI","mo":"TUCSON","an":2015,"ce":"Rojo","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FU086134","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2015,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":10000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"KU622508","st":"IQQ","ma":"HYUNDAI","mo":"PORTER","an":2019,"ce":"Azul","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"BARANDA","tp":false,"km":20000,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"AA030139","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Beige","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CA255607","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2012,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"JS434274","st":"IQQ","ma":"KIA","mo":"CARNIVAL","an":2018,"ce":"Negro","cat":"SUV","tr":"4X2","pa":9,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"GP268501","st":"IQQ","ma":"SSANGYONG","mo":"KORANDO","an":2016,"ce":"Gris","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"BA148330","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2011,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"MS026561","st":"IQQ","ma":"KIA","mo":"CARNIVAL","an":2021,"ce":"Negro","cat":"SUV","tr":"4X2","pa":9,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"HU321353","st":"IQQ","ma":"HYUNDAI","mo":"AVANTE","an":2017,"ce":"Blanco","cat":"SEDÁN","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GK067445","st":"IQQ","ma":"KIA","mo":"BONGO","an":2016,"ce":"Blanco","cat":"CAMIONETA","tr":"4X2","pa":3,"ca":"GAVIOTA","tp":false,"km":0,"trab":true,"sv":false,"oferta":false,"precio":null},{"ch":"KU104839","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2019,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"CA287051","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2012,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"AA012941","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2010,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"DU682394","st":"IQQ","ma":"HYUNDAI","mo":"TUCSON","an":2013,"ce":"Gris","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"KU048955","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2019,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":true,"oferta":false,"precio":null},{"ch":"BK098617","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2011,"ce":"Blanco","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GU615419","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2016,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FW719219","st":"IQQ","ma":"JEEP","mo":"CHEROKEE","an":2015,"ce":"Dorado","cat":"SUV","tr":"4X4","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"FA110858","st":"IQQ","ma":"KIA","mo":"SORENTO","an":2015,"ce":"Plateado","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"GK828801","st":"IQQ","ma":"KIA","mo":"SPORTAGE","an":2016,"ce":"Gris","cat":"SUV","tr":"4X2","pa":5,"ca":"S/N","tp":false,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"EU183092","st":"IQQ","ma":"HYUNDAI","mo":"SANTA FE","an":2014,"ce":"Azul","cat":"SUV","tr":"4X2","pa":7,"ca":"S/N","tp":true,"km":10000,"trab":false,"sv":false,"oferta":false,"precio":null},{"ch":"CU005350","st":"IQQ","ma":"HYUNDAI","mo":"VELOSTER","an":2012,"ce":"Naranja","cat":"HATCHBACK","tr":"4X2","pa":5,"ca":"S/N","tp":true,"km":null,"trab":false,"sv":false,"oferta":false,"precio":null}];
+const COL={'Blanco':'#E9EAE6','Negro':'#20262A','Gris':'#8A9296','Plateado':'#B9C0C3','Azul':'#1F4E86','Rojo':'#9B2A28',
+ 'Beige':'#C9B79A','Amarillo':'#D6A81C','Naranja':'#C4661F','Dorado':'#B29246','Burdeo':'#6B2231','Verde':'#2C5B41','Marrón':'#6A4C38'};
+const CARN={'BARANDA':'Baranda','BARANDA BAJA':'Baranda baja','FREEZER':'Freezer','GAVIOTA':'Gaviota','CAJÓN SIMPLE':'Cajón simple','POWER GATE':'Power Gate'};
+const clp=n=>'$'+Number(n).toLocaleString('es-CL');
+const $=s=>document.querySelector(s);
+let seg='pas', F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}, T={sv:0,iqq:0,of:0}, q='';
+const base=()=>V.filter(v=>seg==='all'?true:(seg==='trab'?v.trab:!v.trab));
+function apply(L){
+  const s=q.trim().toLowerCase();
+  return L.filter(v=>{
+    if(F.ma&&v.ma!==F.ma)return false;
+    if(F.mo&&v.mo!==F.mo)return false;
+    if(F.cat&&v.cat!==F.cat)return false;
+    if(F.an&&(!v.an||v.an<+F.an))return false;
+    if(F.tr&&v.tr!==F.tr)return false;
+    if(F.pa&&String(v.pa)!==F.pa)return false;
+    if(F.ca&&v.ca!==F.ca)return false;
+    if(T.sv&&!v.sv)return false;
+    if(T.iqq&&v.st!=='IQQ')return false;
+    if(T.of&&!v.oferta)return false;
+    if(s&&!((v.ma+' '+v.mo+' '+v.ch+' '+(v.an||'')).toLowerCase().includes(s)))return false;
+    return true;
+  });
+}
+const uniq=(L,k)=>[...new Set(L.map(v=>v[k]).filter(x=>x!==null&&x!==''&&x!==undefined))];
+function fill(sel,vals,ph,cur){
+  $(sel).innerHTML='<option value="">'+ph+'</option>'+vals.map(x=>'<option value="'+x+'"'+(x==cur?' selected':'')+'>'+x+'</option>').join('');
+}
+function buildFilters(){
+  const b=base();
+  fill('#fMa',uniq(b,'ma').sort(),'Todas',F.ma);
+  fill('#fMo',uniq(F.ma?b.filter(v=>v.ma===F.ma):b,'mo').sort(),'Todos',F.mo);
+  fill('#fCat',uniq(b,'cat').sort(),'Todas',F.cat);
+  fill('#fAn',uniq(b,'an').sort((x,y)=>y-x),'Cualquiera',F.an);
+  fill('#fTr',uniq(b,'tr').sort(),'Todas',F.tr);
+  fill('#fPa',uniq(b,'pa').sort((x,y)=>x-y),'Cualquiera',F.pa);
+  const carr=uniq(b,'ca').filter(c=>c&&c!=='S/N').sort();
+  $('#wCa').hidden=!(seg!=='pas'&&carr.length);
+  if(!$('#wCa').hidden) fill('#fCa',carr,'Todas',F.ca);
+}
+function card(v){
+  const c=COL[v.ce]||'#8A9296';
+  const sp=[v.cat,v.tr,(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
+    .filter(Boolean).map(t=>'<span class="sp">'+t+'</span>').join('');
+  const bd=[];
+  if(v.st==='ORIGEN') bd.push('<span class="b b-or">En camino</span>');
+  if(v.trab) bd.push('<span class="b b-tr">Trabajo</span>');
+  if(v.sv) bd.push('<span class="b b-sv">Sello verde</span>');
+  if(v.oferta) bd.push('<span class="b b-of">Oferta</span>');
+  const pr=(v.oferta&&v.precio)?'<span class="v">'+clp(v.precio)+'</span>':'<span class="ask">Consultar precio</span>';
+  const msg=encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.an||'')+' (chasis '+v.ch+').');
+  return '<article class="card"><div class="thumb" style="background-color:'+c+'"><div class="badges">'+bd.join('')+'</div></div>'
+   +'<div class="cbody"><div class="ctitle">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
+   +'<div class="chas">'+v.ch+' · '+v.ce+'</div>'
+   +(sp?'<div class="specs">'+sp+'</div>':'')
+   +'<div class="price">'+pr+'<a href="https://wa.me/56989116510?text='+msg+'" target="_blank" rel="noopener">Consultar</a></div></div></article>';
+}
+function render(){
+  buildFilters();
+  const L=apply(base());
+  $('#grid').innerHTML=L.length?L.map(card).join('')
+   :'<div class="empty"><strong>Sin resultados.</strong><br>Prueba quitando algún filtro, o escríbenos y lo traemos a pedido.</div>';
+  $('#cnt').textContent=L.length+(L.length===1?' vehículo':' vehículos');
+  $('#nPas').textContent=V.filter(v=>!v.trab).length;
+  $('#nTrab').textContent=V.filter(v=>v.trab).length;
+  $('#nAll').textContent=V.length;
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true'); seg=t.dataset.seg;
+  F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}; render();
+}));
+const bind=(sel,k)=>$(sel).addEventListener('change',e=>{F[k]=e.target.value; if(k==='ma')F.mo=''; render()});
+['#fMa|ma','#fMo|mo','#fCat|cat','#fAn|an','#fTr|tr','#fPa|pa','#fCa|ca'].forEach(x=>{const[a,b]=x.split('|');bind(a,b)});
+$('#q').addEventListener('input',e=>{q=e.target.value;render()});
+const tog=(sel,k)=>$(sel).addEventListener('click',()=>{T[k]=T[k]?0:1;$(sel).setAttribute('aria-pressed',T[k]?'true':'false');render()});
+tog('#cSv','sv');tog('#cIqq','iqq');tog('#cOf','of');
+$('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''};T={sv:0,iqq:0,of:0};q='';$('#q').value='';
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
+const MIN_CIFRAS=50;
+if(V.length>=MIN_CIFRAS){
+  $('#stripNum').hidden=false; $('#stripTxt').hidden=true;
+  $('#sIqq').textContent=V.filter(v=>v.st==='IQQ').length;
+  $('#sOri').textContent=V.filter(v=>v.st==='ORIGEN').length;
+  $('#sTr').textContent=V.filter(v=>v.trab).length;
+  $('#sSv').textContent=V.filter(v=>v.sv).length;
+}
+render();
+
+function vehParam(){
+  const p=new URLSearchParams(location.search).get('ch');
+  return p?p.trim().toUpperCase():null;
+}
+function spotlight(){
+  const ch=vehParam(); if(!ch) return;
+  const v=V.find(x=>x.ch.toUpperCase()===ch);
+  const box=$('#spot'); if(!box||!v) return;
+  const c=COL[v.ce]||'#8A9296';
+  const sp=[v.cat,v.tr,(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
+    .filter(Boolean).map(t=>'<span class="sp">'+t+'</span>').join('');
+  const bd=[];
+  if(v.st==='ORIGEN') bd.push('<span class="b b-or">En camino</span>');
+  if(v.trab) bd.push('<span class="b b-tr">Trabajo</span>');
+  if(v.sv) bd.push('<span class="b b-sv">Sello verde</span>');
+  if(v.oferta) bd.push('<span class="b b-of">Oferta</span>');
+  const pr=(v.oferta&&v.precio)?'<span class="v">'+clp(v.precio)+'</span>':'<span class="ask">Consultar precio</span>';
+  const msg=encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.an||'')+' (chasis '+v.ch+').');
+  box.innerHTML=
+    '<div class="wrap"><div class="spotcard">'
+    +'<div class="spotthumb" style="background-color:'+c+'"><div class="badges">'+bd.join('')+'</div></div>'
+    +'<div class="spotbody">'
+    +'<div class="eyebrow">Vehículo consultado</div>'
+    +'<div class="ctitle" style="font-size:26px">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
+    +'<div class="chas">'+v.ch+' · '+v.ce+'</div>'
+    +(sp?'<div class="specs">'+sp+'</div>':'')
+    +'<div class="price" style="margin-top:18px">'+pr
+    +'<a class="wa" href="https://wa.me/56989116510?text='+msg+'" target="_blank" rel="noopener">Consultar por WhatsApp</a></div>'
+    +'<a href="#stock" class="verstock">Ver todo el stock →</a>'
+    +'</div></div></div>';
+  box.hidden=false;
+  document.title=v.ma+' '+v.mo+' '+(v.an||'')+' · AMK Vehículos Selectos';
+}
+spotlight();
+</script>
+</body></html>
