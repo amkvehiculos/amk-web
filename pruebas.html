@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AMK Vehículos Selectos (PRUEBAS)</title>
+<meta name="description" content="Vehículos coreanos importados y elegidos en persona en origen. Stock en Iquique, Zona Franca. SUV, camionetas y vehículos de trabajo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --n900:#041219;--n800:#0B1C23;--n700:#152B35;--n600:#183640;--n500:#223B46;--n400:#2E4752;
+ --steel:#51686E;--line:#3D5D6B;--s300:#7B8B8E;--s200:#9DACB2;--s100:#B4BCBE;--s050:#C8D2D4;
+ --ok:#46C97D;--azul:#6AA9E0;--ambar:#E8B04B;--disp:'Archivo',system-ui,sans-serif;--body:'Instrument Sans',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{animation:none!important;opacity:1!important;transform:none!important}.card:hover{transform:none!important}.thumb img{transition:none!important}.card:hover .thumb img{transform:none!important}#spot{animation:none!important}.gal-track{transition:none!important}}
+body{margin:0;background:var(--n700);color:var(--s050);font-family:var(--body);line-height:1.5}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--s200);outline-offset:2px}
+.logo{height:34px;width:auto;display:block}
+
+header{position:sticky;top:0;z-index:60;background:linear-gradient(120deg,#0B1C23,#1C3E4C 70%,#245560);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:26px;height:68px}
+nav{margin-left:auto;display:flex;gap:24px;font-size:14.5px;font-weight:500}
+nav a{text-decoration:none;color:var(--s200)}nav a:hover{color:var(--s050)}
+.wa{display:inline-flex;align-items:center;gap:7px;background:var(--s050);color:var(--n800);text-decoration:none;font-weight:700;font-size:14px;padding:10px 17px;border-radius:8px;white-space:nowrap;border:none;cursor:pointer;font-family:var(--body)}
+.wa:hover{background:#fff}
+.wa svg{flex:none}
+.wapick{position:relative}
+.wachev{transition:transform .18s ease}
+.wapick[data-open="true"] .wachev{transform:rotate(180deg)}
+.wadrop{position:absolute;top:calc(100% + 9px);right:0;background:var(--n600);border:1px solid var(--line);border-radius:13px;padding:6px;
+ box-shadow:0 18px 34px -14px rgba(4,18,25,.65);display:flex;flex-direction:column;gap:2px;min-width:196px;z-index:80}
+.wadrop[hidden]{display:none}
+.wadrop a{display:flex;flex-direction:column;gap:1px;padding:9px 13px;border-radius:9px;text-decoration:none;color:#EAF0F1;transition:background .12s ease}
+.wadrop a:hover{background:var(--n500)}
+.wadrop b{font-family:var(--disp);font-weight:700;font-size:13.5px}
+.wadrop span{font-family:var(--mono);font-size:11px;color:var(--s300);letter-spacing:.01em}
+/* botones de contacto con nombre arriba y numero mas chico abajo (cta y menu del header) */
+.wa-contact{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--s050);color:var(--n800);
+ text-decoration:none;padding:9px 16px;border-radius:9px;line-height:1.2}
+.wa-contact:hover{background:#fff}
+.wa-contact b{font-family:var(--disp);font-weight:700;font-size:14px}
+.wa-contact span{font-family:var(--mono);font-weight:600;font-size:10.5px;color:var(--steel);letter-spacing:.02em}
+@media(max-width:900px){nav{display:none}}
+
+.hero{position:relative;min-height:420px;display:flex;align-items:flex-end;
+ background:linear-gradient(180deg,rgba(11,28,35,.1),rgba(11,28,35,.55) 55%,rgba(21,43,53,1) 100%),
+            linear-gradient(125deg,#2E4752,#152B35 60%,#0B1C23)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(118deg,transparent 44%,rgba(157,172,178,.14) 45%,transparent 46%),
+            linear-gradient(118deg,transparent 63%,rgba(157,172,178,.08) 64%,transparent 65%)}
+.hero .wrap{position:relative;z-index:2;padding-top:70px;padding-bottom:44px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--s300);margin-bottom:18px}
+/* Encabezado chico arriba de cada bloque de medios (fotos / 360° / video), para distinguirlos
+   a simple vista cuando hay varios juntos. */
+.medialabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--s300);margin-bottom:10px}
+h1{font-family:var(--disp);font-weight:900;letter-spacing:-.035em;line-height:.96;text-transform:uppercase;
+ font-size:clamp(38px,7.5vw,80px);margin:0 0 18px;color:#EAF0F1}
+.lede{color:var(--s200);max-width:52ch;margin:0;font-size:clamp(15px,2vw,17px)}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--n800);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.strip[hidden]{display:none}
+.strip div{padding:20px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:none}
+.strip b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(24px,3.4vw,32px);color:var(--s050);font-variant-numeric:tabular-nums}
+.strip.banda{grid-template-columns:repeat(3,1fr)}
+.strip.banda b{font-size:16px;letter-spacing:-.01em;margin-bottom:3px}
+.strip.banda span{text-transform:none;letter-spacing:0;font-size:13px;color:var(--s200)}
+@media(max-width:700px){.strip.banda{grid-template-columns:1fr}.strip.banda div{border-right:none;border-bottom:1px solid var(--line);padding:15px 20px}}
+.strip span{font-size:11.5px;color:var(--s300);letter-spacing:.09em;text-transform:uppercase}
+@media(max-width:700px){.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:none}}
+
+section{padding:52px 0}
+h2{font-family:var(--disp);font-weight:800;font-size:clamp(22px,3vw,30px);letter-spacing:-.025em;margin:0;position:relative;padding-top:15px}
+h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;background:var(--ambar);border-radius:2px}
+.cta h2::before{background:var(--s050);left:50%;transform:translateX(-50%)}
+.sub{color:var(--s300);font-size:14.5px;margin:7px 0 0}
+.tabs{display:flex;gap:8px;margin:22px 0 16px;flex-wrap:wrap}
+.tab{font-family:var(--body);font-weight:700;font-size:14.5px;padding:11px 19px;border-radius:999px;
+ border:1px solid var(--line);background:var(--n600);color:var(--s200);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--s050);border-color:var(--s050);color:var(--n800)}
+.tab .n{font-variant-numeric:tabular-nums;opacity:.65;margin-left:4px}
+.filters{background:var(--n600);border:1px solid var(--line);border-radius:14px;padding:16px}
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.f label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--s300);margin-bottom:5px}
+.f select,.f input{width:100%;font-family:var(--body);font-size:14.5px;padding:10px 11px;border:1px solid var(--line);
+ border-radius:9px;background:var(--n700);color:var(--s050);appearance:none}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;align-items:center}
+.chip{font-size:13px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--line);
+ background:var(--n700);color:var(--s200);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#EAF0F1}
+.clear{margin-left:auto;background:none;border:none;font-family:var(--body);font-size:13px;color:var(--s300);cursor:pointer;text-decoration:underline}
+.count{font-family:var(--mono);font-size:12.5px;color:var(--s300);margin:18px 0 14px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:18px}
+.card{position:relative;background:var(--n600);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;
+ transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .28s ease,box-shadow .28s ease;
+ opacity:0;transform:translateY(14px);animation:rise .5s cubic-bezier(.2,.8,.2,1) forwards}
+.card:focus-visible{outline:3px solid var(--s200);outline-offset:2px}
+.card:nth-child(1){animation-delay:.02s}.card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.10s}
+.card:nth-child(4){animation-delay:.14s}.card:nth-child(5){animation-delay:.18s}.card:nth-child(6){animation-delay:.22s}
+.card:nth-child(7){animation-delay:.26s}.card:nth-child(8){animation-delay:.30s}.card:nth-child(9){animation-delay:.34s}
+.card:nth-child(n+10){animation-delay:.36s}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+.card:hover{border-color:var(--steel);transform:translateY(-4px);box-shadow:0 18px 34px -14px rgba(4,18,25,.55)}
+.thumb{height:190px;position:relative;overflow:hidden;background-image:linear-gradient(135deg,rgba(255,255,255,.28),rgba(0,0,0,.22))}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .thumb img{transform:scale(1.06)}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,18,25,0) 45%,rgba(4,18,25,.6) 100%)}
+.badges{position:absolute;top:11px;left:11px;z-index:2;display:flex;gap:6px;flex-wrap:wrap}
+.b{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:4px 8px;border-radius:5px}
+.b{box-shadow:0 1px 4px rgba(4,18,25,.5)}
+.b-sv{background:#2E8B57;color:#EAF7EF}
+.b-tr{background:#B07C1E;color:#FFF6E4}
+.b-or{background:#2F6797;color:#EAF2FA}
+.b-of{background:#C8D2D4;color:var(--n800)}
+.cbody{padding:15px;flex:1;display:flex;flex-direction:column}
+.ctitle{font-family:var(--disp);font-weight:800;font-size:17.5px;letter-spacing:-.015em;text-transform:uppercase;color:#EAF0F1}
+.ctitle .y{color:var(--s300)}
+.chas{font-family:var(--mono);font-size:11px;color:var(--s300);letter-spacing:.06em;margin-top:4px}
+.specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.sp{font-size:11.5px;font-weight:500;background:var(--n700);border:1px solid var(--line);color:var(--s200);padding:3px 8px;border-radius:6px}
+.price{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price .v{font-family:var(--disp);font-weight:800;font-size:19px;font-variant-numeric:tabular-nums;color:#EAF0F1}
+.price .ask{font-size:14px;font-weight:600;color:var(--s300)}
+.price a{font-size:12.5px;font-weight:700;color:var(--s050);text-decoration:none;white-space:nowrap;
+ border:1px solid var(--line);padding:8px 12px;border-radius:8px}
+.price a:hover{background:var(--n500)}
+/* el boton "Consultar por WhatsApp" de la ficha usa .wa (fondo claro), asi que necesita anular
+   el color/fondo de .price a de arriba o el texto queda del mismo color que el fondo (ilegible) */
+.price a.wa{color:var(--n800);background:var(--s050);border:none;padding:10px 17px}
+.price a.wa:hover{background:#fff}
+.empty{grid-column:1/-1;padding:56px 20px;text-align:center;color:var(--s300);background:var(--n600);border:1px dashed var(--line);border-radius:14px}
+
+@keyframes vEntra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+#spot{padding:38px 0 6px}
+#spot:not([hidden]){animation:vEntra .4s cubic-bezier(.2,.8,.2,1)}
+.closeDet{background:none;border:none;color:var(--s200);font-family:var(--body);font-size:14px;font-weight:600;
+ cursor:pointer;padding:9px 4px;margin:-9px 0 16px;display:inline-flex;align-items:center;gap:6px}
+.closeDet:hover{color:var(--s050)}
+.detcard{display:grid;grid-template-columns:minmax(0,460px) 1fr;gap:32px;align-items:stretch;margin-bottom:8px}
+@media(max-width:820px){.detcard{grid-template-columns:1fr;align-items:start}}
+.detmedia{min-width:0}
+.detbody{padding-top:2px;display:flex;flex-direction:column}
+.specgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 28px;margin:28px 0 32px}
+.specgrid .spec{border-top:1px solid var(--line);padding-top:14px}
+.specgrid .spec b{display:block;font-family:var(--mono);font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--s300);margin-bottom:7px}
+.specgrid .spec span{font-weight:800;color:#EAF0F1;font-size:21px;font-family:var(--disp);letter-spacing:-.01em}
+@media(max-width:480px){.specgrid .spec span{font-size:18px}}
+/* Cuando el vehículo tiene 360° Y video juntos, el video queda chico (ver .vidwrap-chico)
+   junto a las características en la columna derecha — ahí las características vuelven a la
+   grilla compacta de 4 columnas en vez de la de 2 grandes, para no verse desproporcionadas
+   junto a un video que ya no ocupa todo el ancho de la columna. */
+.specgrid.compacto{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px;margin:22px 0 26px}
+.specgrid.compacto .spec{padding-top:12px}
+.specgrid.compacto .spec b{font-size:10.5px;margin-bottom:5px}
+.specgrid.compacto .spec span{font-size:15.5px}
+@media(max-width:700px){.specgrid.compacto{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.specgrid.compacto .spec span{font-size:14.5px}}
+/* En la ficha (no en las tarjetas del catálogo) el precio/WhatsApp ya no se empuja al fondo:
+   va justo debajo de las características, en orden natural. */
+.detbody .price{margin-top:22px}
+
+.gal{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--n800);
+ touch-action:pan-y;user-select:none;cursor:grab}
+.gal:active{cursor:grabbing}
+.gal-track{display:flex;height:100%;will-change:transform}
+.gal-slide{flex:0 0 100%;height:100%;position:relative;background-position:center;background-size:cover}
+.gal-slide img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;user-select:none;cursor:zoom-in}
+.gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;
+ background:rgba(4,18,25,.55);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.gal-nav:hover{background:rgba(4,18,25,.78)}
+.gal-prev{left:10px}.gal-next{right:10px}
+.gal-dots{position:absolute;bottom:13px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+.gal-dot{width:7px;height:7px;border-radius:50%;border:none;background:rgba(255,255,255,.45);padding:0;cursor:pointer;transition:width .2s ease,border-radius .2s ease}
+.gal-dot.on{background:#fff;width:18px;border-radius:4px}
+.gal-count{position:absolute;top:11px;right:11px;background:rgba(4,18,25,.6);color:#fff;font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px}
+@media(max-width:700px){.gal-nav{display:none}}
+
+.vidwrap{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.vidbox{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--n800)}
+.vidbox iframe,.vidbox video{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;background:#000}
+.vidlink{display:inline-flex;align-items:center;gap:8px;background:var(--s050);color:var(--n800);text-decoration:none;
+ font-weight:700;font-size:14px;padding:11px 18px;border-radius:9px}
+.vidlink:hover{background:#fff}
+/* Cuando el video va junto al 360° (columna derecha, los dos presentes) no debe estirarse a
+   todo el ancho de esa columna — se acota a un tamaño parecido al del 360°, que vive en la
+   columna izquierda de hasta 460px (ver .detcard). No hace falta que calce pixel a pixel. */
+.vidwrap-chico{max-width:460px}
+
+/* Foto 360°, debajo del carrusel y del mismo ancho (misma columna, aspect-ratio 4/3 igual
+   que .gal). Si no hay 360°, no aparece nada. */
+.v360wrap{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.v360w{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--n800);
+ touch-action:pan-y;user-select:none;cursor:grab}
+.v360w:active{cursor:grabbing}
+.v360w img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;user-select:none}
+.v360hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(4,18,25,.65);
+ color:#fff;font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:999px;pointer-events:none;white-space:nowrap}
+
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(4,18,25,.94);display:flex;align-items:center;justify-content:center;padding:56px 64px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none}
+.lb-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.12);
+ color:#fff;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-close:hover{background:rgba(255,255,255,.22)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;
+ background:rgba(255,255,255,.12);color:#fff;font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-nav[hidden]{display:none}
+.lb-nav:hover{background:rgba(255,255,255,.22)}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-count{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:var(--s200);font-family:var(--mono);font-size:12px}
+@media(max-width:700px){.lightbox{padding:70px 14px}.lb-nav{width:40px;height:40px;font-size:20px}.lb-prev{left:6px}.lb-next{right:6px}}
+
+.band{position:relative;background:var(--n800);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.band::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(118deg,transparent 74%,rgba(157,172,178,.05) 75%,transparent 76%),
+            linear-gradient(118deg,transparent 87%,rgba(157,172,178,.05) 88%,transparent 89%)}
+.band .wrap{position:relative}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;margin-top:26px}
+.col .num{font-family:var(--mono);font-size:11px;color:var(--steel);letter-spacing:.16em;margin-bottom:9px}
+.col h3{font-family:var(--disp);font-weight:700;font-size:18px;margin:0 0 8px}
+.col p{margin:0;color:var(--s200);font-size:14.5px;text-align:justify;text-align-last:left;-webkit-hyphens:auto;hyphens:auto}
+.fico{width:40px;height:40px;border-radius:11px;background:var(--n600);border:1px solid var(--line);
+ display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--ambar)}
+.note{background:var(--n600);border-left:3px solid var(--steel);padding:14px 17px;border-radius:0 10px 10px 0;
+ font-size:13.5px;color:var(--s200);margin-top:26px}
+.cta{background:linear-gradient(125deg,#2E4752,#152B35 65%,#0B1C23);text-align:center}
+.cta h2{color:#EAF0F1}
+.cta p{color:var(--s200);max-width:48ch;margin:12px auto 24px}
+.ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+footer{background:var(--n900);color:var(--s300);padding:44px 0;font-size:13.5px;border-top:1px solid var(--line)}
+footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
+footer b{color:var(--s050);display:block;margin-bottom:7px;font-family:var(--disp);font-size:15px}
+footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
+</style></head><body>
+<div style="background:#B4321C;color:#fff;text-align:center;padding:8px 12px;font-size:13px;font-weight:700;letter-spacing:.02em">COPIA DE PRUEBAS · datos separados · no es tu app real</div>
+
+<header><div class="wrap">
+  <a href="#top" aria-label="Inicio"><svg viewBox="0 2 673 309" xmlns="http://www.w3.org/2000/svg" class="logo" aria-label="AMK Vehículos Selectos"><path fill="#C8D2D4" d="M 115 9 L 6 227 L 49 227 L 114 90 L 180 226 L 224 226 Z M 267 9 L 267 226 L 303 198 L 304 84 L 376 140 L 450 84 L 452 199 L 488 226 L 487 8 L 377 93 Z M 621 8 L 534 115 L 620 226 L 667 227 L 581 115 L 667 9 Z"/><path fill="#9DACB2" fill-rule="evenodd" d="M 488 291 L 488 293 L 489 294 L 503 294 L 503 290 L 489 290 Z M 414 291 L 414 293 L 415 294 L 428 294 L 429 293 L 429 291 L 428 290 L 415 290 Z M 63 291 L 63 293 L 64 294 L 77 294 L 77 293 L 78 292 L 77 291 L 77 290 L 64 290 Z M 636 280 L 633 284 L 634 291 L 638 294 L 652 294 L 655 299 L 651 302 L 635 301 L 633 305 L 656 304 L 659 296 L 655 291 L 637 288 L 639 283 L 656 283 L 656 279 Z M 596 280 L 591 287 L 591 296 L 593 301 L 598 305 L 615 304 L 619 299 L 618 283 L 612 279 Z M 599 283 L 602 282 L 610 282 L 615 286 L 616 288 L 616 297 L 612 301 L 610 302 L 600 302 L 595 297 L 595 288 Z M 554 279 L 555 283 L 565 284 L 565 305 L 568 305 L 568 286 L 570 283 L 579 283 L 580 280 Z M 521 280 L 519 283 L 520 303 L 523 305 L 542 305 L 542 302 L 539 301 L 526 302 L 522 299 L 522 286 L 525 283 L 541 283 L 542 279 Z M 483 279 L 482 302 L 486 305 L 505 305 L 505 302 L 487 301 L 485 299 L 485 284 L 504 283 L 505 279 Z M 445 279 L 445 304 L 469 305 L 469 302 L 467 301 L 454 302 L 449 300 L 449 279 Z M 407 280 L 408 302 L 411 305 L 430 305 L 431 303 L 428 301 L 413 301 L 411 299 L 411 284 L 430 283 L 431 280 Z M 371 280 L 368 284 L 369 291 L 373 294 L 387 294 L 390 299 L 386 302 L 371 301 L 368 304 L 391 304 L 394 300 L 393 294 L 388 290 L 374 290 L 372 285 L 374 283 L 391 283 L 392 279 Z M 312 280 L 309 284 L 310 291 L 314 294 L 328 294 L 331 299 L 326 302 L 311 301 L 309 305 L 332 304 L 335 296 L 331 291 L 313 288 L 315 283 L 331 283 L 332 279 Z M 272 280 L 268 284 L 267 288 L 268 300 L 274 305 L 291 304 L 295 299 L 295 285 L 293 282 L 288 279 Z M 275 283 L 277 282 L 286 282 L 291 286 L 291 298 L 286 302 L 277 302 L 272 299 L 271 297 L 271 288 Z M 232 279 L 232 304 L 255 305 L 256 302 L 240 301 L 239 302 L 236 300 L 236 280 Z M 191 279 L 192 299 L 200 305 L 216 305 L 217 280 L 213 279 L 213 299 L 211 301 L 200 301 L 194 294 L 194 279 Z M 156 280 L 154 282 L 154 302 L 158 305 L 177 305 L 177 302 L 161 302 L 157 299 L 157 285 L 159 283 L 177 283 L 177 279 Z M 135 279 L 135 305 L 138 305 L 139 304 L 139 280 L 138 279 Z M 94 279 L 94 305 L 98 304 L 99 294 L 115 294 L 116 304 L 120 305 L 120 279 L 116 280 L 115 290 L 99 290 L 98 280 Z M 57 279 L 57 302 L 61 305 L 80 305 L 80 302 L 64 302 L 60 300 L 60 284 L 79 283 L 80 279 Z M 16 279 L 27 303 L 31 305 L 43 282 L 43 279 L 39 280 L 30 297 L 27 295 L 20 279 Z"/></svg></a>
+  <nav>
+    <a href="#stock">Stock</a><a href="#trabajo">Vehículos de trabajo</a>
+    <a href="#proceso">Cómo trabajamos</a><a href="#franquicia">Franquicias</a>
+  </nav>
+  <div class="wapick" id="waPick">
+    <button class="wa" id="waBtn" type="button" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.28 2 11.6c0 1.93.6 3.72 1.63 5.23L2.4 21.4a.6.6 0 0 0 .74.74l4.7-1.22A10.3 10.3 0 0 0 12 21.2c5.52 0 10-4.28 10-9.6S17.52 2 12 2Zm5.6 13.4c-.24.66-1.4 1.27-1.93 1.33-.5.06-1.02.28-3.4-.72-2.87-1.21-4.7-4.1-4.85-4.29-.14-.2-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.26-.28.58-.35.77-.35h.55c.18 0 .42-.03.65.5.24.55.8 1.9.87 2.04.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.16 1.53 1.88 1.05.94 1.94 1.24 2.22 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.27.37-.22.62-.13.26.09 1.63.77 1.9.91.28.14.46.21.53.33.07.12.07.68-.17 1.34Z"/></svg>
+      WhatsApp
+      <svg class="wachev" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="wadrop" id="waDrop" role="menu" hidden></div>
+  </div>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">Importadora · Corea del Sur → Iquique</div>
+  <h1>Corea<br>directo a<br>Iquique</h1>
+  <p class="lede">Importación propia, sin intermediarios: elegimos cada vehículo en persona en Corea, antes de subirlo al contenedor.</p>
+</div></section>
+
+<section id="spot" hidden></section>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Cerrar">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Foto anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Foto siguiente">›</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<div class="strip" id="stripNum" hidden>
+  <div><b id="sIqq">–</b><span>Disponibles en Iquique</span></div>
+  <div><b id="sOri">–</b><span>En camino desde Corea</span></div>
+  <div><b id="sTr">–</b><span>Vehículos de trabajo</span></div>
+  <div><b id="sSv">–</b><span>Con sello verde</span></div>
+</div>
+<div class="strip banda" id="stripTxt">
+  <div><b>Elegidos en persona</b><span>Revisamos cada vehículo en Corea</span></div>
+  <div><b>Importación propia</b><span>Sin intermediarios</span></div>
+  <div><b>Revisión y detallado</b><span>Verificación mecánica en Iquique</span></div>
+</div>
+
+<section id="stock"><div class="wrap">
+  <h2>Nuestro stock</h2>
+  <p class="sub">Filtra por lo que necesitas. Sin registro y sin formularios.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-seg="pas" aria-selected="true">Autos y SUV <span class="n" id="nPas"></span></button>
+    <button class="tab" role="tab" data-seg="trab" aria-selected="false" id="trabajo">De trabajo <span class="n" id="nTrab"></span></button>
+    <button class="tab" role="tab" data-seg="all" aria-selected="false">Todo <span class="n" id="nAll"></span></button>
+  </div>
+
+  <div class="filters">
+    <div class="frow">
+      <div class="f"><label for="q">Buscar</label><input id="q" placeholder="Modelo o chasis" autocomplete="off"></div>
+      <div class="f"><label for="fMa">Marca</label><select id="fMa"></select></div>
+      <div class="f"><label for="fMo">Modelo</label><select id="fMo"></select></div>
+      <div class="f"><label for="fCat">Categoría</label><select id="fCat"></select></div>
+      <div class="f"><label for="fAn">Año desde</label><select id="fAn"></select></div>
+      <div class="f"><label for="fTr">Tracción</label><select id="fTr"></select></div>
+      <div class="f"><label for="fPa">Pasajeros</label><select id="fPa"></select></div>
+      <div class="f" id="wCa" hidden><label for="fCa">Carrocería</label><select id="fCa"></select></div>
+    </div>
+    <div class="chips">
+      <button class="chip" id="cSv" aria-pressed="false">Circula en Santiago, V y VI</button>
+      <button class="chip" id="cIqq" aria-pressed="false">Solo disponibles ahora</button>
+      <button class="chip" id="cOf" aria-pressed="false">Solo ofertas</button>
+      <button class="clear" id="clr">Limpiar filtros</button>
+    </div>
+  </div>
+
+  <p class="count" id="cnt"></p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="band" id="proceso"><div class="wrap">
+  <h2>Cómo trabajamos</h2>
+  <p class="sub">Un proceso corto, controlado de punta a punta.</p>
+  <div class="cols">
+    <div class="col"><div class="num">01</div><h3>Selección en Corea</h3>
+      <p>Vemos el vehículo físicamente y revisamos su estado antes de comprarlo. No trabajamos con fotos de terceros.</p></div>
+    <div class="col"><div class="num">02</div><h3>Envío en contenedor</h3>
+      <p>Viajan en contenedor, no como carga suelta. Llegan protegidos y en mejores condiciones.</p></div>
+    <div class="col"><div class="num">03</div><h3>Verificación en Iquique</h3>
+      <p>Revisamos mecánica y sistema eléctrico, y hacemos un detallado profesional antes de mostrarlo a un cliente.</p></div>
+    <div class="col"><div class="num">04</div><h3>Entrega y trámites</h3>
+      <p>Te acompañamos en la liberación desde Zona Franca y en el traslado a tu ciudad.</p></div>
+  </div>
+</div></section>
+
+<section id="franquicia"><div class="wrap">
+  <h2>Franquicias y circulación</h2>
+  <p class="sub">Dos cosas distintas que conviene no confundir.</p>
+  <div class="cols">
+    <div class="col">
+      <div class="fico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.4"/><path d="M12 9v6M9 12h6M7 21l3-6M17 21l-3-6M9 21h6"/></svg></div>
+      <h3>Franquicia por discapacidad</h3>
+      <p>Todos nuestros vehículos pueden liberarse acogiéndose a la Ley 20.422. Te asesoramos en el proceso completo,
+         desde la documentación hasta la salida de Zona Franca, y te entregamos la cotización con todos los costos antes de que decidas.</p></div>
+    <div class="col">
+      <div class="fico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v5c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6Z"/><path d="m8.5 12 2.3 2.3L15.5 9.5"/></svg></div>
+      <h3>Sello verde</h3>
+      <p>Para circular en la Región Metropolitana, Valparaíso y Viña del Mar el vehículo necesita sello verde:
+         año 2018 en adelante y menos de 2.700 kg. Usa el filtro del catálogo para ver solo esas unidades.</p></div>
+  </div>
+  <div class="note"><strong>Importante:</strong> la información de circulación es referencial y corresponde a la normativa vigente. La certificación se emite en la revisión técnica correspondiente.</div>
+</div></section>
+
+<section class="cta" id="contacto"><div class="wrap">
+  <h2>¿Buscas algo puntual?</h2>
+  <p>Si no está en el stock, lo traemos a pedido desde Corea. Cuéntanos qué necesitas y te avisamos apenas aparezca.</p>
+  <div class="ctas" id="ctasWa"></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b>AMK Vehículos Selectos</b>Importación directa desde Corea del Sur<br>Of. Buenaventura C-20<br>Barrio Industrial Zofri, Iquique</div>
+  <div><b>Catálogo</b><a href="#stock">Autos y SUV</a><a href="#trabajo">Vehículos de trabajo</a><a href="#franquicia">Franquicias</a></div>
+  <div><b>Contacto</b><div id="footWa"></div></div>
+  <div><b>Marcas</b>Hyundai · Kia · Jeep<br>SsangYong · BMW · Chevrolet</div>
+</div></footer>
+
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
+<script>
+let V=[];  /* el catálogo se lee solo desde Firestore (colección catalogoPublico) */
+const COL={'Blanco':'#E9EAE6','Negro':'#20262A','Gris':'#8A9296','Plateado':'#B9C0C3','Azul':'#1F4E86','Rojo':'#9B2A28',
+ 'Beige':'#C9B79A','Amarillo':'#D6A81C','Naranja':'#C4661F','Dorado':'#B29246','Burdeo':'#6B2231','Verde':'#2C5B41','Marrón':'#6A4C38'};
+const CARN={'BARANDA':'Baranda','BARANDA BAJA':'Baranda baja','FREEZER':'Freezer','GAVIOTA':'Gaviota','CAJÓN SIMPLE':'Cajón simple','POWER GATE':'Power Gate'};
+const clp=n=>'$'+Number(n).toLocaleString('es-CL');
+const $=s=>document.querySelector(s);
+
+/* ---------- Contactos de WhatsApp ----------
+   Fuente única: cambiar un numero aca lo actualiza en el menu del header,
+   en los botones de "Buscas algo puntual" y en el pie de pagina. */
+const CONTACTOS=[
+  {nombre:'Andre',  tel:'56989116510', display:'+56 9 8911 6510'},
+  {nombre:'Víctor', tel:'56977272269', display:'+56 9 7727 2269'},
+  {nombre:'Bryan',  tel:'56963354241', display:'+56 9 6335 4241'}
+];
+/* ---------- Menús desplegables de WhatsApp (header y ficha del vehículo) ----------
+   Un solo par de listeners a nivel de document (no uno por cada apertura de la ficha,
+   que se re-dibuja cada vez) cierra cualquier .wapick abierto al hacer click afuera o Escape. */
+function wapickAjusta(pick,abierto){
+  const btn=pick.querySelector('button.wa'), drop=pick.querySelector('.wadrop');
+  if(!btn||!drop) return;
+  drop.hidden=!abierto; btn.setAttribute('aria-expanded',String(abierto)); pick.setAttribute('data-open',String(abierto));
+}
+function wapickCierraTodos(){
+  document.querySelectorAll('.wapick[data-open="true"]').forEach(p=>wapickAjusta(p,false));
+}
+function wapickInit(pick){
+  if(!pick) return;
+  const btn=pick.querySelector('button.wa'), drop=pick.querySelector('.wadrop');
+  if(!btn||!drop) return;
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const abrir=drop.hidden;
+    wapickCierraTodos();
+    wapickAjusta(pick,abrir);
+  });
+}
+document.addEventListener('click',e=>{ if(!e.target.closest('.wapick')) wapickCierraTodos(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') wapickCierraTodos(); });
+(function initContactos(){
+  const drop=$('#waDrop'), ctas=$('#ctasWa'), foot=$('#footWa');
+  if(drop) drop.innerHTML=CONTACTOS.map(c=>'<a href="https://wa.me/'+c.tel+'" target="_blank" rel="noopener" role="menuitem"><b>'+c.nombre+'</b><span>'+c.display+'</span></a>').join('');
+  if(ctas) ctas.innerHTML=CONTACTOS.map(c=>'<a class="wa-contact" href="https://wa.me/'+c.tel+'" target="_blank" rel="noopener"><b>'+c.nombre+'</b><span>'+c.display+'</span></a>').join('');
+  if(foot) foot.innerHTML=CONTACTOS.map(c=>'<a href="https://wa.me/'+c.tel+'">'+c.nombre+' · '+c.display+'</a>').join('');
+  wapickInit($('#waPick'));
+})();
+let seg='pas', F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}, T={sv:0,iqq:0,of:0}, q='';
+const base=()=>V.filter(v=>seg==='all'?true:(seg==='trab'?v.trab:!v.trab));
+function apply(L){
+  const s=q.trim().toLowerCase();
+  return L.filter(v=>{
+    if(F.ma&&v.ma!==F.ma)return false;
+    if(F.mo&&v.mo!==F.mo)return false;
+    if(F.cat&&v.cat!==F.cat)return false;
+    if(F.an&&(!v.an||v.an<+F.an))return false;
+    if(F.tr&&v.tr!==F.tr)return false;
+    if(F.pa&&String(v.pa)!==F.pa)return false;
+    if(F.ca&&v.ca!==F.ca)return false;
+    if(T.sv&&!v.sv)return false;
+    if(T.iqq&&v.st!=='IQQ')return false;
+    if(T.of&&!v.oferta)return false;
+    if(s&&!((v.ma+' '+v.mo+' '+v.ch+' '+(v.an||'')).toLowerCase().includes(s)))return false;
+    return true;
+  });
+}
+const uniq=(L,k)=>[...new Set(L.map(v=>v[k]).filter(x=>x!==null&&x!==''&&x!==undefined))];
+function fill(sel,vals,ph,cur){
+  $(sel).innerHTML='<option value="">'+ph+'</option>'+vals.map(x=>'<option value="'+x+'"'+(x==cur?' selected':'')+'>'+x+'</option>').join('');
+}
+function buildFilters(){
+  const b=base();
+  fill('#fMa',uniq(b,'ma').sort(),'Todas',F.ma);
+  fill('#fMo',uniq(F.ma?b.filter(v=>v.ma===F.ma):b,'mo').sort(),'Todos',F.mo);
+  fill('#fCat',uniq(b,'cat').sort(),'Todas',F.cat);
+  fill('#fAn',uniq(b,'an').sort((x,y)=>y-x),'Cualquiera',F.an);
+  fill('#fTr',uniq(b,'tr').sort(),'Todas',F.tr);
+  fill('#fPa',uniq(b,'pa').sort((x,y)=>x-y),'Cualquiera',F.pa);
+  const carr=uniq(b,'ca').filter(c=>c&&c!=='S/N').sort();
+  $('#wCa').hidden=!(seg!=='pas'&&carr.length);
+  if(!$('#wCa').hidden) fill('#fCa',carr,'Todas',F.ca);
+}
+/* ---------- Helpers compartidos entre la tarjeta y el detalle ---------- */
+function fotosDe(v){ return (Array.isArray(v.fotos)&&v.fotos.length) ? v.fotos : (v.foto?[v.foto]:[]); }
+function fotosDe360(v){ return Array.isArray(v.f360) ? v.f360 : []; }
+/* Vista 360° arrastrable, armada con las tomas ya subidas (ver f360 en AMK_sistema.html).
+   Si el vehiculo no tiene, no se muestra nada — igual que el video. */
+function v360De(v){
+  const f=fotosDe360(v);
+  if(!f.length) return '';
+  return '<div class="v360wrap"><div class="medialabel">Fotos 360°</div><div class="v360w" id="v360Box"><img id="v360Img" src="'+f[0]+'" alt="Vista 360° · '+v.ma+' '+v.mo+'" loading="lazy" decoding="async"><div class="v360hint">Arrastra para girar</div></div></div>';
+}
+/* Video opcional del vehiculo (link pegado desde Sistema): reconoce YouTube y Vimeo para
+   incrustar el reproductor; si es un archivo de video directo usa <video>; para cualquier
+   otro link (por ejemplo Instagram) deja un boton que lo abre en una pestana nueva.
+   Si el vehiculo no tiene video cargado, no se muestra nada.
+   `chico`: cuando el vehículo también tiene 360°, el video queda junto al 360° (no ocupa
+   toda la columna derecha) — se le agrega la clase vidwrap-chico para acotar su ancho al
+   tamaño de la foto 360°, en vez de estirarse al ancho completo de la columna. */
+function videoDe(v, chico){
+  const url=(v.video||'').trim();
+  if(!url) return '';
+  const cls='vidwrap'+(chico?' vidwrap-chico':'');
+  const lbl='<div class="medialabel">Video</div>';
+  const yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+  if(yt) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><iframe src="https://www.youtube.com/embed/'+yt[1]+'" title="Video del vehículo" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>';
+  const vm=url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if(vm) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><iframe src="https://player.vimeo.com/video/'+vm[1]+'" title="Video del vehículo" loading="lazy" allow="autoplay;fullscreen;picture-in-picture" allowfullscreen></iframe></div></div>';
+  if(/\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(url)) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><video src="'+url+'" controls preload="metadata" playsinline></video></div></div>';
+  return '<div class="'+cls+'">'+lbl+'<a class="vidlink" href="'+url+'" target="_blank" rel="noopener">▶ Ver video del vehículo</a></div>';
+}
+function badgesDe(v){
+  const bd=[];
+  if(v.st==='ORIGEN') bd.push('<span class="b b-or">En camino</span>');
+  if(v.trab) bd.push('<span class="b b-tr">Trabajo</span>');
+  if(v.sv) bd.push('<span class="b b-sv">Sello verde</span>');
+  if(v.oferta) bd.push('<span class="b b-of">Oferta</span>');
+  return bd.join('');
+}
+const precioHTML=v=>(v.oferta&&v.precio)?'<span class="v">'+clp(v.precio)+'</span>':'<span class="ask">Consultar precio</span>';
+const waMsg=v=>encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.an||'')+' (chasis '+v.ch+').');
+
+function card(v){
+  const c=COL[v.ce]||'#8A9296';
+  const sp=[v.cat,v.tr,(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
+    .filter(Boolean).map(t=>'<span class="sp">'+t+'</span>').join('');
+  const fotos=fotosDe(v);
+  const foto=fotos[0]?'<img src="'+fotos[0]+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async">':'';
+  return '<article class="card" data-ch="'+v.ch+'" tabindex="0" role="button" aria-label="Ver '+v.ma+' '+v.mo+'">'
+   +'<div class="thumb" style="background-color:'+c+'">'+foto+'<div class="badges">'+badgesDe(v)+'</div></div>'
+   +'<div class="cbody"><div class="ctitle">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
+   +'<div class="chas">'+v.ch+' · '+v.ce+'</div>'
+   +(sp?'<div class="specs">'+sp+'</div>':'')
+   +'<div class="price">'+precioHTML(v)+'<a href="https://wa.me/56989116510?text='+waMsg(v)+'" target="_blank" rel="noopener">Consultar</a></div></div></article>';
+}
+function render(){
+  buildFilters();
+  const L=apply(base());
+  $('#grid').innerHTML=L.length?L.map(card).join('')
+   :'<div class="empty"><strong>Sin resultados.</strong><br>Prueba quitando algún filtro, o escríbenos y lo traemos a pedido.</div>';
+  $('#cnt').textContent=L.length+(L.length===1?' vehículo':' vehículos');
+  $('#nPas').textContent=V.filter(v=>!v.trab).length;
+  $('#nTrab').textContent=V.filter(v=>v.trab).length;
+  $('#nAll').textContent=V.length;
+}
+/* Tocar una tarjeta (fuera del link de WhatsApp) abre el detalle con el carrusel */
+$('#grid').addEventListener('click',e=>{
+  if(e.target.closest('a')) return; /* deja el botón "Consultar" funcionar normal */
+  const card=e.target.closest('.card'); if(!card) return;
+  abrirDetalle(card.dataset.ch, true);
+});
+$('#grid').addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ') return;
+  if(e.target.closest('a')) return;
+  const card=e.target.closest('.card'); if(!card) return;
+  e.preventDefault(); abrirDetalle(card.dataset.ch, true);
+});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true'); seg=t.dataset.seg;
+  F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}; render();
+}));
+const bind=(sel,k)=>$(sel).addEventListener('change',e=>{F[k]=e.target.value; if(k==='ma')F.mo=''; render()});
+['#fMa|ma','#fMo|mo','#fCat|cat','#fAn|an','#fTr|tr','#fPa|pa','#fCa|ca'].forEach(x=>{const[a,b]=x.split('|');bind(a,b)});
+$('#q').addEventListener('input',e=>{q=e.target.value;render()});
+const tog=(sel,k)=>$(sel).addEventListener('click',()=>{T[k]=T[k]?0:1;$(sel).setAttribute('aria-pressed',T[k]?'true':'false');render()});
+tog('#cSv','sv');tog('#cIqq','iqq');tog('#cOf','of');
+$('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''};T={sv:0,iqq:0,of:0};q='';$('#q').value='';
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
+const MIN_CIFRAS=50;
+if(V.length>=MIN_CIFRAS){
+  $('#stripNum').hidden=false; $('#stripTxt').hidden=true;
+  $('#sIqq').textContent=V.filter(v=>v.st==='IQQ').length;
+  $('#sOri').textContent=V.filter(v=>v.st==='ORIGEN').length;
+  $('#sTr').textContent=V.filter(v=>v.trab).length;
+  $('#sSv').textContent=V.filter(v=>v.sv).length;
+}
+render();
+
+function vehParam(){
+  const p=new URLSearchParams(location.search).get('ch');
+  return p?p.trim().toUpperCase():null;
+}
+const TITULO_BASE=document.title;
+
+/* ---------- Carrusel de fotos (arrastrar con el dedo o el mouse, flechas, puntos) ---------- */
+let currentGal=null;
+function initGal(root){
+  const track=root.querySelector('.gal-track');
+  const slides=root.querySelectorAll('.gal-slide');
+  const n=slides.length;
+  currentGal=null;
+  let idx=0,startX=0,dx=0,dragging=false,dragMoved=false,w=root.clientWidth||1;
+  /* tocar/hacer clic sobre una foto (sin haber arrastrado) la abre ampliada en el lightbox.
+     Ojo: mientras se arrastra, root captura el puntero (setPointerCapture) y eso hace que el
+     click final se re-dirija a root en vez de a la foto tocada, así que usamos idx (la foto
+     visible ahora) en vez de tratar de leer el elemento clickeado. */
+  root.addEventListener('click',e=>{
+    if(dragMoved) return;
+    if(e.target.closest('.gal-nav,.gal-dot')) return;
+    const slide=slides[idx]; if(!slide||!slide.querySelector('img')) return;
+    lbAbrir(idx);
+  });
+  if(n<=1) return;
+  function goto(i,animate){
+    idx=Math.max(0,Math.min(n-1,i));
+    track.style.transition = animate===false ? 'none' : 'transform .38s cubic-bezier(.2,.8,.2,1)';
+    track.style.transform='translateX('+(-idx*100)+'%)';
+    root.querySelectorAll('.gal-dot').forEach((d,i2)=>d.classList.toggle('on',i2===idx));
+    const cnt=root.querySelector('.gal-count'); if(cnt) cnt.textContent=(idx+1)+' / '+n;
+  }
+  root.querySelector('.gal-prev')?.addEventListener('click',()=>goto(idx-1));
+  root.querySelector('.gal-next')?.addEventListener('click',()=>goto(idx+1));
+  root.querySelectorAll('.gal-dot').forEach((d,i2)=>d.addEventListener('click',()=>goto(i2)));
+  root.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.gal-nav,.gal-dot')) return; /* no capturar el arrastre si se tocó una flecha o un punto */
+    dragging=true; startX=e.clientX; dx=0; dragMoved=false; w=root.clientWidth||1;
+    track.style.transition='none';
+    try{ root.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  root.addEventListener('pointermove',e=>{
+    if(!dragging) return;
+    dx=e.clientX-startX;
+    if(Math.abs(dx)>6) dragMoved=true;
+    track.style.transform='translateX(calc('+(-idx*100)+'% + '+dx+'px))';
+  });
+  const finish=()=>{
+    if(!dragging) return; dragging=false;
+    const th=w*0.15;
+    if(dx>th) goto(idx-1); else if(dx<-th) goto(idx+1); else goto(idx);
+  };
+  root.addEventListener('pointerup',finish);
+  root.addEventListener('pointercancel',finish);
+  root.addEventListener('pointerleave',()=>{ if(dragging) finish(); });
+  goto(0,false);
+  currentGal={next:()=>goto(idx+1),prev:()=>goto(idx-1)};
+}
+
+/* ---------- Vista 360°: arrastrar para girar ---------- */
+function init360(root,frames){
+  if(!root || !frames || !frames.length) return;
+  const img=root.querySelector('img');
+  let i=0, dragging=false, startX=0, i0=0;
+  const show=()=>{ if(img) img.src=frames[i]; };
+  show();
+  if(frames.length<2) return;
+  const step=()=>Math.max(14, (root.clientWidth||280)/frames.length);
+  root.addEventListener('pointerdown',e=>{
+    dragging=true; startX=e.clientX; i0=i;
+    try{ root.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  root.addEventListener('pointermove',e=>{
+    if(!dragging) return;
+    const dx=e.clientX-startX;
+    let k=(i0 - Math.round(dx/step())) % frames.length;
+    if(k<0) k+=frames.length;
+    if(k!==i){ i=k; show(); }
+  });
+  const end=()=>{ dragging=false; };
+  root.addEventListener('pointerup',end);
+  root.addEventListener('pointercancel',end);
+  root.addEventListener('pointerleave',()=>{ if(dragging) end(); });
+}
+
+/* ---------- Lightbox: foto ampliada del carrusel ---------- */
+let detFotos=[],detTitulo='',lbIdx=0;
+function lbActualizar(){
+  const img=$('#lbImg'); if(!img) return;
+  img.src=detFotos[lbIdx]||''; img.alt=detTitulo;
+  const multi=detFotos.length>1;
+  $('#lbCount').textContent=multi?(lbIdx+1)+' / '+detFotos.length:'';
+  $('#lbPrev').hidden=!multi; $('#lbNext').hidden=!multi;
+}
+function lbAbrir(i){
+  if(!detFotos.length) return;
+  lbIdx=Math.max(0,Math.min(detFotos.length-1,i));
+  lbActualizar();
+  $('#lightbox').hidden=false;
+  document.body.style.overflow='hidden';
+}
+function lbCerrar(){
+  $('#lightbox').hidden=true;
+  document.body.style.overflow='';
+}
+$('#lbClose')?.addEventListener('click',lbCerrar);
+$('#lbPrev')?.addEventListener('click',()=>lbAbrir(lbIdx-1));
+$('#lbNext')?.addEventListener('click',()=>lbAbrir(lbIdx+1));
+$('#lightbox')?.addEventListener('click',e=>{ if(e.target.id==='lightbox') lbCerrar(); });
+
+document.addEventListener('keydown',e=>{
+  const lb=$('#lightbox');
+  if(lb && !lb.hidden){
+    if(e.key==='Escape'){ lbCerrar(); return; }
+    if(e.key==='ArrowLeft'){ lbAbrir(lbIdx-1); return; }
+    if(e.key==='ArrowRight'){ lbAbrir(lbIdx+1); return; }
+    return;
+  }
+  const spot=$('#spot'); if(!spot||spot.hidden) return;
+  if(e.key==='Escape'){ cerrarDetalle(true); return; }
+  if(!currentGal) return;
+  if(e.key==='ArrowLeft') currentGal.prev();
+  else if(e.key==='ArrowRight') currentGal.next();
+});
+
+/* ---------- Vista de detalle (se abre al tocar una tarjeta o al entrar con ?ch=) ---------- */
+function especsDe(v){
+  const km=v.km?Number(v.km).toLocaleString('es-CL')+' km':'';
+  return [['Marca',v.ma],['Modelo',v.mo],['Año',v.an],['Categoría',v.cat],['Tracción',v.tr],
+    ['Pasajeros',v.pa],['Carrocería',CARN[v.ca]||''],['Kilometraje',km],['Color',v.ce]]
+    .filter(([,val])=>val).map(([k,val])=>'<div class="spec"><b>'+k+'</b><span>'+val+'</span></div>').join('');
+}
+function detalleHTML(v){
+  const fotos=fotosDe(v);
+  const c=COL[v.ce]||'#8A9296';
+  const slides=fotos.length
+    ? fotos.map(f=>'<div class="gal-slide"><img src="'+f+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async"></div>').join('')
+    : '<div class="gal-slide" style="background-color:'+c+'"></div>';
+  const nav=fotos.length>1?'<button class="gal-nav gal-prev" aria-label="Foto anterior">‹</button><button class="gal-nav gal-next" aria-label="Foto siguiente">›</button>':'';
+  const dots=fotos.length>1?'<div class="gal-dots">'+fotos.map((_,i)=>'<button class="gal-dot" data-i="'+i+'" aria-label="Foto '+(i+1)+'"></button>').join('')+'</div>':'';
+  const count=fotos.length>1?'<div class="gal-count">1 / '+fotos.length+'</div>':'';
+  /* Debajo del carrusel va el 360° (si hay) o, si no hay 360° pero sí video, el video ocupa
+     ese mismo lugar (mismo ancho que el carrusel) — nunca los dos ahí a la vez.
+     Si el vehículo tiene 360° Y video juntos, el video no va abajo del carrusel: va en la
+     columna derecha, después del precio/WhatsApp, acotado a un tamaño parecido al del 360°
+     (no estirado a todo el ancho de esa columna) — y las características, en ese caso, vuelven
+     a la grilla compacta de 4 columnas para no verse desproporcionadas junto a ese video chico. */
+  const hay360=!!fotosDe360(v).length;
+  const hayVid=!!(v.video||'').trim();
+  const v360html=v360De(v);
+  const vidHtml=videoDe(v, hay360);
+  const mediaExtra = hay360 ? v360html : (hayVid ? vidHtml : '');
+  const vidEnDerecha = (hay360 && hayVid) ? vidHtml : '';
+  /* La grilla compacta de 4 columnas también se usa cuando NO hay ni 360° ni video: ahí la
+     columna de fotos es más corta (solo el carrusel), así que las características más densas
+     evitan que quede un espacio vacío grande abajo a la izquierda. */
+  const specCompacto = ((hay360 && hayVid) || (!hay360 && !hayVid)) ? ' compacto' : '';
+  return '<div class="wrap detwrap"><button class="closeDet" id="closeDet">← Volver al stock</button>'
+   +'<div class="detcard">'
+   +'<div class="detmedia"><div class="medialabel">Fotos</div><div class="gal" id="galBox"><div class="gal-track">'+slides+'</div>'+nav+dots+count+'</div>'+mediaExtra+'</div>'
+   +'<div class="detbody">'
+   +'<div class="eyebrow">Vehículo</div>'
+   +'<div class="ctitle" style="font-size:clamp(24px,4vw,32px)">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
+   +'<div class="chas">'+v.ch+' · '+v.ce+'</div>'
+   +'<div class="badges" style="position:static;margin-top:11px">'+badgesDe(v)+'</div>'
+   +'<div class="specgrid'+specCompacto+'">'+especsDe(v)+'</div>'
+   +'<div class="price">'+precioHTML(v)
+   +'<div class="wapick" id="detWaPick"><button class="wa" id="detWaBtn" type="button" aria-haspopup="true" aria-expanded="false">Consultar por WhatsApp'
+   +'<svg class="wachev" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>'
+   +'<div class="wadrop" id="detWaDrop" role="menu" hidden>'+CONTACTOS.map(ct=>'<a href="https://wa.me/'+ct.tel+'?text='+waMsg(v)+'" target="_blank" rel="noopener" role="menuitem"><b>'+ct.nombre+'</b><span>'+ct.display+'</span></a>').join('')+'</div>'
+   +'</div></div>'
+   +vidEnDerecha
+   +'</div></div></div>';
+}
+let detalleCh=null;
+function detalleActualizar(){
+  if(!detalleCh) return;
+  const v=V.find(x=>x.ch.toUpperCase()===detalleCh.toUpperCase());
+  const box=$('#spot'); if(!box) return;
+  if(!v){ cerrarDetalle(false); return; }
+  box.innerHTML=detalleHTML(v);
+  box.hidden=false;
+  const galBox=box.querySelector('#galBox');
+  detFotos=fotosDe(v); detTitulo=v.ma+' '+v.mo+' '+(v.an||'');
+  if(galBox) initGal(galBox); else currentGal=null;
+  const v360Box=box.querySelector('#v360Box');
+  if(v360Box) init360(v360Box, fotosDe360(v));
+  wapickInit(box.querySelector('#detWaPick'));
+  box.querySelector('#closeDet')?.addEventListener('click',()=>cerrarDetalle(true));
+  document.title=v.ma+' '+v.mo+' '+(v.an||'')+' · AMK Vehículos Selectos';
+}
+function abrirDetalle(ch,push){
+  if(!ch) return;
+  detalleCh=ch;
+  detalleActualizar();
+  if(push!==false) history.pushState({ch:ch},'','?ch='+encodeURIComponent(ch));
+  const box=$('#spot');
+  if(box) requestAnimationFrame(()=>box.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+}
+function cerrarDetalle(push){
+  detalleCh=null; currentGal=null;
+  const box=$('#spot'); if(box){ box.hidden=true; box.innerHTML=''; }
+  document.title=TITULO_BASE;
+  if(push!==false) history.pushState({},'',location.pathname);
+}
+window.addEventListener('popstate',()=>{
+  const ch=vehParam();
+  if(ch) abrirDetalle(ch,false); else cerrarDetalle(false);
+});
+{ const ch=vehParam(); if(ch) detalleCh=ch; }
+
+/* ---------- Catálogo en vivo desde la nube ----------
+   Lee la colección pública catalogoPublico (que Sistema mantiene al día) y vuelve
+   a dibujar. No necesita iniciar sesión: esa colección es de lectura abierta y no
+   contiene ningún costo, solo lo que se muestra en la web. */
+(function(){
+  const FB_CONFIG={apiKey:"AIzaSyAeFaKM9TPYxyveX8xStlJtVeFUJmFnwuM",authDomain:"amk-vehiculos.firebaseapp.com",projectId:"amk-vehiculos",storageBucket:"amk-vehiculos.firebasestorage.app",messagingSenderId:"322448037480",appId:"1:322448037480:web:1d977f03cf3e9e1ef30ddd"};
+  const grid=document.querySelector('#grid');
+  function aviso(txt){ if(grid && !V.length) grid.innerHTML='<p style="padding:30px 0;text-align:center;opacity:.7">'+txt+'</p>'; }
+  aviso('Cargando el stock…');
+  try{
+    if(typeof firebase==='undefined'){ aviso('No se pudo cargar el stock. Revisa tu conexión y recarga la página.'); return; }
+    firebase.initializeApp(FB_CONFIG);
+    firebase.firestore().collection('pruebas_catalogoPublico').onSnapshot(snap=>{
+      const lista=[];
+      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado) lista.push(x); });
+      V.length=0; Array.prototype.push.apply(V,lista);
+      try{ render(); detalleActualizar(); }catch(e){ console.error('render',e); }
+      if(!V.length) aviso('Por ahora no hay vehículos publicados.');
+    }, e=>{ console.error('catalogo',e); aviso('No se pudo cargar el stock en este momento.'); });
+  }catch(e){ console.error('firebase',e); aviso('No se pudo cargar el stock. Revisa tu conexión y recarga la página.'); }
+})();
+</script>
+</body></html>
