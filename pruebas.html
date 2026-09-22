@@ -201,7 +201,8 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(4,18,25,.94);display:flex;align-items:center;justify-content:center;padding:56px 64px}
 .lightbox[hidden]{display:none}
-.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none;will-change:transform,opacity}
+@media(prefers-reduced-motion:reduce){.lightbox,.lightbox img{transition:none!important}}
 .lb-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.12);
  color:#fff;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .lb-close:hover{background:rgba(255,255,255,.22)}
@@ -633,7 +634,7 @@ function init360(root,frames){
 }
 
 /* ---------- Lightbox: foto ampliada del carrusel ---------- */
-let detFotos=[],detTitulo='',lbIdx=0;
+let detFotos=[],detTitulo='',lbIdx=0,lbAnimando=false,lbCerrarT=null;
 function lbActualizar(){
   const img=$('#lbImg'); if(!img) return;
   img.src=detFotos[lbIdx]||''; img.alt=detTitulo;
@@ -643,34 +644,72 @@ function lbActualizar(){
 }
 function lbAbrir(i){
   if(!detFotos.length) return;
+  if(lbCerrarT){ clearTimeout(lbCerrarT); lbCerrarT=null; }
   lbIdx=Math.max(0,Math.min(detFotos.length-1,i));
+  const img=$('#lbImg');
+  if(img){ img.style.transition='none'; img.style.transform='translateX(0)'; img.style.opacity='1'; }
   lbActualizar();
-  $('#lightbox').hidden=false;
+  const lb=$('#lightbox');
+  lb.hidden=false; lb.style.transition='none'; lb.style.opacity='0';
+  requestAnimationFrame(()=>{ lb.style.transition='opacity .18s ease'; lb.style.opacity='1'; });
   document.body.style.overflow='hidden';
 }
 function lbCerrar(){
-  $('#lightbox').hidden=true;
+  const lb=$('#lightbox'); if(!lb||lb.hidden) return;
+  lb.style.transition='opacity .16s ease'; lb.style.opacity='0';
+  lbCerrarT=setTimeout(()=>{ lb.hidden=true; lb.style.opacity=''; lb.style.transition=''; lbCerrarT=null; },160);
   document.body.style.overflow='';
 }
+/* Cambiar de foto deslizando: la foto que se va sale para el lado que corresponde y la nueva
+   entra desde el lado contrario -- mismo sentido que usa el carrusel de miniaturas al pasar de
+   una foto a otra. Con lbAnimando se evita que dos deslizamientos se pisen si se toca muy rápido. */
+function lbIr(i){
+  if(!detFotos.length||lbAnimando) return;
+  const destino=Math.max(0,Math.min(detFotos.length-1,i));
+  const img=$('#lbImg');
+  if(!img) return;
+  if(destino===lbIdx){ img.style.transition='transform .22s cubic-bezier(.2,.8,.2,1)'; img.style.transform='translateX(0)'; return; }
+  const w=$('#lightbox').clientWidth||img.clientWidth||1, sale=destino>lbIdx?-w:w;
+  lbAnimando=true;
+  img.style.transition='transform .24s cubic-bezier(.2,.8,.2,1), opacity .24s ease';
+  img.style.transform='translateX('+sale+'px)'; img.style.opacity='0';
+  img.addEventListener('transitionend', function fin(){
+    img.removeEventListener('transitionend', fin);
+    lbIdx=destino;
+    img.style.transition='none';
+    img.style.transform='translateX('+(-sale)+'px)';
+    lbActualizar();
+    void img.offsetWidth; /* fuerza al navegador a fijar la posición de entrada antes de animar */
+    img.style.transition='transform .24s cubic-bezier(.2,.8,.2,1), opacity .24s ease';
+    img.style.transform='translateX(0)'; img.style.opacity='1';
+    lbAnimando=false;
+  }, {once:true});
+}
 $('#lbClose')?.addEventListener('click',lbCerrar);
-$('#lbPrev')?.addEventListener('click',()=>lbAbrir(lbIdx-1));
-$('#lbNext')?.addEventListener('click',()=>lbAbrir(lbIdx+1));
-/* arrastrar/swipe para cambiar de foto dentro del lightbox, igual que en el carrusel de miniaturas */
+$('#lbPrev')?.addEventListener('click',()=>lbIr(lbIdx-1));
+$('#lbNext')?.addEventListener('click',()=>lbIr(lbIdx+1));
+/* arrastrar/swipe para cambiar de foto dentro del lightbox: la foto sigue al dedo mientras se
+   arrastra (igual que en el carrusel de miniaturas), y al soltar completa el deslizamiento o
+   vuelve suavemente a su lugar, en vez del salto brusco de antes. */
 let lbDragging=false, lbStartX=0, lbDX=0, lbDragMoved=false;
 $('#lightbox')?.addEventListener('pointerdown',e=>{
-  if(e.target.closest('.lb-nav,.lb-close')) return;
+  if(e.target.closest('.lb-nav,.lb-close')||lbAnimando) return;
   lbDragging=true; lbStartX=e.clientX; lbDX=0; lbDragMoved=false;
+  const img=$('#lbImg'); if(img) img.style.transition='none';
   try{ $('#lightbox').setPointerCapture(e.pointerId); }catch(_){}
 });
 $('#lightbox')?.addEventListener('pointermove',e=>{
   if(!lbDragging) return;
   lbDX=e.clientX-lbStartX;
   if(Math.abs(lbDX)>6) lbDragMoved=true;
+  const img=$('#lbImg'); if(img) img.style.transform='translateX('+lbDX+'px)';
 });
 const lbFinish=()=>{
   if(!lbDragging) return; lbDragging=false;
   const th=60;
-  if(lbDX>th) lbAbrir(lbIdx-1); else if(lbDX<-th) lbAbrir(lbIdx+1);
+  if(lbDX<-th && lbIdx<detFotos.length-1) lbIr(lbIdx+1);
+  else if(lbDX>th && lbIdx>0) lbIr(lbIdx-1);
+  else { const img=$('#lbImg'); if(img){ img.style.transition='transform .22s cubic-bezier(.2,.8,.2,1)'; img.style.transform='translateX(0)'; } }
 };
 $('#lightbox')?.addEventListener('pointerup',lbFinish);
 $('#lightbox')?.addEventListener('pointercancel',lbFinish);
@@ -681,8 +720,8 @@ document.addEventListener('keydown',e=>{
   const lb=$('#lightbox');
   if(lb && !lb.hidden){
     if(e.key==='Escape'){ lbCerrar(); return; }
-    if(e.key==='ArrowLeft'){ lbAbrir(lbIdx-1); return; }
-    if(e.key==='ArrowRight'){ lbAbrir(lbIdx+1); return; }
+    if(e.key==='ArrowLeft'){ lbIr(lbIdx-1); return; }
+    if(e.key==='ArrowRight'){ lbIr(lbIdx+1); return; }
     return;
   }
   const spot=$('#spot'); if(!spot||spot.hidden) return;
