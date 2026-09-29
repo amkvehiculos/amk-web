@@ -451,7 +451,20 @@ function buildFilters(){
   if(!$('#wCa').hidden) fill('#fCa',carr,'Todas',F.ca);
 }
 /* ---------- Helpers compartidos entre la tarjeta y el detalle ---------- */
-function fotosDe(v){ return (Array.isArray(v.fotos)&&v.fotos.length) ? v.fotos : (v.foto?[v.foto]:[]); }
+/* 2026-09-29: fotos en alta. v.fotos trae versiones livianas (para la lista); v.hd trae los ids de las mismas
+   fotos en alta (colección v.hdCol). Al abrir el detalle se piden y reemplazan a las livianas a medida que llegan. */
+const FOTO_HD={};
+function fotosDe(v){ const b=(Array.isArray(v.fotos)&&v.fotos.length) ? v.fotos : (v.foto?[v.foto]:[]); const h=Array.isArray(v.hd)?v.hd:[]; return b.map((f,i)=>{ const x=h[i]&&FOTO_HD[h[i]]; return (x&&x!=='…')?x:f; }); }
+function cargaHD(v){
+  if(!v||!Array.isArray(v.hd)||!v.hd.length||!v.hdCol||typeof firebase==='undefined') return;
+  const base=(Array.isArray(v.fotos)?v.fotos:[]);
+  v.hd.forEach((id,i)=>{ if(!id||FOTO_HD[id]) return; FOTO_HD[id]='…';
+    firebase.firestore().collection(v.hdCol).doc(id).get().then(ds=>{ const d=ds.exists&&ds.data(); if(!d||!d.d){ delete FOTO_HD[id]; return; }
+      FOTO_HD[id]=d.d; const chica=base[i];
+      if(typeof detFotos!=='undefined'&&Array.isArray(detFotos)) detFotos=detFotos.map(x=>x===chica?d.d:x);
+      document.querySelectorAll('img').forEach(im=>{ if(im.getAttribute('src')===chica) im.setAttribute('src',d.d); });
+    }).catch(()=>{ delete FOTO_HD[id]; }); });
+}
 function fotosDe360(v){ return Array.isArray(v.f360) ? v.f360 : []; }
 /* Vista 360° arrastrable, armada con las tomas ya subidas (ver f360 en AMK_sistema.html).
    Si el vehiculo no tiene, no se muestra nada — igual que el video. */
@@ -790,6 +803,7 @@ function detalleActualizar(){
   box.hidden=false;
   const galBox=box.querySelector('#galBox');
   detFotos=fotosDe(v); detTitulo=v.ma+' '+v.mo+' '+(v.an||'');
+  cargaHD(v);
   if(galBox) initGal(galBox); else currentGal=null;
   const v360Box=box.querySelector('#v360Box');
   if(v360Box) init360(v360Box, fotosDe360(v));
