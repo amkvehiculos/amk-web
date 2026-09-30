@@ -104,7 +104,7 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .card:nth-child(n+10){animation-delay:.36s}
 @keyframes rise{to{opacity:1;transform:translateY(0)}}
 .card:hover{border-color:var(--steel);transform:translateY(-4px);box-shadow:0 18px 34px -14px rgba(4,18,25,.55)}
-.thumb{height:190px;position:relative;overflow:hidden;background-image:linear-gradient(135deg,rgba(255,255,255,.28),rgba(0,0,0,.22))}
+.thumb{aspect-ratio:4/3;height:auto;position:relative;overflow:hidden;background-image:linear-gradient(135deg,rgba(255,255,255,.28),rgba(0,0,0,.22))}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .card:hover .thumb img{transform:scale(1.06)}
 .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,18,25,0) 45%,rgba(4,18,25,.6) 100%)}
@@ -167,6 +167,10 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .gal:active{cursor:grabbing}
 .gal-track{display:flex;height:100%;will-change:transform}
 .gal-slide{flex:0 0 100%;height:100%;position:relative;background-position:center;background-size:cover}
+.gal-slide.vert::before,.thumb.vert::before{content:"";position:absolute;inset:-24px;background:var(--bg) center/cover;filter:blur(20px) brightness(.55)}
+.gal-slide.vert img,.thumb.vert img{object-fit:contain!important;position:relative}
+.thumb.vert img{position:absolute}
+.b-res{background:#8E6BC4;color:#fff}
 .gal-slide img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;user-select:none;cursor:zoom-in}
 .gal-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:none;
  background:rgba(4,18,25,.55);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -493,11 +497,14 @@ function videoDe(v, chico){
   if(/\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(url)) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><video src="'+url+'" controls preload="metadata" playsinline></video></div></div>';
   return '<div class="'+cls+'">'+lbl+'<a class="vidlink" href="'+url+'" target="_blank" rel="noopener">▶ Ver video del vehículo</a></div>';
 }
+/* Fotos verticales (4:3 paradas): se muestran completas, sin recortar, sobre un fondo desenfocado de la misma foto. */
+const VERT_JS="if(this.naturalHeight>this.naturalWidth*1.02){this.parentNode.style.setProperty('--bg','url(&quot;'+this.src+'&quot;)');this.parentNode.classList.add('vert')}";
 function badgesDe(v){
   const bd=[];
   if(v.st==='ORIGEN') bd.push('<span class="b b-or">En camino</span>');
   if(v.trab) bd.push('<span class="b b-tr">Trabajo</span>');
   if(v.sv) bd.push('<span class="b b-sv">Sello verde</span>');
+  if(v.reservado) bd.push('<span class="b b-res">Reservado</span>');
   if(v.oferta) bd.push('<span class="b b-of">Oferta</span>');
   return bd.join('');
 }
@@ -509,7 +516,7 @@ function card(v){
   const sp=[String(v.cat||'').toUpperCase(),String(v.tr||'').toUpperCase(),(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
     .filter(Boolean).map(t=>'<span class="sp">'+t+'</span>').join('');
   const fotos=fotosDe(v);
-  const foto=fotos[0]?'<img src="'+fotos[0]+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async">':'';
+  const foto=fotos[0]?'<img src="'+fotos[0]+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async" onload="'+VERT_JS+'">':'';
   return '<article class="card" data-ch="'+v.ch+'" tabindex="0" role="button" aria-label="Ver '+v.ma+' '+v.mo+'">'
    +'<div class="thumb" style="background-color:'+c+'">'+foto+'<div class="badges">'+badgesDe(v)+'</div></div>'
    +'<div class="cbody"><div class="ctitle">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
@@ -756,7 +763,7 @@ function detalleHTML(v){
   const fotos=fotosDe(v);
   const c=colorDe(v.ce);
   const slides=fotos.length
-    ? fotos.map(f=>'<div class="gal-slide"><img src="'+f+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async"></div>').join('')
+    ? fotos.map(f=>'<div class="gal-slide"><img src="'+f+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async" onload="'+VERT_JS+'"></div>').join('')
     : '<div class="gal-slide" style="background-color:'+c+'"></div>';
   const nav=fotos.length>1?'<button class="gal-nav gal-prev" aria-label="Foto anterior">‹</button><button class="gal-nav gal-next" aria-label="Foto siguiente">›</button>':'';
   const dots=fotos.length>1?'<div class="gal-dots">'+fotos.map((_,i)=>'<button class="gal-dot" data-i="'+i+'" aria-label="Foto '+(i+1)+'"></button>').join('')+'</div>':'';
