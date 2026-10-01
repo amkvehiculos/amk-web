@@ -309,6 +309,8 @@ footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
     <div class="chips">
       <button class="chip" id="cSv" aria-pressed="false">Circula en Santiago, V y VI</button>
       <button class="chip" id="cIqq" aria-pressed="false">Solo disponibles ahora</button>
+      <button class="chip" id="cCam" aria-pressed="false">Por llegar</button>
+      <button class="chip" id="cCor" aria-pressed="false">En Corea</button>
       <button class="chip" id="cOf" aria-pressed="false">Solo ofertas</button>
       <button class="clear" id="clr">Limpiar filtros</button>
     </div>
@@ -418,7 +420,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') wapickCierraTodos(
   if(foot) foot.innerHTML=CONTACTOS.map(c=>'<a href="https://wa.me/'+c.tel+'">'+c.nombre+' · '+c.display+'</a>').join('');
   wapickInit($('#waPick'));
 })();
-let seg='pas', F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}, T={sv:0,iqq:0,of:0}, q='';
+let seg='pas', F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}, T={sv:0,iqq:0,of:0,cam:0,cor:0}, q='';
 const base=()=>V.filter(v=>seg==='all'?true:(seg==='trab'?v.trab:!v.trab));
 function apply(L){
   const s=q.trim().toLowerCase();
@@ -432,6 +434,7 @@ function apply(L){
     if(F.ca&&v.ca!==F.ca)return false;
     if(T.sv&&!v.sv)return false;
     if(T.iqq&&v.st!=='IQQ')return false;
+    if((T.cam||T.cor)&&!((T.cam&&v.st==='ORIGEN'&&!v.enCorea)||(T.cor&&v.st==='ORIGEN'&&v.enCorea)))return false;
     if(T.of&&!v.oferta)return false;
     if(s){ const hay=(v.ma+' '+v.mo+' '+v.ch+' '+(v.an||'')).toLowerCase();
       if(!s.split(/\s+/).every(tk=>hay.includes(tk)))return false; }
@@ -500,7 +503,8 @@ function videoDe(v, chico){
 const VERT_JS="if(this.naturalHeight>this.naturalWidth*1.02){this.parentNode.style.setProperty('--bg','url(&quot;'+this.src+'&quot;)');this.parentNode.classList.add('vert')}";
 function badgesDe(v){
   const bd=[];
-  if(v.st==='ORIGEN') bd.push('<span class="b b-or">En camino</span>');
+  if(v.st==='ORIGEN'){ const hoy=new Date().toISOString().slice(0,10), dm=f=>f?(+f.slice(8,10))+'/'+(+f.slice(5,7)):'';
+    bd.push(v.enCorea?'<span class="b b-or">En Corea</span>':(v.eta&&v.eta<=hoy?'<span class="b b-or">En puerto · pronto disponible</span>':'<span class="b b-or">En camino'+(v.eta?' · llega ~'+dm(v.eta):'')+'</span>')); }
   if(v.trab) bd.push('<span class="b b-tr">Trabajo</span>');
   if(v.sv) bd.push('<span class="b b-sv">Sello verde</span>');
   if(v.reservado) bd.push('<span class="b b-res">Reservado</span>');
@@ -554,8 +558,8 @@ const bind=(sel,k)=>$(sel).addEventListener('change',e=>{F[k]=e.target.value; if
 ['#fMa|ma','#fMo|mo','#fCat|cat','#fAn|an','#fTr|tr','#fPa|pa','#fCa|ca'].forEach(x=>{const[a,b]=x.split('|');bind(a,b)});
 $('#q').addEventListener('input',e=>{q=e.target.value;render()});
 const tog=(sel,k)=>$(sel).addEventListener('click',()=>{T[k]=T[k]?0:1;$(sel).setAttribute('aria-pressed',T[k]?'true':'false');render()});
-tog('#cSv','sv');tog('#cIqq','iqq');tog('#cOf','of');
-$('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''};T={sv:0,iqq:0,of:0};q='';$('#q').value='';
+tog('#cSv','sv');tog('#cIqq','iqq');tog('#cOf','of');tog('#cCam','cam');tog('#cCor','cor');
+$('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''};T={sv:0,iqq:0,of:0,cam:0,cor:0};q='';$('#q').value='';
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
 const MIN_CIFRAS=50;
 if(V.length>=MIN_CIFRAS){
