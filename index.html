@@ -516,7 +516,8 @@ const waMsg=v=>encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.a
 
 function card(v){
   const c=colorDe(v.ce);
-  const sp=[String(v.cat||'').toUpperCase(),String(v.tr||'').toUpperCase(),(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
+  const CABW={SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'};
+  const sp=[String(v.cat||'').toUpperCase(),String(v.tr||'').toUpperCase(),(v.cab?CABW[v.cab]||'':(v.pa&&v.pa>=7?v.pa+' pasajeros':'')),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
     .filter(Boolean).map(t=>'<span class="sp">'+t+'</span>').join('');
   const fotos=fotosDe(v);
   const foto=fotos[0]?'<img src="'+fotos[0]+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async" onload="'+VERT_JS+'">':'';
@@ -759,7 +760,7 @@ function especsDe(v){
   const km=v.km?Number(v.km).toLocaleString('es-CL')+' km':'';
   const may=x=>String(x||'').toUpperCase();
   return [['Marca',may(v.ma)],['Modelo',may(v.mo)],['Año',v.an],['Categoría',may(v.cat)],['Tracción',may(v.tr)],
-    ['Pasajeros',v.pa],['Carrocería',CARN[v.ca]||''],['Kilometraje',km],['Color',may(v.ce)]]
+    v.cab?['Cabina',{SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'}[v.cab]||'']:['Pasajeros',v.pa],['Carrocería',CARN[v.ca]||''],['Kilometraje',km],['Color',may(v.ce)]]
     .filter(([,val])=>val).map(([k,val])=>'<div class="spec"><b>'+k+'</b><span>'+val+'</span></div>').join('');
 }
 function detalleHTML(v){
