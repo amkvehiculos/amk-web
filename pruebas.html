@@ -3,6 +3,15 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AMK Vehículos Selectos (PRUEBAS)</title>
 <meta name="description" content="Vehículos coreanos importados y elegidos en persona en origen. Stock en Iquique, Zona Franca. SUV, camionetas y vehículos de trabajo.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AMK Vehículos Selectos">
+<meta property="og:title" content="AMK Vehículos Selectos · Importación directa desde Corea">
+<meta property="og:description" content="Vehículos elegidos en persona en Corea. Stock en Iquique, Zona Franca: SUV, camionetas y vehículos de trabajo.">
+<meta property="og:image" content="https://amkvehiculos.github.io/amk-web/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://amkvehiculos.github.io/amk-web/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#152B35">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -87,6 +96,22 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .f select,.f input{width:100%;font-family:var(--body);font-size:14.5px;padding:10px 11px;border:1px solid var(--line);
  border-radius:9px;background:var(--n700);color:var(--s050);appearance:none}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;align-items:center}
+/* 2026-10-03: en celular el primer auto quedaba a ~2 pantallas de scroll. Portada mas corta,
+   franja de 3 frases en una sola fila y filtros plegados (queda a la vista solo "Buscar"). */
+.fmas{display:none}
+@media(max-width:700px){
+ .hero{min-height:0}.hero .wrap{padding-top:30px;padding-bottom:22px}
+ .hero h1{font-size:34px;margin-bottom:12px}.eyebrow{margin-bottom:12px;font-size:11px}.lede{font-size:14.5px}
+ .strip.banda{grid-template-columns:repeat(3,1fr)}
+ .strip.banda div{border-bottom:none;border-right:1px solid var(--line);padding:11px 10px}
+ .strip.banda div:last-child{border-right:none}
+ .strip.banda b{font-size:12.5px;line-height:1.2;margin:0}.strip.banda span{display:none}
+ #stock .sub{display:none}.tabs{margin:14px 0 12px;gap:6px}.tab{padding:8px 12px;font-size:13.5px}
+ .filters{padding:12px}
+ .filters:not(.abierto) .frow .f:not(:first-child),.filters:not(.abierto) .chips{display:none}
+ .fmas{display:block;width:100%;margin-top:10px;padding:10px;border-radius:9px;border:1px solid var(--line);
+  background:var(--n700);color:var(--s200);font:600 13.5px var(--body);cursor:pointer}
+}
 .chip{font-size:13px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--line);
  background:var(--n700);color:var(--s200);cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--steel);border-color:var(--steel);color:#EAF0F1}
@@ -134,7 +159,7 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .empty{grid-column:1/-1;padding:56px 20px;text-align:center;color:var(--s300);background:var(--n600);border:1px dashed var(--line);border-radius:14px}
 
 @keyframes vEntra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-#spot{padding:38px 0 6px}
+#spot{padding:38px 0 6px;scroll-margin-top:50px}
 #spot:not([hidden]){animation:vEntra .4s cubic-bezier(.2,.8,.2,1)}
 .closeDet{background:none;border:none;color:var(--s200);font-family:var(--body);font-size:14px;font-weight:600;
  cursor:pointer;padding:9px 4px;margin:-9px 0 16px;display:inline-flex;align-items:center;gap:6px}
@@ -315,6 +340,7 @@ footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
       <button class="chip" id="cOf" aria-pressed="false">Solo ofertas</button>
       <button class="clear" id="clr">Limpiar filtros</button>
     </div>
+    <button class="fmas" id="fMas" type="button" aria-expanded="false">Más filtros ▾</button>
   </div>
 
   <p class="count" id="cnt"></p>
@@ -462,10 +488,25 @@ function buildFilters(){
 /* 2026-09-29: fotos en alta. v.fotos trae versiones livianas (para la lista); v.hd trae los ids de las mismas
    fotos en alta (colección v.hdCol). Al abrir el detalle se piden y reemplazan a las livianas a medida que llegan. */
 const FOTO_HD={};
-function fotosDe(v){ const b=(Array.isArray(v.fotos)&&v.fotos.length) ? v.fotos : (v.foto?[v.foto]:[]); const h=Array.isArray(v.hd)?v.hd:[]; return b.map((f,i)=>{ const x=h[i]&&FOTO_HD[h[i]]; return (x&&x!=='…')?x:f; }); }
+/* 2026-10-03: la lista ya no trae la galeria de cada vehiculo (eran ~700 KB por auto, todo bajaba al abrir la web).
+   Viene solo la portada (v.foto) y la cantidad (v.nf); la galeria liviana vive en catalogoPublico/{ch}__fotos
+   y se pide recien al abrir el detalle. Documentos viejos (con v.fotos adentro) siguen funcionando igual. */
+const FOTOS_GAL={};
+let COL_WEB=null;  /* la coleccion publica, se fija una sola vez abajo (generar_pruebas.py la cambia ahi) */
+function galDe(v){ return FOTOS_GAL[v.ch] || ((Array.isArray(v.fotos)&&v.fotos.length) ? v.fotos : (v.foto?[v.foto]:[])); }
+function cargaGal(v){
+  if(!v||!(v.nf>1)||FOTOS_GAL[v.ch]||!COL_WEB){ cargaHD(v); return; }
+  FOTOS_GAL[v.ch]=null;
+  COL_WEB.doc(v.ch+'__fotos').get().then(ds=>{
+    const d=ds.exists&&ds.data(); if(!d||!Array.isArray(d.fotos)||!d.fotos.length){ delete FOTOS_GAL[v.ch]; cargaHD(v); return; }
+    FOTOS_GAL[v.ch]=d.fotos;
+    if(detalleCh&&detalleCh.toUpperCase()===v.ch.toUpperCase()) detalleActualizar();
+  }).catch(e=>{ console.error('galeria',e); delete FOTOS_GAL[v.ch]; cargaHD(v); });
+}
+function fotosDe(v){ const b=galDe(v); const h=Array.isArray(v.hd)?v.hd:[]; return b.map((f,i)=>{ const x=h[i]&&FOTO_HD[h[i]]; return (x&&x!=='…')?x:f; }); }
 function cargaHD(v){
   if(!v||!Array.isArray(v.hd)||!v.hd.length||!v.hdCol||typeof firebase==='undefined') return;
-  const base=(Array.isArray(v.fotos)?v.fotos:[]);
+  const base=galDe(v);
   v.hd.forEach((id,i)=>{ if(!id||FOTO_HD[id]) return; FOTO_HD[id]='…';
     firebase.firestore().collection(v.hdCol).doc(id).get().then(ds=>{ const d=ds.exists&&ds.data(); if(!d||!d.d){ delete FOTO_HD[id]; return; }
       FOTO_HD[id]=d.d; const chica=base[i];
@@ -807,6 +848,10 @@ function detalleHTML(v){
    +'</div></div></div>';
 }
 let detalleCh=null;
+document.getElementById('fMas')?.addEventListener('click',e=>{
+  const f=document.querySelector('.filters'); const ab=f.classList.toggle('abierto');
+  e.currentTarget.setAttribute('aria-expanded',ab); e.currentTarget.textContent=ab?'Menos filtros ▴':'Más filtros ▾';
+});
 function detalleActualizar(){
   if(!detalleCh) return;
   const v=V.find(x=>x.ch.toUpperCase()===detalleCh.toUpperCase());
@@ -816,7 +861,7 @@ function detalleActualizar(){
   box.hidden=false;
   const galBox=box.querySelector('#galBox');
   detFotos=fotosDe(v); detTitulo=v.ma+' '+v.mo+' '+(v.an||'');
-  cargaHD(v);
+  if(v.nf>1&&FOTOS_GAL[v.ch]===undefined) cargaGal(v); else if(FOTOS_GAL[v.ch]!==null) cargaHD(v);
   if(galBox) initGal(galBox); else currentGal=null;
   const v360Box=box.querySelector('#v360Box');
   if(v360Box) init360(v360Box, fotosDe360(v));
@@ -853,16 +898,25 @@ window.addEventListener('popstate',()=>{
   const grid=document.querySelector('#grid');
   function aviso(txt){ if(grid && !V.length) grid.innerHTML='<p style="padding:30px 0;text-align:center;opacity:.7">'+txt+'</p>'; }
   aviso('Cargando el stock…');
+  let yaSalto=false;
   try{
     if(typeof firebase==='undefined'){ aviso('No se pudo cargar el stock. Revisa tu conexión y recarga la página.'); return; }
     firebase.initializeApp(FB_CONFIG);
-    firebase.firestore().collection('pruebas_catalogoPublico').onSnapshot(snap=>{
+    const col=COL_WEB=firebase.firestore().collection('pruebas_catalogoPublico');
+    let viejo=false;
+    /* Solo los documentos de vehiculo (lista==true); las galerias {ch}__fotos no se bajan aca.
+       Si Sistema todavia no publico con el formato nuevo (ningun doc con lista), se escucha todo como antes. */
+    const escucha=(q)=>q.onSnapshot(snap=>{
+      if(!viejo && snap.empty && q!==col){ viejo=true; unsub(); unsub=escucha(col); return; }
       const lista=[];
-      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado) lista.push(x); });
+      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado && !x.galeriaDe) lista.push(x); });
       V.length=0; Array.prototype.push.apply(V,lista);
       try{ render(); detalleActualizar(); }catch(e){ console.error('render',e); }
+      /* llegaron por ?ch= (link de Víctor/Bryan): mostrar la ficha de inmediato, no la portada */
+      if(!yaSalto && detalleCh && !$('#spot').hidden){ yaSalto=true; history.scrollRestoration='manual'; setTimeout(()=>$('#spot').scrollIntoView({block:'start',behavior:'instant'}),60); }
       if(!V.length) aviso('Por ahora no hay vehículos publicados.');
     }, e=>{ console.error('catalogo',e); aviso('No se pudo cargar el stock en este momento.'); });
+    let unsub=escucha(col.where('lista','==',true));
   }catch(e){ console.error('firebase',e); aviso('No se pudo cargar el stock. Revisa tu conexión y recarga la página.'); }
 })();
 </script>
