@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html data-letra="compacta" lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AMK Vehículos Selectos — Importación directa desde Corea · Iquique</title>
 <meta name="description" content="Vehículos coreanos importados y elegidos en persona en origen. Stock en Iquique, Zona Franca. SUV, camionetas y vehículos de trabajo.">
@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#152B35">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <style>
 /* 08/10/2026 (Andre): al girar el celular a horizontal, iPhone agrandaba las letras solo y la app se descuadraba. Esto lo impide. */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -147,6 +147,10 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .ctitle .y{color:var(--s300)}
 .chas{font-family:var(--mono);font-size:11px;color:var(--s300);letter-spacing:.06em;margin-top:4px}
 .specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.eqbox{margin-top:18px}
+.eqlist{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 14px}
+.eqlist li{display:flex;gap:9px;align-items:flex-start;font-weight:600;color:#EAF0F1;font-size:15px;line-height:1.35}
+.eqlist li::before{content:'';flex:0 0 auto;width:16px;height:16px;margin-top:1px;border-radius:50%;background:#2E8B57 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
 .sp{font-size:11.5px;font-weight:500;background:var(--n700);border:1px solid var(--line);color:var(--s200);padding:3px 8px;border-radius:6px}
 .price{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .price .v{font-family:var(--disp);font-weight:800;font-size:19px;font-variant-numeric:tabular-nums;color:#EAF0F1}
@@ -162,7 +166,7 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 
 @keyframes vEntra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 #spot{padding:38px 0 6px;scroll-margin-top:50px}
-#spot:not([hidden]){animation:vEntra .4s cubic-bezier(.2,.8,.2,1)}
+#spot:not([hidden]){animation:vEntra .75s cubic-bezier(.22,.61,.36,1)}
 .closeDet{background:none;border:none;color:var(--s200);font-family:var(--body);font-size:14px;font-weight:600;
  cursor:pointer;padding:9px 4px;margin:-9px 0 16px;display:inline-flex;align-items:center;gap:6px}
 .closeDet:hover{color:var(--s050)}
@@ -204,7 +208,7 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .gal-nav:hover{background:rgba(4,18,25,.78)}
 .gal-prev{left:10px}.gal-next{right:10px}
 .gal-dots{position:absolute;bottom:13px;left:0;right:0;display:flex;justify-content:center;gap:6px}
-.gal-dot{width:7px;height:7px;border-radius:50%;border:none;background:rgba(255,255,255,.45);padding:0;cursor:pointer;transition:width .2s ease,border-radius .2s ease}
+.gal-dot{width:7px;height:7px;border-radius:50%;border:none;background:rgba(255,255,255,.45);padding:0;cursor:pointer;transition:width .45s ease,border-radius .45s ease,background .45s ease}
 .gal-dot.on{background:#fff;width:18px;border-radius:4px}
 .gal-count{position:absolute;top:11px;right:11px;background:rgba(4,18,25,.6);color:#fff;font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:999px}
 @media(max-width:700px){.gal-nav{display:none}}
@@ -266,6 +270,123 @@ footer{background:var(--n900);color:var(--s300);padding:44px 0;font-size:13.5px;
 footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
 footer b{color:var(--s050);display:block;margin-bottom:7px;font-family:var(--disp);font-size:15px}
 footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
+
+/* ================= Diseño "lujo sobrio" (03/11/2026, aprobado por Andre) =================
+   Tomado de Genesis, Porsche Finder, Tom Hartley Jnr y Ditec: foto real grande, dos voces de letra,
+   menos etiquetas, movimiento lento. Todo se apaga con "reducir movimiento". */
+:root{--serif:'Cormorant Garamond',Georgia,serif;--oro:#E6C2A0;--ease:cubic-bezier(.2,.8,.2,1)}
+/* encabezado de vidrio: transparente sobre la portada, se oscurece al bajar */
+header{background:transparent;border-bottom:1px solid transparent;transition:background .5s ease,border-color .5s ease,backdrop-filter .5s ease}
+header.solido{background:rgba(11,28,35,.78);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom-color:rgba(61,93,107,.6)}
+/* portada: fotos reales del stock a pantalla completa */
+.hero{margin-top:-69px;min-height:min(90vh,780px);background:linear-gradient(125deg,#2E4752,#152B35 60%,#0B1C23);overflow:hidden;align-items:flex-end}
+.hero::after{display:none}
+.hslides{position:absolute;inset:0}
+.hslide{position:absolute;inset:0;opacity:0;transition:opacity 2s cubic-bezier(.4,0,.2,1)}
+.hslide.on{opacity:1}
+.hslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform 10s linear}
+.hslide.on img{transform:scale(1.1)}
+.hero .velo{position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(180deg,rgba(11,28,35,.55) 0%,rgba(11,28,35,0) 22%,rgba(11,28,35,0) 45%,rgba(11,28,35,.82) 82%,var(--n700) 100%),
+            linear-gradient(90deg,rgba(11,28,35,.72) 0%,rgba(11,28,35,.25) 55%,rgba(11,28,35,0) 80%)}
+.hero .wrap{padding-top:140px;padding-bottom:64px;width:100%}
+.hero .eyebrow{display:none}
+.kicker{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(22px,3vw,32px);color:var(--oro);margin:0 0 6px;letter-spacing:.01em}
+.hero h1{font-weight:800;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(4,18,25,.35)}
+.hctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.hbtn{display:inline-flex;align-items:center;gap:8px;font:700 14.5px var(--body);text-decoration:none;padding:13px 22px;border-radius:999px;transition:background .3s ease,color .3s ease,transform .3s var(--ease)}
+.hbtn:hover{transform:translateY(-2px)}
+.hbtn.p{background:#EAF0F1;color:var(--n800)}.hbtn.p:hover{background:#fff}
+.hbtn.s{border:1px solid rgba(234,240,241,.45);color:#EAF0F1;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);background:rgba(11,28,35,.25)}
+.hbtn.s:hover{background:rgba(234,240,241,.12)}
+.hpie{position:absolute;right:20px;bottom:26px;z-index:3;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.hcap{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#EAF0F1;text-decoration:none;opacity:.85;transition:opacity .4s ease;cursor:pointer;background:none;border:none;padding:0}
+.hcap:hover{opacity:1}.hcap span{color:var(--oro)}
+.hbar{display:flex;gap:6px}.hbar i{display:block;width:26px;height:2px;background:rgba(234,240,241,.25);border-radius:2px;overflow:hidden}
+.hbar i.on::after{content:"";display:block;height:100%;background:var(--oro);animation:hbar 7s linear forwards}
+@keyframes hbar{from{width:0}to{width:100%}}
+@media(max-width:700px){
+ .hero{min-height:56svh}.hero .wrap{padding-top:96px;padding-bottom:30px}
+ .hero .velo{background:linear-gradient(180deg,rgba(11,28,35,.6) 0%,rgba(11,28,35,.35) 30%,rgba(11,28,35,.55) 60%,rgba(11,28,35,.92) 88%,var(--n700) 100%)}
+ .hero h1{font-size:36px}.kicker{font-size:21px}
+ .hpie{right:16px;bottom:12px}.hcap{display:none}
+ .hctas{margin-top:16px}.hbtn{padding:11px 18px;font-size:13.5px}
+}
+/* secciones que aparecen al bajar */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.on{opacity:1;transform:none}
+.cols .col.rv:nth-child(2){transition-delay:.12s}.cols .col.rv:nth-child(3){transition-delay:.24s}.cols .col.rv:nth-child(4){transition-delay:.36s}
+.col .num{font-family:var(--serif);font-style:italic;font-weight:600;font-size:34px;letter-spacing:0;color:var(--oro);margin-bottom:4px;line-height:1}
+.sub.serif,.cta p{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--s100)}
+/* filtros fijos con vidrio mientras se recorre el stock */
+.filters{transition:box-shadow .3s ease}
+/* en computador los filtros completos tapaban casi 200 px: quedan fijos solo en celular, donde están plegados */
+@media(max-width:700px){.filters{position:sticky;top:72px;z-index:30;background:rgba(24,54,64,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+ .filters.pegado{box-shadow:0 14px 30px -18px rgba(4,18,25,.8)}.filters.abierto{position:relative;top:auto}}
+/* tarjetas sobrias: una línea de datos y un destacado */
+.grid{gap:22px}
+.card{border-color:rgba(61,93,107,.55);border-radius:16px}
+.card:hover{border-color:color-mix(in srgb,var(--oro) 60%,transparent);transform:translateY(-5px);box-shadow:0 26px 44px -22px rgba(4,18,25,.75)}
+.thumb{aspect-ratio:16/11}
+.card:hover .thumb img{transform:scale(1.045);transition-duration:1.1s}
+.cbody{padding:17px 18px 18px}
+.ctitle{font-weight:700;font-size:17px;letter-spacing:.01em}
+.cdat{font-size:13.5px;color:var(--s200);margin-top:7px;line-height:1.45}
+.cdest{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--oro);margin-top:6px}
+.price{border-top:1px solid rgba(61,93,107,.5);margin-top:16px;padding-top:14px}
+/* cargando: tarjetas "esqueleto" en vez de pantalla vacía */
+.skel{background:var(--n600);border:1px solid rgba(61,93,107,.4);border-radius:16px;overflow:hidden}
+.skel .a{aspect-ratio:16/11}.skel .b1,.skel .b2{height:12px;border-radius:6px;margin:16px 18px 0}.skel .b1{width:62%;height:15px}.skel .b2{width:40%;margin-bottom:20px}
+.skel .a,.skel .b1,.skel .b2{background:linear-gradient(100deg,#1d3a45 30%,#28505d 50%,#1d3a45 70%);background-size:300% 100%;animation:brillo 1.6s ease-in-out infinite}
+@keyframes brillo{from{background-position:100% 0}to{background-position:0 0}}
+/* WhatsApp flotante */
+.waf{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:120}
+.waf>button{width:58px;height:58px;border-radius:50%;border:none;cursor:pointer;background:#25D366;color:#fff;display:grid;place-items:center;
+ box-shadow:0 12px 28px -8px rgba(4,18,25,.7);transition:transform .35s var(--ease);animation:wafEntra .7s var(--ease) 1.2s both}
+.waf>button:hover{transform:scale(1.07)}
+@keyframes wafEntra{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+.waf .wadrop{top:auto;bottom:calc(100% + 10px)}
+.waf.oculto{display:none}
+@media(prefers-reduced-motion:reduce){.hslide,.hslide img,.rv,.waf>button,header{transition:none!important;animation:none!important}.hslide.on img{transform:scale(1.04)}.rv{opacity:1;transform:none}.hbar i.on::after{animation:none;width:100%}.skel *{animation:none!important}}
+
+/* 03/11/2026 (Andre): el dorado no contrastaba con el azul petróleo y las cursivas no convencían.
+   Acento = cobre champagne (#E3A27C, opuesto del azul en la rueda de color, contraste 6,8:1).
+   Letra "moderna" (por defecto): mayúsculas espaciadas, sin cursiva. "recta": serif elegante pero derecha. */
+html[data-letra="moderna"] .kicker{font-family:var(--body);font-style:normal;font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:clamp(12px,1.25vw,14px);margin-bottom:14px}
+html[data-letra="moderna"] .cdest{font-family:var(--body);font-style:normal;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-top:9px}
+html[data-letra="moderna"] .col .num{font-family:var(--disp);font-style:normal;font-weight:800;font-size:28px;letter-spacing:-.02em}
+html[data-letra="moderna"] .sub.serif,html[data-letra="moderna"] .cta p{font-family:var(--body);font-style:normal;font-size:15px;color:var(--s200)}
+html[data-letra="recta"] .kicker,html[data-letra="recta"] .cdest,html[data-letra="recta"] .col .num,html[data-letra="recta"] .sub.serif,html[data-letra="recta"] .cta p{font-style:normal}
+h2::before{background:var(--oro)}
+/* 03/11/2026 (Andre): el lila de "Reservado" no era de la paleta. Va con el acento (arena) y letra oscura: se distingue
+   del azul de "En camino", del verde del sello y del ámbar de "Trabajo", y se ve parte de la marca. */
+.b-res{background:var(--res,var(--oro));color:var(--resTx,var(--n800));box-shadow:inset 0 0 0 1px var(--resBd,transparent),0 1px 4px rgba(4,18,25,.5)}
+/* 03/11/2026 (Andre): acento Arena. Sobre las fotos de la portada la frase se perdía: va en una cápsula de vidrio oscuro
+   con borde fino del acento y sombra, así se lee sobre cualquier foto (clara u oscura). */
+.hero .kicker{display:inline-block;padding:8px 15px;border-radius:999px;background:rgba(11,28,35,.62);
+ -webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);
+ border:1px solid color-mix(in srgb,var(--oro) 45%,transparent);text-shadow:0 1px 10px rgba(4,18,25,.85)}
+html[data-letra="moderna"] .hero .kicker{font-weight:700;margin-bottom:18px}
+.hero .velo{background:linear-gradient(180deg,rgba(11,28,35,.55) 0%,rgba(11,28,35,0) 22%,rgba(11,28,35,0) 45%,rgba(11,28,35,.82) 82%,var(--n700) 100%),
+            linear-gradient(90deg,rgba(11,28,35,.8) 0%,rgba(11,28,35,.35) 55%,rgba(11,28,35,0) 80%)}
+@media(max-width:700px){.hero .velo{background:linear-gradient(180deg,rgba(11,28,35,.6) 0%,rgba(11,28,35,.4) 30%,rgba(11,28,35,.6) 60%,rgba(11,28,35,.92) 88%,var(--n700) 100%)}
+ html[data-letra] .hero .kicker{font-size:10.5px;letter-spacing:.13em;padding:7px 12px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}}
+
+/* 03/11/2026 (Andre): variantes de la letra moderna (la de mayúsculas muy espaciadas no convencía del todo).
+   compacta = mayúsculas con poco espacio · frase = como se escribe normal, sin mayúsculas · titular = la letra de los títulos */
+html[data-letra="compacta"] .kicker,html[data-letra="compacta"] .hero .kicker{font-family:var(--body);font-style:normal;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(12.5px,1.3vw,14.5px)}
+html[data-letra="compacta"] .cdest{font-family:var(--body);font-style:normal;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-top:9px}
+html[data-letra="frase"] .kicker,html[data-letra="frase"] .hero .kicker{font-family:var(--body);font-style:normal;font-weight:600;text-transform:none;letter-spacing:.01em;font-size:clamp(14.5px,1.6vw,17px)}
+html[data-letra="frase"] .cdest{font-family:var(--body);font-style:normal;font-weight:600;font-size:13.5px;text-transform:none;letter-spacing:0;margin-top:8px}
+html[data-letra="titular"] .kicker,html[data-letra="titular"] .hero .kicker{font-family:var(--disp);font-style:normal;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(13px,1.4vw,15px)}
+html[data-letra="titular"] .cdest{font-family:var(--disp);font-style:normal;font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;margin-top:9px}
+html[data-letra="compacta"] .col .num,html[data-letra="frase"] .col .num,html[data-letra="titular"] .col .num{font-family:var(--disp);font-style:normal;font-weight:800;font-size:28px;letter-spacing:-.02em}
+html[data-letra="compacta"] .sub.serif,html[data-letra="compacta"] .cta p,html[data-letra="frase"] .sub.serif,html[data-letra="frase"] .cta p,html[data-letra="titular"] .sub.serif,html[data-letra="titular"] .cta p{font-family:var(--body);font-style:normal;font-size:15px;color:var(--s200)}
+@media(max-width:700px){html[data-letra="compacta"] .hero .kicker{font-size:11.5px;letter-spacing:.06em}
+ html[data-letra="frase"] .hero .kicker{font-size:13.5px;letter-spacing:0}
+ html[data-letra="titular"] .hero .kicker{font-size:12px;letter-spacing:.03em}}
+/* Reservado: burdeo por defecto (terracota es la otra opción que le gustó a Andre) */
+:root{--res:#7A2E3A;--resTx:#F3E6E2}
 </style></head><body>
 
 <header><div class="wrap">
@@ -284,11 +405,13 @@ footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
   </div>
 </div></header>
 
-<section class="hero" id="top"><div class="wrap">
+<section class="hero" id="top"><div class="hslides" id="hSlides"></div><div class="velo"></div><div class="wrap">
   <div class="eyebrow">Importadora · Corea del Sur → Iquique</div>
+  <p class="kicker">Elegidos en persona, uno por uno.</p>
   <h1>Corea<br>directo a<br>Iquique</h1>
   <p class="lede">Importación propia, sin intermediarios: elegimos cada vehículo en persona en Corea, antes de subirlo al contenedor.</p>
-</div></section>
+  <div class="hctas"><a class="hbtn p" href="#stock">Ver el stock</a><a class="hbtn s" href="#contacto">Lo traemos a pedido</a></div>
+</div><div class="hpie"><button class="hcap" id="hCap" type="button"></button><div class="hbar" id="hBar"></div></div></section>
 
 <section id="spot" hidden></section>
 
@@ -332,9 +455,10 @@ footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
       <div class="f"><label for="fTr">Tracción</label><select id="fTr"></select></div>
       <div class="f"><label for="fPa">Pasajeros</label><select id="fPa"></select></div>
       <div class="f" id="wCa" hidden><label for="fCa">Carrocería</label><select id="fCa"></select></div>
+      <div class="f" id="wEq" hidden><label for="fEq">Característica</label><select id="fEq"></select></div>
     </div>
     <div class="chips">
-      <button class="chip" id="cSv" aria-pressed="false">Circula en Santiago, V y VI</button>
+      <button class="chip" id="cSv" aria-pressed="false">Circula en Santiago, Valparaíso y Viña</button>
       <button class="chip" id="cIqq" aria-pressed="false">Solo disponibles ahora</button>
       <button class="chip" id="cCam" aria-pressed="false">Por llegar</button>
       <button class="chip" id="cCor" aria-pressed="false">En Corea</button>
@@ -350,7 +474,7 @@ footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
 
 <section class="band" id="proceso"><div class="wrap">
   <h2>Cómo trabajamos</h2>
-  <p class="sub">Un proceso corto, controlado de punta a punta.</p>
+  <p class="sub serif">Un proceso corto, controlado de punta a punta.</p>
   <div class="cols">
     <div class="col"><div class="num">01</div><h3>Selección en Corea</h3>
       <p>Vemos el vehículo físicamente y revisamos su estado antes de comprarlo. No trabajamos con fotos de terceros.</p></div>
@@ -394,6 +518,9 @@ footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
   <div><b>Marcas</b>Hyundai · Kia · Jeep<br>SsangYong · BMW · Chevrolet</div>
 </div></footer>
 
+<div class="waf wapick" id="waf"><button type="button" id="wafBtn" aria-label="Escríbenos por WhatsApp" aria-haspopup="true" aria-expanded="false">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg></button>
+  <div class="wadrop" id="wafDrop" role="menu" hidden></div></div>
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
 <script>
@@ -405,6 +532,26 @@ const COL={'Blanco':'#E9EAE6','Negro':'#20262A','Gris':'#8A9296','Plateado':'#B9
    color de fondo de todos los vehiculos salia gris por no encontrar nunca la llave). */
 const COL_U=Object.fromEntries(Object.entries(COL).map(([k,c])=>[k.toUpperCase(),c]));
 const colorDe=ce=>COL_U[String(ce||'').trim().toUpperCase()]||'#8A9296';
+/* Equipamiento (03/11/2026): mismos códigos que EQ_OPC en Sistema, Vendedores y Corea. [código, texto, corto]
+   AND/PIS/CRO se instalan en Iquique: van primero (en la tarjeta caben 2) y en la ficha en su propio bloque. */
+const EQ_IQQ=['AND','PIS','CRO'];
+const EQ_W=[['AND','Pantalla Android','Pantalla Android'],['PIS','Pisaderas','Pisaderas'],['CRO','Cromados','Cromados'],
+  ['CAM','Cámara de retroceso','Cámara'],['SENS','Sensores de estacionamiento','Sensores'],['PANT','Pantalla multimedia','Pantalla'],
+  ['LLAVE','Llave inteligente','Llave inteligente'],['CRUC','Control crucero','Crucero'],['CUERO','Asientos de cuero','Cuero'],
+  ['CALEF','Asientos calefaccionados o ventilados','Asientos calefaccionados'],['PORTON','Portón trasero eléctrico','Portón eléctrico'],
+  ['AROS','Aros de aleación','Aros de aleación'],['AC','Aire acondicionado','Aire acondicionado']];
+const eqW=(v,i)=>EQ_W.filter(o=>(v.eq||[]).includes(o[0])).map(o=>o[i||1]);
+const eqBloques=v=>{ const e=v.eq||[], li=L=>'<ul class="eqlist">'+L.map(o=>'<li>'+o[1]+'</li>').join('')+'</ul>';
+  const iq=EQ_W.filter(o=>EQ_IQQ.includes(o[0])&&e.includes(o[0])), ot=EQ_W.filter(o=>!EQ_IQQ.includes(o[0])&&e.includes(o[0]));
+  return (iq.length?'<div class="eqbox"><div class="medialabel">Preparado en Iquique</div>'+li(iq)+'</div>':'')
+    +(ot.length?'<div class="eqbox"><div class="medialabel">Equipamiento</div>'+li(ot)+'</div>':''); };
+const COMB={DIESEL:'Diésel',BENCINA:'Bencina'}, TRANS={AUTOMATICA:'Automática',MECANICA:'Mecánica'};
+const cilTxt=c=>{ const n=parseFloat(String(c||'').replace(',','.')); if(!n) return ''; return (n>=100?(n/1000):n).toFixed(1).replace('.',',')+' L'; };
+/* Filtro "Característica": combustible, transmisión, techo y equipamiento. Solo se ofrece lo que tiene algún vehículo. */
+const CARAC=[['DIESEL','Diésel',v=>v.comb==='DIESEL'],['BENCINA','Bencina',v=>v.comb==='BENCINA'],
+  ['AUTOMATICA','Automática',v=>v.trans==='AUTOMATICA'],['MECANICA','Mecánica',v=>v.trans==='MECANICA'],
+  ['TP','Techo panorámico',v=>!!v.tp&&!v.trab],['P7','7 o más pasajeros',v=>+v.pa>=7]]
+  .concat(EQ_W.map(([k,t])=>[k,t,v=>(v.eq||[]).includes(k)]));
 const CARN={'BARANDA':'Baranda','BARANDA BAJA':'Baranda baja','FREEZER':'Freezer','GAVIOTA':'Gaviota','CAJÓN SIMPLE':'Cajón simple','POWER GATE':'Power Gate'};
 const clp=n=>'$'+Number(n).toLocaleString('es-CL');
 const $=s=>document.querySelector(s);
@@ -448,7 +595,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') wapickCierraTodos(
   if(foot) foot.innerHTML=CONTACTOS.map(c=>'<a href="https://wa.me/'+c.tel+'">'+c.nombre+' · '+c.display+'</a>').join('');
   wapickInit($('#waPick'));
 })();
-let seg='pas', F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}, T={sv:0,iqq:0,of:0,cam:0,cor:0}, q='';
+let seg='pas', F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:'',eq:''}, T={sv:0,iqq:0,of:0,cam:0,cor:0}, q='';
 const base=()=>V.filter(v=>seg==='all'?true:(seg==='trab'?v.trab:!v.trab));
 function apply(L){
   const s=q.trim().toLowerCase();
@@ -460,6 +607,7 @@ function apply(L){
     if(F.tr&&v.tr!==F.tr)return false;
     if(F.pa&&String(v.pa)!==F.pa)return false;
     if(F.ca&&v.ca!==F.ca)return false;
+    if(F.eq){ const c=CARAC.find(x=>x[0]===F.eq); if(c&&!c[2](v)) return false; }
     if(T.sv&&!v.sv)return false;
     if(T.iqq&&v.st!=='IQQ')return false;
     if((T.cam||T.cor)&&!((T.cam&&v.st==='ORIGEN'&&!v.enCorea)||(T.cor&&v.st==='ORIGEN'&&v.enCorea)))return false;
@@ -484,6 +632,9 @@ function buildFilters(){
   const carr=uniq(b,'ca').filter(c=>c&&c!=='S/N').sort();
   $('#wCa').hidden=!(seg!=='pas'&&carr.length);
   if(!$('#wCa').hidden) fill('#fCa',carr,'Todas',F.ca);
+  const car=CARAC.filter(c=>b.some(c[2]));
+  $('#wEq').hidden=!car.length;
+  $('#fEq').innerHTML='<option value="">Cualquiera</option>'+car.map(([k,t])=>'<option value="'+k+'"'+(k===F.eq?' selected':'')+'>'+t+'</option>').join('');
 }
 /* ---------- Helpers compartidos entre la tarjeta y el detalle ---------- */
 /* 2026-09-29: fotos en alta. v.fotos trae versiones livianas (para la lista); v.hd trae los ids de las mismas
@@ -560,15 +711,18 @@ const waMsg=v=>encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.a
 function card(v){
   const c=colorDe(v.ce);
   const CABW={SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'};
-  const sp=[String(v.cat||'').toUpperCase(),String(v.tr||'').toUpperCase(),(v.cab?CABW[v.cab]||'':(v.pa&&v.pa>=7?v.pa+' pasajeros':'')),(CARN[v.ca]||''),(v.tp&&!v.trab?'Techo panorámico':'')]
-    .filter(Boolean).map(t=>'<span class="sp">'+t+'</span>').join('');
+  /* 03/11/2026: una sola línea de datos (como Porsche Finder) y como máximo 2 destacados en cursiva */
+  const cap=x=>String(x||'').charAt(0).toUpperCase()+String(x||'').slice(1).toLowerCase();
+  const dat=[(v.cat&&!v.trab?(v.cat.length<=3?v.cat:cap(v.cat)):''),(CARN[v.ca]||''),(v.cab?CABW[v.cab]||'':''),(COMB[v.comb]||''),(TRANS[v.trans]||''),(v.tr?v.tr.toLowerCase():''),(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(v.km?Number(v.km).toLocaleString('es-CL')+' km':'')].filter(Boolean).join(' · ');
+  const dest=[...eqW(v).filter((t,i)=>EQ_IQQ.includes((EQ_W.find(o=>o[1]===t)||[])[0])),(v.tp&&!v.trab?'Techo panorámico':'')].filter(Boolean).slice(0,2).join(' · ');
+  const sp='';
   const fotos=fotosDe(v);
   const foto=fotos[0]?'<img src="'+fotos[0]+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async" onload="'+VERT_JS+'">':'';
   return '<article class="card" data-ch="'+v.ch+'" tabindex="0" role="button" aria-label="Ver '+v.ma+' '+v.mo+'">'
    +'<div class="thumb" style="background-color:'+c+'">'+foto+'<div class="badges">'+badgesDe(v)+'</div></div>'
    +'<div class="cbody"><div class="ctitle">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
-   +'<div class="chas">'+v.ch+' · '+String(v.ce||'').toUpperCase()+'</div>'
-   +(sp?'<div class="specs">'+sp+'</div>':'')
+   +'<div class="chas">'+String(v.ce||'').toUpperCase()+'</div>'
+   +(dat?'<div class="cdat">'+dat+'</div>':'')+(dest?'<div class="cdest">'+dest+'</div>':'')
    +'<div class="price">'+precioHTML(v)+'<a href="https://wa.me/56989116510?text='+waMsg(v)+'" target="_blank" rel="noopener">Consultar</a></div></div></article>';
 }
 function render(){
@@ -596,15 +750,97 @@ $('#grid').addEventListener('keydown',e=>{
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
   document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
   t.setAttribute('aria-selected','true'); seg=t.dataset.seg;
-  F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''}; render();
+  F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:'',eq:''}; render();
 }));
 const bind=(sel,k)=>$(sel).addEventListener('change',e=>{F[k]=e.target.value; if(k==='ma')F.mo=''; render()});
-['#fMa|ma','#fMo|mo','#fCat|cat','#fAn|an','#fTr|tr','#fPa|pa','#fCa|ca'].forEach(x=>{const[a,b]=x.split('|');bind(a,b)});
+['#fMa|ma','#fMo|mo','#fCat|cat','#fAn|an','#fTr|tr','#fPa|pa','#fCa|ca','#fEq|eq'].forEach(x=>{const[a,b]=x.split('|');bind(a,b)});
 $('#q').addEventListener('input',e=>{q=e.target.value;render()});
 const tog=(sel,k)=>$(sel).addEventListener('click',()=>{T[k]=T[k]?0:1;$(sel).setAttribute('aria-pressed',T[k]?'true':'false');render()});
 tog('#cSv','sv');tog('#cIqq','iqq');tog('#cOf','of');tog('#cCam','cam');tog('#cCor','cor');
-$('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:''};T={sv:0,iqq:0,of:0,cam:0,cor:0};q='';$('#q').value='';
+$('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:'',eq:''};T={sv:0,iqq:0,of:0,cam:0,cor:0};q='';$('#q').value='';
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
+
+/* ================= Diseño "lujo sobrio": portada, aparición al bajar, encabezado, filtros, WhatsApp ================= */
+const quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Portada: hasta 5 vehículos en patio con foto (primero ofertas, después los más nuevos); cambia cada 6,5 s.
+   Se pide la foto en alta de cada uno (la de la tarjeta es chica y en pantalla grande se vería borrosa). */
+let hIdx=0, hT=null, hLista=[], hFirma='';
+/* 03/11/2026 (Andre): fotos chicas o paradas se veían pixeladas en la portada. Solo entran fotos EN ALTA
+   (≥1.400 px de ancho) y horizontales: se prueba la foto de portada del vehículo y, si no sirve, las 2 siguientes.
+   Mientras ninguna está lista, la portada muestra el fondo de siempre: nunca una foto borrosa.
+   ★ Portada (opcional, se marca en Sistema → precios/publicación): si hay marcados que pasan el filtro, salen SOLO esos.
+   Si no hay ninguno marcado (o ninguno pasa), se eligen solos: en patio, no reservados, autos y SUV primero,
+   ofertas y más nuevos antes. */
+const H_MIN=1400, H_MAX=5;
+const esTrabW=v=>!!(v.trab||/^(PORTER|BONGO)/i.test(String(v.mo||'').trim()));   /* Porter y Bongo son de trabajo aunque no traigan v.trab */
+function portada(){
+  const conHD=v=>Array.isArray(v.hd)&&v.hd[0]&&v.hdCol;
+  const orden=(a,b)=>(esTrabW(a)?1:0)-(esTrabW(b)?1:0)||(b.oferta?1:0)-(a.oferta?1:0)||(+b.an||0)-(+a.an||0);
+  const dest=V.filter(v=>v.dest&&conHD(v)).sort(orden).slice(0,H_MAX);
+  const auto=V.filter(v=>!v.dest&&v.st==='IQQ'&&!v.reservado&&conHD(v)).sort(orden).slice(0,10);
+  const cand=dest.concat(auto), nDest=dest.length;
+  const firma=cand.map(v=>v.ch+(v.dest?'*':'')).join(',');
+  if(firma===hFirma||typeof firebase==='undefined') return;
+  hFirma=firma; hLista=[]; clearInterval(hT); hT=null;
+  const box=$('#hSlides'); if(!box) return; box.innerHTML=''; $('#hBar').innerHTML=''; $('#hCap').innerHTML='';
+  const listos=new Array(cand.length).fill(null);
+  listos.nDest=nDest;
+  cand.forEach((v,k)=>{
+    const prueba=i=>{ const id=v.hd[i]; if(!id||i>2||hFirma!==firma) return;
+      firebase.firestore().collection(v.hdCol).doc(id).get().then(ds=>{ const d=ds.exists&&ds.data(); if(hFirma!==firma) return; if(!d||!d.d){ prueba(i+1); return; }
+        const im=new Image(); im.decoding='async';
+        im.onload=()=>{ if(hFirma!==firma) return;
+          if(im.naturalWidth<H_MIN||im.naturalWidth<=im.naturalHeight){ prueba(i+1); return; }   /* chica o parada: se prueba la siguiente */
+          listos[k]={v,src:d.d}; hArma(listos); };
+        im.onerror=()=>prueba(i+1);
+        im.src=d.d; }).catch(()=>prueba(i+1)); };
+    prueba(0);
+  });
+}
+function hArma(listos){
+  /* si algún ★ marcado ya está listo, solo los marcados; si no, los automáticos */
+  const marc=listos.slice(0,listos.nDest||0).filter(Boolean);
+  const L=(marc.length?marc:listos.slice(listos.nDest||0).filter(Boolean)).slice(0,H_MAX), box=$('#hSlides');
+  if(L.map(x=>x.v.ch).join(',')===hLista.map(v=>v.ch).join(',')) return;
+  const actual=hLista[hIdx]&&hLista[hIdx].ch;
+  hLista=L.map(x=>x.v);
+  box.querySelectorAll('.hslide').forEach(e=>{ if(!L.some(x=>x.v.ch===e.dataset.ch)) e.remove(); });   /* llegó un ★: salen los automáticos */
+  const ya=new Set([...box.querySelectorAll('.hslide')].map(e=>e.dataset.ch));
+  L.forEach(x=>{ if(ya.has(x.v.ch)) return;
+    const el=document.createElement('div'); el.className='hslide'; el.dataset.ch=x.v.ch;
+    el.innerHTML='<img alt="'+x.v.ma+' '+x.v.mo+'" decoding="async">'; el.querySelector('img').src=x.src; box.appendChild(el); });
+  /* deja las diapositivas en el mismo orden que la lista */
+  hLista.forEach(v=>box.appendChild(box.querySelector('[data-ch="'+v.ch+'"]')));
+  $('#hBar').innerHTML=hLista.length>1?hLista.map(()=>'<i></i>').join(''):'';
+  hIdx=Math.max(0,hLista.findIndex(v=>v.ch===actual));
+  requestAnimationFrame(hPinta);
+  if(hLista.length>1&&!hT&&!quieto) hT=setInterval(()=>{ hIdx=(hIdx+1)%hLista.length; hPinta(); },7000);
+}
+function hPinta(){
+  const sl=[...document.querySelectorAll('.hslide')]; sl.forEach((e,i)=>e.classList.toggle('on',i===hIdx));
+  const bars=[...document.querySelectorAll('#hBar i')]; bars.forEach((e,i)=>{ e.classList.remove('on'); if(i===hIdx){ void e.offsetWidth; e.classList.add('on'); } });
+  const v=hLista[hIdx], cap=$('#hCap'); if(cap) cap.innerHTML=v?(v.ma+' '+v.mo+' '+(v.an||'')+' <span>· ver ficha →</span>'):'';
+}
+$('#hCap').addEventListener('click',()=>{ const v=hLista[hIdx]; if(v) abrirDetalle(v.ch,true); });
+/* Encabezado de vidrio al bajar + sombra en los filtros cuando quedan pegados */
+const hdr=document.querySelector('header'), flt=document.querySelector('.filters');
+function alBajar(){ hdr.classList.toggle('solido',scrollY>30);
+  if(flt){ const t=flt.getBoundingClientRect().top; flt.classList.toggle('pegado',t<=80&&scrollY>200); } }
+addEventListener('scroll',alBajar,{passive:true}); alBajar();
+/* Secciones que aparecen al bajar */
+const rvEls=document.querySelectorAll('#stock h2, #proceso h2, #proceso .sub, #proceso .col, #franquicia h2, #franquicia .sub, #franquicia .col, #franquicia .note, #contacto h2, #contacto p, #contacto .ctas, footer .wrap>div, .strip.banda div');
+if(!quieto&&'IntersectionObserver' in window){
+  rvEls.forEach(e=>e.classList.add('rv'));
+  const io=new IntersectionObserver(es=>es.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('on'); io.unobserve(x.target); } }),{rootMargin:'0px 0px -8% 0px'});
+  rvEls.forEach(e=>io.observe(e));
+}
+/* WhatsApp flotante: mismos contactos que el botón de arriba; se esconde con la foto ampliada */
+(function(){ const w=$('#waf'), d=$('#wafDrop'), b=$('#wafBtn'); if(!w) return;
+  d.innerHTML=CONTACTOS.map(c=>'<a href="https://wa.me/'+c.tel+'" target="_blank" rel="noopener" role="menuitem"><b>'+c.nombre+'</b><span>'+c.display+'</span></a>').join('');
+  b.addEventListener('click',e=>{ e.stopPropagation(); const ab=d.hidden; d.hidden=!ab; b.setAttribute('aria-expanded',String(ab)); });
+  document.addEventListener('click',e=>{ if(!w.contains(e.target)){ d.hidden=true; b.setAttribute('aria-expanded','false'); } });
+  new MutationObserver(()=>w.classList.toggle('oculto',!$('#lightbox').hidden)).observe($('#lightbox'),{attributes:true,attributeFilter:['hidden']});
+})();
 const MIN_CIFRAS=50;
 if(V.length>=MIN_CIFRAS){
   $('#stripNum').hidden=false; $('#stripTxt').hidden=true;
@@ -642,7 +878,7 @@ function initGal(root){
   if(n<=1) return;
   function goto(i,animate){
     idx=Math.max(0,Math.min(n-1,i));
-    track.style.transition = animate===false ? 'none' : 'transform .38s cubic-bezier(.2,.8,.2,1)';
+    track.style.transition = animate===false ? 'none' : 'transform .8s cubic-bezier(.22,.61,.36,1)';   /* 03/11/2026: más lento, como el resto de la página */
     track.style.transform='translateX('+(-idx*100)+'%)';
     root.querySelectorAll('.gal-dot').forEach((d,i2)=>d.classList.toggle('on',i2===idx));
     const cnt=root.querySelector('.gal-count'); if(cnt) cnt.textContent=(idx+1)+' / '+n;
@@ -718,13 +954,13 @@ function lbAbrir(i){
   lbActualizar();
   const lb=$('#lightbox');
   lb.hidden=false; lb.style.transition='none'; lb.style.opacity='0';
-  requestAnimationFrame(()=>{ lb.style.transition='opacity .18s ease'; lb.style.opacity='1'; });
+  requestAnimationFrame(()=>{ lb.style.transition='opacity .45s ease'; lb.style.opacity='1'; });
   document.body.style.overflow='hidden';
 }
 function lbCerrar(){
   const lb=$('#lightbox'); if(!lb||lb.hidden) return;
-  lb.style.transition='opacity .16s ease'; lb.style.opacity='0';
-  lbCerrarT=setTimeout(()=>{ lb.hidden=true; lb.style.opacity=''; lb.style.transition=''; lbCerrarT=null; },160);
+  lb.style.transition='opacity .35s ease'; lb.style.opacity='0';
+  lbCerrarT=setTimeout(()=>{ lb.hidden=true; lb.style.opacity=''; lb.style.transition=''; lbCerrarT=null; },350);
   document.body.style.overflow='';
 }
 /* Cambiar de foto deslizando: la foto que se va sale para el lado que corresponde y la nueva
@@ -736,9 +972,9 @@ function lbIr(i){
   const img=$('#lbImg');
   if(!img) return;
   if(destino===lbIdx){ img.style.transition='transform .22s cubic-bezier(.2,.8,.2,1)'; img.style.transform='translateX(0)'; return; }
-  const w=$('#lightbox').clientWidth||img.clientWidth||1, sale=destino>lbIdx?-w:w;
+  const w=($('#lightbox').clientWidth||img.clientWidth||1)*0.08, sale=destino>lbIdx?-w:w;   /* 03/11/2026: desliza 8% y se funde */
   lbAnimando=true;
-  img.style.transition='transform .24s cubic-bezier(.2,.8,.2,1), opacity .24s ease';
+  img.style.transition='transform .45s cubic-bezier(.4,0,.2,1), opacity .45s ease';
   img.style.transform='translateX('+sale+'px)'; img.style.opacity='0';
   img.addEventListener('transitionend', function fin(){
     img.removeEventListener('transitionend', fin);
@@ -747,7 +983,7 @@ function lbIr(i){
     img.style.transform='translateX('+(-sale)+'px)';
     lbActualizar();
     void img.offsetWidth; /* fuerza al navegador a fijar la posición de entrada antes de animar */
-    img.style.transition='transform .24s cubic-bezier(.2,.8,.2,1), opacity .24s ease';
+    img.style.transition='transform .6s cubic-bezier(.22,.61,.36,1), opacity .6s ease';
     img.style.transform='translateX(0)'; img.style.opacity='1';
     lbAnimando=false;
   }, {once:true});
@@ -803,8 +1039,8 @@ function especsDe(v){
   const km=v.km?Number(v.km).toLocaleString('es-CL')+' km':'';
   const may=x=>String(x||'').toUpperCase();
   return [['Marca',may(v.ma)],['Modelo',may(v.mo)],['Año',v.an],['Categoría',may(v.cat)],['Tracción',may(v.tr)],
-    v.cab?['Cabina',{SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'}[v.cab]||'']:['Pasajeros',v.pa],['Carrocería',CARN[v.ca]||''],['Kilometraje',km],['Color',may(v.ce)]]
-    .filter(([,val])=>val).map(([k,val])=>'<div class="spec"><b>'+k+'</b><span>'+val+'</span></div>').join('');
+    v.cab?['Cabina',{SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'}[v.cab]||'']:['Pasajeros',v.pa],['Carrocería',CARN[v.ca]||''],['Kilometraje',km],['Color',may(v.ce)],['Combustible',may(COMB[v.comb])],['Transmisión',may(TRANS[v.trans])],['Cilindrada',cilTxt(v.cil)],(v.tp&&!v.trab)?['Techo panorámico','SÍ']:null]   /* 03/11/2026: antes solo salía en la tarjeta */
+    .filter(x=>x&&x[1]).map(([k,val])=>'<div class="spec"><b>'+k+'</b><span>'+val+'</span></div>').join('');
 }
 function detalleHTML(v){
   const fotos=fotosDe(v);
@@ -840,6 +1076,7 @@ function detalleHTML(v){
    +'<div class="chas">'+v.ch+' · '+String(v.ce||'').toUpperCase()+'</div>'
    +'<div class="badges" style="position:static;margin-top:11px">'+badgesDe(v)+'</div>'
    +'<div class="specgrid'+specCompacto+'">'+especsDe(v)+'</div>'
+   +eqBloques(v)
    +'<div class="price">'+precioHTML(v)
    +'<div class="wapick" id="detWaPick"><button class="wa" id="detWaBtn" type="button" aria-haspopup="true" aria-expanded="false">Consultar por WhatsApp'
    +'<svg class="wachev" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>'
@@ -898,7 +1135,7 @@ window.addEventListener('popstate',()=>{
   const FB_CONFIG={apiKey:"AIzaSyAeFaKM9TPYxyveX8xStlJtVeFUJmFnwuM",authDomain:"amk-vehiculos.firebaseapp.com",projectId:"amk-vehiculos",storageBucket:"amk-vehiculos.firebasestorage.app",messagingSenderId:"322448037480",appId:"1:322448037480:web:1d977f03cf3e9e1ef30ddd"};
   const grid=document.querySelector('#grid');
   function aviso(txt){ if(grid && !V.length) grid.innerHTML='<p style="padding:30px 0;text-align:center;opacity:.7">'+txt+'</p>'; }
-  aviso('Cargando el stock…');
+  if(grid && !V.length) grid.innerHTML=Array.from({length:6},()=>'<div class="skel"><div class="a"></div><div class="b1"></div><div class="b2"></div></div>').join('');
   let yaSalto=false;
   try{
     if(typeof firebase==='undefined'){ aviso('No se pudo cargar el stock. Revisa tu conexión y recarga la página.'); return; }
@@ -910,9 +1147,12 @@ window.addEventListener('popstate',()=>{
     const escucha=(q)=>q.onSnapshot(snap=>{
       if(!viejo && snap.empty && q!==col){ viejo=true; unsub(); unsub=escucha(col); return; }
       const lista=[];
-      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado && !x.galeriaDe) lista.push(x); });
+      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado && !x.galeriaDe){
+        if(!x.trab && /^(PORTER|BONGO)/i.test(String(x.mo||'').trim())) x.trab=true;   /* 03/11/2026: Porter y Bongo son de trabajo aunque Sistema no mande trab (iban a "Autos y SUV") */
+        lista.push(x); } });
       V.length=0; Array.prototype.push.apply(V,lista);
       try{ render(); detalleActualizar(); }catch(e){ console.error('render',e); }
+      try{ portada(); }catch(e){ console.error('portada',e); }
       /* llegaron por ?ch= (link de Víctor/Bryan): mostrar la ficha de inmediato, no la portada */
       if(!yaSalto && detalleCh && !$('#spot').hidden){ yaSalto=true; history.scrollRestoration='manual'; setTimeout(()=>$('#spot').scrollIntoView({block:'start',behavior:'instant'}),60); }
       if(!V.length) aviso('Por ahora no hay vehículos publicados.');
