@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-letra="compacta" lang="es"><head>
+<html data-letra="compacta" data-tarjeta="mezcla" lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>(DEMO DISEÑO) AMK Vehículos Selectos — Importación directa desde Corea · Iquique</title>
 <meta name="description" content="Vehículos coreanos importados y elegidos en persona en origen. Stock en Iquique, Zona Franca. SUV, camionetas y vehículos de trabajo.">
@@ -271,7 +271,7 @@ footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr
 footer b{color:var(--s050);display:block;margin-bottom:7px;font-family:var(--disp);font-size:15px}
 footer a{color:var(--s200);text-decoration:none;display:block;margin-bottom:4px}
 
-/* ================= PRUEBA DE DISEÑO (03/11/2026): "lujo sobrio" =================
+/* ================= Diseño "lujo sobrio" (03/11/2026, aprobado por Andre) =================
    Tomado de Genesis, Porsche Finder, Tom Hartley Jnr y Ditec: foto real grande, dos voces de letra,
    menos etiquetas, movimiento lento. Todo se apaga con "reducir movimiento". */
 :root{--serif:'Cormorant Garamond',Georgia,serif;--oro:#E6C2A0;--ease:cubic-bezier(.2,.8,.2,1)}
@@ -387,6 +387,54 @@ html[data-letra="compacta"] .sub.serif,html[data-letra="compacta"] .cta p,html[d
  html[data-letra="titular"] .hero .kicker{font-size:12px;letter-spacing:.03em}}
 /* Reservado: burdeo por defecto (terracota es la otra opción que le gustó a Andre) */
 :root{--res:#7A2E3A;--resTx:#F3E6E2}
+
+/* 03/11/2026 (Andre): el recuadro de cada vehículo (#183640) casi no se distinguía del fondo de la página (#152B35, 1,15:1).
+   Variantes (html[data-tarjeta]); se elige en la demo. */
+/* vidrio: translúcida, con brillo arriba y borde de luz */
+html[data-tarjeta="vidrio"] .card{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border-color:rgba(255,255,255,.13);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 22px 44px -28px rgba(0,0,0,.8);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+/* mezcla (Andre, 03/11/2026): vidrio que se desvanece hacia abajo como el degradado + línea arena fina bajo la foto.
+   mezcla = línea de 1 px que se apaga en los bordes · mezcla2 = línea de 1 px pareja, más tenue */
+html[data-tarjeta^="mezcla"] .card{background:linear-gradient(180deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.035) 45%,rgba(255,255,255,.005) 100%);
+ border-color:rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 22px 44px -28px rgba(0,0,0,.8);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html[data-tarjeta^="mezcla"] .cbody{position:relative}
+html[data-tarjeta^="mezcla"] .cbody::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;pointer-events:none}
+html[data-tarjeta="mezcla"] .cbody::before{background:linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--oro) 80%,transparent) 50%,transparent 100%)}
+html[data-tarjeta="mezcla2"] .cbody::before{background:color-mix(in srgb,var(--oro) 45%,transparent)}
+html[data-tarjeta^="mezcla"] .price{border-top-color:rgba(234,240,241,.1)}
+/* abierta: sin caja; foto redondeada y el texto directo sobre la página, separados por aire (estilo Porsche/Collecting Cars) */
+html[data-tarjeta="abierta"] .card{background:transparent;border-color:transparent;box-shadow:none}
+html[data-tarjeta="abierta"] .card .thumb{border-radius:14px}
+html[data-tarjeta="abierta"] .card .cbody{padding:14px 2px 6px}
+html[data-tarjeta="abierta"] .card:hover{transform:translateY(-3px);border-color:transparent;box-shadow:none}
+html[data-tarjeta="abierta"] .card:hover .thumb{box-shadow:0 20px 40px -24px rgba(0,0,0,.85)}
+html[data-tarjeta="abierta"] .grid{row-gap:34px}
+/* degradado: arriba más clara y se funde con la página; línea arena bajo la foto */
+html[data-tarjeta="degradado"] .card{background:linear-gradient(180deg,#275365 0%,#1B3B47 55%,#152F3A 100%);border-color:rgba(255,255,255,.06);box-shadow:0 22px 44px -28px rgba(0,0,0,.8)}
+html[data-tarjeta="degradado"] .card .thumb{border-bottom:2px solid var(--oro)}
+/* petróleo claro: un tono claramente más claro del mismo color de marca */
+html[data-tarjeta="petroleo"] .card{background:#2C5E6E;border-color:rgba(255,255,255,.08);box-shadow:0 22px 44px -28px rgba(0,0,0,.8)}
+html[data-tarjeta="petroleo"] .ctitle .y,html[data-tarjeta="petroleo"] .chas{color:#A9BEC4}
+html[data-tarjeta="petroleo"] .cdat{color:#DCE6E8}
+html[data-tarjeta="petroleo"] .price .ask{color:#B7C8CC}
+html[data-tarjeta="petroleo"] .price a{border-color:rgba(255,255,255,.4)}
+html[data-tarjeta="petroleo"] .price{border-top-color:rgba(255,255,255,.14)}
+/* carbón cálido: oscuro con un toque cálido, contrasta por color con el petróleo y combina con el arena */
+html[data-tarjeta="carbon"] .card{background:#26231F;border-color:rgba(230,194,160,.16);box-shadow:0 22px 44px -28px rgba(0,0,0,.85)}
+html[data-tarjeta="carbon"] .ctitle .y,html[data-tarjeta="carbon"] .chas{color:#9A928A}
+html[data-tarjeta="carbon"] .cdat{color:#D6CFC7}
+/* perla: clara y fría, con letra oscura */
+html[data-tarjeta="perla"] .card{background:#E7EDEF;border-color:transparent;box-shadow:0 22px 44px -26px rgba(0,0,0,.8)}
+html[data-tarjeta="perla"] .card:hover{border-color:transparent;box-shadow:0 0 0 2px var(--oro),0 26px 44px -22px rgba(0,0,0,.85)}
+html[data-tarjeta="perla"] .ctitle{color:#13242B}
+html[data-tarjeta="perla"] .ctitle .y,html[data-tarjeta="perla"] .chas{color:#62747A}
+html[data-tarjeta="perla"] .cdat{color:#33454C}
+html[data-tarjeta="perla"] .cdest{color:#8A5536}
+html[data-tarjeta="perla"] .price{border-top-color:rgba(19,36,43,.12)}
+html[data-tarjeta="perla"] .price .v{color:#13242B}
+html[data-tarjeta="perla"] .price .ask{color:#55676D}
+html[data-tarjeta="perla"] .price a{color:#13242B;border-color:rgba(19,36,43,.28)}
+html[data-tarjeta="perla"] .price a:hover{background:rgba(19,36,43,.07)}
 
 /* DEMOSTRACIÓN: aviso fijo para que nunca se confunda con la web real */
 .demoaviso{position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:130;background:#B4321C;color:#fff;
@@ -539,6 +587,7 @@ html[data-letra="compacta"] .sub.serif,html[data-letra="compacta"] .cta p,html[d
   <button data-ac="#E3A27C" title="Cobre (el de recién)"><i style="background:#E3A27C"></i>Cobre</button>
   <button data-ac="#E6C2A0" aria-pressed="true" title="Arena (el de recién)"><i style="background:#E6C2A0"></i>Arena</button></div>
   <div><span>Reserv.</span><button data-rs="#7A2E3A|#F3E6E2" aria-pressed="true" title="Burdeo"><i style="background:#7A2E3A"></i>Burdeo</button><button data-rs="#A2553A|#FBEDE4" title="Terracota"><i style="background:#A2553A"></i>Terracota</button></div>
+  <div><span>Tarjeta</span><button data-tj="mezcla" aria-pressed="true" title="Vidrio que se desvanece + línea arena fina que se apaga en los bordes"><i style="background:linear-gradient(#3A5560,#183640);box-shadow:inset 0 -2px 0 #E6C2A0"></i>Mezcla</button><button data-tj="mezcla2" title="Igual, con línea pareja y más tenue"><i style="background:linear-gradient(#3A5560,#183640);box-shadow:inset 0 -1px 0 rgba(230,194,160,.6)"></i>Mezcla (línea pareja)</button><button data-tj="vidrio" title="Translúcida con brillo y borde de luz"><i style="background:#3A5560;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)"></i>Vidrio</button><button data-tj="abierta" title="Sin caja: foto y texto directo sobre la página"><i style="background:transparent;box-shadow:inset 0 0 0 1px #9DACB2"></i>Abierta</button><button data-tj="degradado" title="Más clara arriba, se funde con la página, línea arena"><i style="background:linear-gradient(#275365,#152F3A)"></i>Degradado</button><button data-tj="petroleo" title="Petróleo más claro"><i style="background:#2C5E6E"></i>Petróleo claro</button><button data-tj="carbon" title="Oscuro cálido"><i style="background:#26231F;box-shadow:inset 0 0 0 1px #E6C2A0"></i>Carbón cálido</button><button data-tj="perla" title="Clara y fría, letra oscura"><i style="background:#E7EDEF"></i>Perla</button><button data-tj="actual" title="Como estaba"><i style="background:#183640"></i>Antes</button></div>
   <div><span>Letra</span><button data-le="moderna" title="La de ahora: mayúsculas muy espaciadas">Moderna</button><button data-le="compacta" aria-pressed="true" title="Mayúsculas con poco espacio, más firme">Compacta</button><button data-le="frase" title="Escrita normal, sin mayúsculas">Frase</button><button data-le="titular" title="La misma letra de los títulos grandes">Titular</button></div></div>
 <div class="waf wapick" id="waf"><button type="button" id="wafBtn" aria-label="Escríbenos por WhatsApp" aria-haspopup="true" aria-expanded="false">
   <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg></button>
@@ -733,7 +782,7 @@ const waMsg=v=>encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.a
 function card(v){
   const c=colorDe(v.ce);
   const CABW={SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'};
-  /* prueba de diseño: una sola línea de datos (como Porsche Finder) y como máximo 2 destacados en cursiva */
+  /* 03/11/2026: una sola línea de datos (como Porsche Finder) y como máximo 2 destacados en cursiva */
   const cap=x=>String(x||'').charAt(0).toUpperCase()+String(x||'').slice(1).toLowerCase();
   const dat=[(v.cat&&!v.trab?(v.cat.length<=3?v.cat:cap(v.cat)):''),(CARN[v.ca]||''),(v.cab?CABW[v.cab]||'':''),(COMB[v.comb]||''),(TRANS[v.trans]||''),(v.tr?v.tr.toLowerCase():''),(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(v.km?Number(v.km).toLocaleString('es-CL')+' km':'')].filter(Boolean).join(' · ');
   const dest=[...eqW(v).filter((t,i)=>EQ_IQQ.includes((EQ_W.find(o=>o[1]===t)||[])[0])),(v.tp&&!v.trab?'Techo panorámico':'')].filter(Boolean).slice(0,2).join(' · ');
@@ -782,38 +831,51 @@ tog('#cSv','sv');tog('#cIqq','iqq');tog('#cOf','of');tog('#cCam','cam');tog('#cC
 $('#clr').addEventListener('click',()=>{F={ma:'',mo:'',cat:'',an:'',tr:'',pa:'',ca:'',eq:''};T={sv:0,iqq:0,of:0,cam:0,cor:0};q='';$('#q').value='';
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));render()});
 
-/* ================= PRUEBA DE DISEÑO: portada, aparición al bajar, encabezado, filtros, WhatsApp ================= */
+/* ================= Diseño "lujo sobrio": portada, aparición al bajar, encabezado, filtros, WhatsApp ================= */
 const quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* Portada: hasta 5 vehículos en patio con foto (primero ofertas, después los más nuevos); cambia cada 6,5 s.
    Se pide la foto en alta de cada uno (la de la tarjeta es chica y en pantalla grande se vería borrosa). */
 let hIdx=0, hT=null, hLista=[], hFirma='';
 /* 03/11/2026 (Andre): fotos chicas o paradas se veían pixeladas en la portada. Solo entran fotos EN ALTA
-   (la primera de cada vehículo, ≥1.400 px de ancho) y horizontales. Mientras ninguna está lista, la portada
-   muestra el fondo de siempre: nunca una foto borrosa. Autos y SUV primero, ofertas y más nuevos antes. */
+   (≥1.400 px de ancho) y horizontales: se prueba la foto de portada del vehículo y, si no sirve, las 2 siguientes.
+   Mientras ninguna está lista, la portada muestra el fondo de siempre: nunca una foto borrosa.
+   ★ Portada (opcional, se marca en Sistema → precios/publicación): si hay marcados que pasan el filtro, salen SOLO esos.
+   Si no hay ninguno marcado (o ninguno pasa), se eligen solos: en patio, no reservados, autos y SUV primero,
+   ofertas y más nuevos antes. */
 const H_MIN=1400, H_MAX=5;
 const esTrabW=v=>!!(v.trab||/^(PORTER|BONGO)/i.test(String(v.mo||'').trim()));   /* Porter y Bongo son de trabajo aunque no traigan v.trab */
 function portada(){
-  const cand=V.filter(v=>v.st==='IQQ'&&!v.reservado&&Array.isArray(v.hd)&&v.hd[0]&&v.hdCol)
-    .sort((a,b)=>(esTrabW(a)?1:0)-(esTrabW(b)?1:0)||(b.oferta?1:0)-(a.oferta?1:0)||(+b.an||0)-(+a.an||0)).slice(0,10);
-  const firma=cand.map(v=>v.ch).join(',');
+  const conHD=v=>Array.isArray(v.hd)&&v.hd[0]&&v.hdCol;
+  const orden=(a,b)=>(esTrabW(a)?1:0)-(esTrabW(b)?1:0)||(b.oferta?1:0)-(a.oferta?1:0)||(+b.an||0)-(+a.an||0);
+  const dest=V.filter(v=>v.dest&&conHD(v)).sort(orden).slice(0,H_MAX);
+  const auto=V.filter(v=>!v.dest&&v.st==='IQQ'&&!v.reservado&&conHD(v)).sort(orden).slice(0,10);
+  const cand=dest.concat(auto), nDest=dest.length;
+  const firma=cand.map(v=>v.ch+(v.dest?'*':'')).join(',');
   if(firma===hFirma||typeof firebase==='undefined') return;
   hFirma=firma; hLista=[]; clearInterval(hT); hT=null;
   const box=$('#hSlides'); if(!box) return; box.innerHTML=''; $('#hBar').innerHTML=''; $('#hCap').innerHTML='';
   const listos=new Array(cand.length).fill(null);
+  listos.nDest=nDest;
   cand.forEach((v,k)=>{
-    firebase.firestore().collection(v.hdCol).doc(v.hd[0]).get().then(ds=>{ const d=ds.exists&&ds.data(); if(!d||!d.d||hFirma!==firma) return;
-      const im=new Image(); im.decoding='async';
-      im.onload=()=>{ if(hFirma!==firma) return;
-        if(im.naturalWidth<H_MIN||im.naturalWidth<=im.naturalHeight) return;   /* chica o parada: no va */
-        listos[k]={v,src:d.d}; hArma(listos); };
-      im.src=d.d; }).catch(()=>{});
+    const prueba=i=>{ const id=v.hd[i]; if(!id||i>2||hFirma!==firma) return;
+      firebase.firestore().collection(v.hdCol).doc(id).get().then(ds=>{ const d=ds.exists&&ds.data(); if(hFirma!==firma) return; if(!d||!d.d){ prueba(i+1); return; }
+        const im=new Image(); im.decoding='async';
+        im.onload=()=>{ if(hFirma!==firma) return;
+          if(im.naturalWidth<H_MIN||im.naturalWidth<=im.naturalHeight){ prueba(i+1); return; }   /* chica o parada: se prueba la siguiente */
+          listos[k]={v,src:d.d}; hArma(listos); };
+        im.onerror=()=>prueba(i+1);
+        im.src=d.d; }).catch(()=>prueba(i+1)); };
+    prueba(0);
   });
 }
 function hArma(listos){
-  const L=listos.filter(Boolean).slice(0,H_MAX), box=$('#hSlides');
+  /* si algún ★ marcado ya está listo, solo los marcados; si no, los automáticos */
+  const marc=listos.slice(0,listos.nDest||0).filter(Boolean);
+  const L=(marc.length?marc:listos.slice(listos.nDest||0).filter(Boolean)).slice(0,H_MAX), box=$('#hSlides');
   if(L.map(x=>x.v.ch).join(',')===hLista.map(v=>v.ch).join(',')) return;
   const actual=hLista[hIdx]&&hLista[hIdx].ch;
   hLista=L.map(x=>x.v);
+  box.querySelectorAll('.hslide').forEach(e=>{ if(!L.some(x=>x.v.ch===e.dataset.ch)) e.remove(); });   /* llegó un ★: salen los automáticos */
   const ya=new Set([...box.querySelectorAll('.hslide')].map(e=>e.dataset.ch));
   L.forEach(x=>{ if(ya.has(x.v.ch)) return;
     const el=document.createElement('div'); el.className='hslide'; el.dataset.ch=x.v.ch;
@@ -869,6 +931,7 @@ document.getElementById('demoSel').addEventListener('click',e=>{ const b=e.targe
   if(b.id==='demoTog'){ document.getElementById('demoSel').classList.toggle('abierto'); return; }
   if(b.dataset.ac){ document.documentElement.style.setProperty('--oro',b.dataset.ac); }
   if(b.dataset.rs!==undefined){ const [bg,tx,bd]=b.dataset.rs.split('|'); const st=document.documentElement.style; if(bg){ st.setProperty('--res',bg); st.setProperty('--resTx',tx); st.setProperty('--resBd',bd||'transparent'); } else { ['--res','--resTx','--resBd'].forEach(k=>st.removeProperty(k)); } }
+  if(b.dataset.tj){ document.documentElement.setAttribute('data-tarjeta',b.dataset.tj); }
   if(b.dataset.le){ document.documentElement.setAttribute('data-letra',b.dataset.le); }
   b.parentNode.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); });
 function demoDe(real){
@@ -1188,7 +1251,9 @@ window.addEventListener('popstate',()=>{
     const escucha=(q)=>q.onSnapshot(snap=>{
       if(!viejo && snap.empty && q!==col){ viejo=true; unsub(); unsub=escucha(col); return; }
       const lista=[];
-      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado && !x.galeriaDe) lista.push(x); });
+      snap.forEach(d=>{ const x=d.data(); if(x && x.ch && !x.borrado && !x.galeriaDe){
+        if(!x.trab && /^(PORTER|BONGO)/i.test(String(x.mo||'').trim())) x.trab=true;   /* 03/11/2026: Porter y Bongo son de trabajo aunque Sistema no mande trab (iban a "Autos y SUV") */
+        lista.push(x); } });
       V.length=0; Array.prototype.push.apply(V,demoDe(lista));   /* DEMOSTRACIÓN */
       try{ render(); detalleActualizar(); }catch(e){ console.error('render',e); }
       try{ portada(); }catch(e){ console.error('portada',e); }
