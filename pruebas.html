@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-letra="compacta" data-tarjeta="mezcla" lang="es"><head>
+<html data-letra="compacta" data-tarjeta="pt-borde" lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AMK Vehículos Selectos (PRUEBAS)</title>
 <meta name="description" content="Vehículos coreanos importados y elegidos en persona en origen. Stock en Iquique, Zona Franca. SUV, camionetas y vehículos de trabajo.">
@@ -216,6 +216,10 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .vidwrap{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
 .vidbox{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--n800)}
 .vidbox iframe,.vidbox video{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;background:#000}
+.vidbox.tt{aspect-ratio:9/16;max-width:340px;margin:0 auto;background:#000;display:flex;align-items:center;justify-content:center}
+.vidbox.tt .tt-alt{position:relative;z-index:1}
+.ttmas{display:block;width:max-content;margin:12px auto 0;font-size:13px;font-weight:600;color:var(--oro);text-decoration:none;opacity:.9}
+.ttmas:hover{opacity:1;text-decoration:underline}
 .vidlink{display:inline-flex;align-items:center;gap:8px;background:var(--s050);color:var(--n800);text-decoration:none;
  font-weight:700;font-size:14px;padding:11px 18px;border-radius:9px}
 .vidlink:hover{background:#fff}
@@ -389,14 +393,62 @@ html[data-letra="compacta"] .sub.serif,html[data-letra="compacta"] .cta p,html[d
 :root{--res:#7A2E3A;--resTx:#F3E6E2}
 
 /* 03/11/2026 (Andre): el recuadro de cada vehículo (#183640) casi no se distinguía del fondo de la página (#152B35, 1,15:1).
-   Elegido "mezcla": vidrio translúcido que se desvanece hacia abajo + línea arena de 1 px bajo la foto que se apaga hacia los bordes.
-   (Se probaron elevada, grafito, marfil, vidrio, abierta, degradado, petróleo claro, carbón cálido y perla.) */
-html[data-tarjeta="mezcla"] .card{background:linear-gradient(180deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,.035) 45%,rgba(255,255,255,.005) 100%);
- border-color:rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 22px 44px -28px rgba(0,0,0,.8);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-html[data-tarjeta="mezcla"] .cbody{position:relative}
-html[data-tarjeta="mezcla"] .cbody::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;pointer-events:none;
+   Elegido "borde que se apaga": petróleo en degradado vertical (claro bajo la foto → casi el fondo abajo), contorno arena
+   que brilla arriba y se desvanece hacia abajo, y la línea arena de 1 px bajo la foto que se apaga hacia los bordes.
+   (Se probaron elevada, grafito, marfil, vidrio, abierta, degradado, petróleo, carbón, perla, mezcla, vidrio intenso,
+   contorno, vertical, diagonal y foco de luz.) */
+html[data-tarjeta="pt-borde"] .card{border:1px solid transparent;box-shadow:0 22px 44px -26px rgba(0,0,0,.85);
+ background:linear-gradient(180deg,#377284 0%,#25505E 55%,#18343F 100%) padding-box,
+            linear-gradient(180deg,color-mix(in srgb,var(--oro) 80%,transparent) 0%,color-mix(in srgb,var(--oro) 25%,transparent) 60%,transparent 100%) border-box}
+html[data-tarjeta="pt-borde"] .card:hover{border-color:transparent}
+html[data-tarjeta="pt-borde"] .cbody{position:relative}
+html[data-tarjeta="pt-borde"] .cbody::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;pointer-events:none;
  background:linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--oro) 80%,transparent) 50%,transparent 100%)}
-html[data-tarjeta="mezcla"] .price{border-top-color:rgba(234,240,241,.1)}
+html[data-tarjeta="pt-borde"] .ctitle .y,html[data-tarjeta="pt-borde"] .chas{color:#A9BEC4}
+html[data-tarjeta="pt-borde"] .cdat{color:#DCE6E8}
+html[data-tarjeta="pt-borde"] .price{border-top-color:rgba(255,255,255,.12)}
+html[data-tarjeta="pt-borde"] .price .ask{color:#B7C8CC}
+html[data-tarjeta="pt-borde"] .price a{border-color:rgba(255,255,255,.38)}
+
+/* ================= Ficha del vehículo, más sofisticada (03/11/2026, Andre: "lo veo un poco simple") =================
+   Mismo lenguaje que las tarjetas: panel petróleo en degradado con contorno arena que se apaga, títulos de sección en arena
+   con línea que se desvanece, datos en recuadros, lo preparado en Iquique como cápsulas y una franja de confianza. */
+.detcard{padding:24px;border-radius:22px;border:1px solid transparent;gap:30px;
+ background:linear-gradient(160deg,#2B5F70 0%,#1F4553 45%,#172F39 100%) padding-box,
+            linear-gradient(180deg,color-mix(in srgb,var(--oro) 75%,transparent) 0%,color-mix(in srgb,var(--oro) 22%,transparent) 55%,transparent 100%) border-box;
+ box-shadow:0 40px 80px -42px rgba(0,0,0,.9)}
+@media(max-width:820px){.detcard{padding:14px 14px 18px;gap:18px;border-radius:18px;grid-template-columns:minmax(0,1fr)}}
+.detbody{min-width:0}
+.detbody .price{flex-wrap:wrap;row-gap:12px}
+@media(max-width:600px){.detbody .price .v{font-size:23px}.detbody .price .wapick{flex:1 1 100%}.detbody .price .wapick .wa{width:100%;justify-content:center}}
+.detmedia .medialabel{color:var(--oro)}
+.detbody .eyebrow.dk{font-family:var(--body);font-weight:700;letter-spacing:.1em;color:var(--oro);margin-bottom:10px;font-size:11.5px}
+.detbody .chas{color:#A9BEC4}
+.detdat{margin-top:12px;font-size:15px;line-height:1.5;color:#DCE6E8}
+.dsec,.detbody .eqbox .medialabel{display:flex;align-items:center;gap:12px;font:700 11.5px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--oro);margin:26px 0 12px}
+.dsec::after,.detbody .eqbox .medialabel::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--oro) 55%,transparent),transparent)}
+.detbody .eqbox{margin-top:0}
+.detbody .specgrid,.detbody .specgrid.compacto{margin:0;gap:10px}
+.detbody .specgrid .spec{border-top:none;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:11px 13px}
+.detbody .specgrid .spec b{font-family:var(--body);font-weight:600;font-size:10.5px;letter-spacing:.1em;color:#A9BEC4;margin-bottom:4px}
+.detbody .specgrid .spec span{font-size:17px}
+@media(max-width:600px){.detbody .specgrid,.detbody .specgrid.compacto{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.eqlist.iq{display:flex;flex-wrap:wrap;gap:8px}
+.eqlist.iq li{padding:7px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--oro) 55%,transparent);
+ background:color-mix(in srgb,var(--oro) 12%,transparent);color:var(--oro);font-size:13.5px;font-weight:700}
+.eqlist.iq li::before{display:none}
+.detbody .price{position:relative;margin-top:26px;padding-top:18px;border-top:none}
+.detbody .price::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--oro) 60%,transparent),transparent)}
+.detbody .price .v{font-size:26px}
+.dconf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.dconf div{display:flex;gap:9px;align-items:center;font-size:12.5px;line-height:1.3;color:#C9D6D9;background:rgba(4,18,25,.28);border-radius:11px;padding:10px 11px}
+.dconf svg{flex:none;color:var(--oro)}
+@media(max-width:600px){.dconf{grid-template-columns:1fr}}
+.closeDet:hover{color:var(--oro)}
+
+/* celular: primero fotos, después nombre y datos, y recién al final el video o el 360° (el video vertical tapaba todo) */
+@media(max-width:820px){.detmedia{display:contents}.detmedia>.medialabel{order:0;margin-bottom:-10px}.detmedia>.gal{order:1}
+ .detbody{order:2}.detmedia>.vidwrap,.detmedia>.v360wrap{order:3;margin-top:0}}
 </style></head><body>
 <div style="background:#B4321C;color:#fff;text-align:center;padding:8px 12px;font-size:13px;font-weight:700;letter-spacing:.02em">COPIA DE PRUEBAS · datos separados · no es tu app real</div>
 
@@ -546,15 +598,14 @@ const colorDe=ce=>COL_U[String(ce||'').trim().toUpperCase()]||'#8A9296';
 /* Equipamiento (03/11/2026): mismos códigos que EQ_OPC en Sistema, Vendedores y Corea. [código, texto, corto]
    AND/PIS/CRO se instalan en Iquique: van primero (en la tarjeta caben 2) y en la ficha en su propio bloque. */
 const EQ_IQQ=['AND','PIS','CRO'];
+/* 03/11/2026 (Andre): sin sensores, aire, crucero ni cámara aparte (la cámara va con la pantalla de fábrica). */
 const EQ_W=[['AND','Pantalla Android','Pantalla Android'],['PIS','Pisaderas','Pisaderas'],['CRO','Cromados','Cromados'],
-  ['CAM','Cámara de retroceso','Cámara'],['SENS','Sensores de estacionamiento','Sensores'],['PANT','Pantalla multimedia','Pantalla'],
-  ['LLAVE','Llave inteligente','Llave inteligente'],['CRUC','Control crucero','Crucero'],['CUERO','Asientos de cuero','Cuero'],
-  ['CALEF','Asientos calefaccionados o ventilados','Asientos calefaccionados'],['PORTON','Portón trasero eléctrico','Portón eléctrico'],
-  ['AROS','Aros de aleación','Aros de aleación'],['AC','Aire acondicionado','Aire acondicionado']];
+  ['PANT','Pantalla multimedia con cámara de retroceso','Pantalla y cámara'],
+  ['LLAVE','Llave inteligente','Llave inteligente'],['PORTON','Portón trasero eléctrico','Portón eléctrico']];
 const eqW=(v,i)=>EQ_W.filter(o=>(v.eq||[]).includes(o[0])).map(o=>o[i||1]);
 const eqBloques=v=>{ const e=v.eq||[], li=L=>'<ul class="eqlist">'+L.map(o=>'<li>'+o[1]+'</li>').join('')+'</ul>';
   const iq=EQ_W.filter(o=>EQ_IQQ.includes(o[0])&&e.includes(o[0])), ot=EQ_W.filter(o=>!EQ_IQQ.includes(o[0])&&e.includes(o[0]));
-  return (iq.length?'<div class="eqbox"><div class="medialabel">Preparado en Iquique</div>'+li(iq)+'</div>':'')
+  return (iq.length?'<div class="eqbox"><div class="medialabel">Preparado en Iquique</div>'+li(iq).replace('class="eqlist"','class="eqlist iq"')+'</div>':'')
     +(ot.length?'<div class="eqbox"><div class="medialabel">Equipamiento</div>'+li(ot)+'</div>':''); };
 const COMB={DIESEL:'Diésel',BENCINA:'Bencina'}, TRANS={AUTOMATICA:'Automática',MECANICA:'Mecánica'};
 const cilTxt=c=>{ const n=parseFloat(String(c||'').replace(',','.')); if(!n) return ''; return (n>=100?(n/1000):n).toFixed(1).replace('.',',')+' L'; };
@@ -697,6 +748,15 @@ function videoDe(v, chico){
   if(!url) return '';
   const cls='vidwrap'+(chico?' vidwrap-chico':'');
   const lbl='<div class="medialabel">Video</div>';
+  /* TikTok (03/11/2026, Andre): se reproduce ahí mismo con el reproductor oficial (vertical). Con el link largo
+     (…/@cuenta/video/NÚMERO) sale directo; con el corto que copia el celular (vm.tiktok.com/…) se le pregunta a TikTok
+     el número del video (oembed) y, si no responde, queda el botón para verlo en TikTok. */
+  const ttId=url.match(/tiktok\.com\/(?:@[^\/]+\/video|embed\/v2|player\/v1|v)\/(\d{8,})/);
+  /* 03/11/2026: hay 3 videos por auto en TikTok; en la web va uno y este link lleva al resto */
+  const ttMas='<a class="ttmas" href="https://www.tiktok.com/@amk.vehiculos" target="_blank" rel="noopener">Más videos en TikTok →</a>';
+  if(ttId) return '<div class="'+cls+'">'+lbl+'<div class="vidbox tt">'+ttFrame(ttId[1])+'</div>'+ttMas+'</div>';
+  if(/tiktok\.com/i.test(url)){ setTimeout(ttResuelve,0);
+    return '<div class="'+cls+'">'+lbl+'<div class="vidbox tt" data-ttsrc="'+url.replace(/"/g,'')+'"><a class="vidlink tt-alt" href="'+url+'" target="_blank" rel="noopener">▶ Ver video en TikTok</a></div>'+ttMas+'</div>'; }
   const yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
   if(yt) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><iframe src="https://www.youtube.com/embed/'+yt[1]+'" title="Video del vehículo" loading="lazy" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>';
   const vm=url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
@@ -704,6 +764,10 @@ function videoDe(v, chico){
   if(/\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(url)) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><video src="'+url+'" controls preload="metadata" playsinline></video></div></div>';
   return '<div class="'+cls+'">'+lbl+'<a class="vidlink" href="'+url+'" target="_blank" rel="noopener">▶ Ver video del vehículo</a></div>';
 }
+const ttFrame=id=>'<iframe src="https://www.tiktok.com/player/v1/'+id+'?description=0&music_info=0&rel=0" title="Video del vehículo en TikTok" loading="lazy" allow="autoplay;fullscreen;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+function ttResuelve(){ document.querySelectorAll('[data-ttsrc]').forEach(box=>{ const u=box.dataset.ttsrc; box.removeAttribute('data-ttsrc');
+  fetch('https://www.tiktok.com/oembed?url='+encodeURIComponent(u)).then(r=>r.json()).then(j=>{ const id=j&&(j.embed_product_id||((j.html||'').match(/data-video-id="(\d+)"/)||[])[1]);
+    if(id&&/^\d{8,}$/.test(id)) box.innerHTML=ttFrame(id); }).catch(()=>{}); }); }
 /* Fotos verticales (4:3 paradas): se muestran completas, sin recortar, sobre un fondo desenfocado de la misma foto. */
 const VERT_JS="if(this.naturalHeight>this.naturalWidth*1.02){this.parentNode.style.setProperty('--bg','url(&quot;'+this.src+'&quot;)');this.parentNode.classList.add('vert')}";
 function badgesDe(v){
@@ -719,12 +783,15 @@ function badgesDe(v){
 const precioHTML=v=>(v.oferta&&v.precio)?'<span class="v">'+clp(v.precio)+'</span>':'<span class="ask">Consultar precio</span>';
 const waMsg=v=>encodeURIComponent('Hola, me interesa el '+v.ma+' '+v.mo+' '+(v.an||'')+' (chasis '+v.ch+').');
 
-function card(v){
-  const c=colorDe(v.ce);
+function datDe(v){
   const CABW={SIMPLE:'Cabina simple',MEDIA:'Cabina y media',DOBLE:'Doble cabina'};
   /* 03/11/2026: una sola línea de datos (como Porsche Finder) y como máximo 2 destacados en cursiva */
   const cap=x=>String(x||'').charAt(0).toUpperCase()+String(x||'').slice(1).toLowerCase();
-  const dat=[(v.cat&&!v.trab?(v.cat.length<=3?v.cat:cap(v.cat)):''),(CARN[v.ca]||''),(v.cab?CABW[v.cab]||'':''),(COMB[v.comb]||''),(TRANS[v.trans]||''),(v.tr?v.tr.toLowerCase():''),(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(v.km?Number(v.km).toLocaleString('es-CL')+' km':'')].filter(Boolean).join(' · ');
+  return [(v.cat&&!v.trab?(v.cat.length<=3?v.cat:cap(v.cat)):''),(CARN[v.ca]||''),(v.cab?CABW[v.cab]||'':''),(COMB[v.comb]||''),(TRANS[v.trans]||''),(v.tr?v.tr.toLowerCase():''),(v.pa&&v.pa>=7?v.pa+' pasajeros':''),(v.km?Number(v.km).toLocaleString('es-CL')+' km':'')].filter(Boolean).join(' · ');
+}
+function card(v){
+  const c=colorDe(v.ce);
+  const dat=datDe(v);
   const dest=[...eqW(v).filter((t,i)=>EQ_IQQ.includes((EQ_W.find(o=>o[1]===t)||[])[0])),(v.tp&&!v.trab?'Techo panorámico':'')].filter(Boolean).slice(0,2).join(' · ');
   const sp='';
   const fotos=fotosDe(v);
@@ -1082,10 +1149,12 @@ function detalleHTML(v){
    +'<div class="detcard">'
    +'<div class="detmedia"><div class="medialabel">Fotos</div><div class="gal" id="galBox"><div class="gal-track">'+slides+'</div>'+nav+dots+count+'</div>'+mediaExtra+'</div>'
    +'<div class="detbody">'
-   +'<div class="eyebrow">Vehículo</div>'
+   +'<div class="eyebrow dk">Ficha del vehículo</div>'
    +'<div class="ctitle" style="font-size:clamp(24px,4vw,32px)">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
    +'<div class="chas">'+v.ch+' · '+String(v.ce||'').toUpperCase()+'</div>'
    +'<div class="badges" style="position:static;margin-top:11px">'+badgesDe(v)+'</div>'
+   +(datDe(v)?'<div class="detdat">'+datDe(v)+'</div>':'')
+   +'<div class="dsec">Ficha técnica</div>'
    +'<div class="specgrid'+specCompacto+'">'+especsDe(v)+'</div>'
    +eqBloques(v)
    +'<div class="price">'+precioHTML(v)
@@ -1093,6 +1162,11 @@ function detalleHTML(v){
    +'<svg class="wachev" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>'
    +'<div class="wadrop" id="detWaDrop" role="menu" hidden>'+CONTACTOS.map(ct=>'<a href="https://wa.me/'+ct.tel+'?text='+waMsg(v)+'" target="_blank" rel="noopener" role="menuitem"><b>'+ct.nombre+'</b><span>'+ct.display+'</span></a>').join('')+'</div>'
    +'</div></div>'
+   +'<div class="dconf">'
+   +'<div><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>Revisado en persona en Corea</span></div>'
+   +'<div><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18l-2 4H5l-2-4Z"/><path d="M5 17V9h14v8"/><path d="M9 9V5h6v4"/></svg><span>Importación propia, sin intermediarios</span></div>'
+   +'<div><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5Z"/></svg><span>Preparado y revisado en Iquique</span></div>'
+   +'</div>'
    +vidEnDerecha
    +'</div></div></div>';
 }
