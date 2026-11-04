@@ -218,6 +218,8 @@ h2::before{content:"";position:absolute;top:0;left:0;width:32px;height:3px;backg
 .vidbox iframe,.vidbox video{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;background:#000}
 .vidbox.tt{aspect-ratio:9/16;max-width:340px;margin:0 auto;background:#000;display:flex;align-items:center;justify-content:center}
 .vidbox.tt .tt-alt{position:relative;z-index:1}
+.vidbox.ig{aspect-ratio:auto;max-width:340px;margin:0 auto;background:#fff}
+.vidbox.ig iframe{position:static;height:640px}
 .ttmas{display:block;width:max-content;margin:12px auto 0;font-size:13px;font-weight:600;color:var(--oro);text-decoration:none;opacity:.9}
 .ttmas:hover{opacity:1;text-decoration:underline}
 .vidlink{display:inline-flex;align-items:center;gap:8px;background:var(--s050);color:var(--n800);text-decoration:none;
@@ -759,6 +761,10 @@ function videoDe(v, chico){
     return '<div class="'+cls+'">'+lbl+'<div class="vidbox tt" data-ttsrc="'+url.replace(/"/g,'')+'"><a class="vidlink tt-alt" href="'+url+'" target="_blank" rel="noopener">▶ Ver video en TikTok</a></div>'+ttMas+'</div>'; }
   /* Facebook (04/11/2026): el Mac publica los videos en la página de AMK y Sistema deja acá ese link solo (sin pegar nada).
      Reproductor oficial de Facebook, vertical como TikTok. */
+  /* Instagram (04/11/2026): Facebook no deja insertar los reels nuevos ("Este video no se puede insertar"); el reel de
+     Instagram sí se ve. Sistema lo enlaza solo al auto. */
+  const ig=url.match(/instagram\.com\/(?:[^\/]+\/)?(reel|reels|p|tv)\/([\w-]+)/i);
+  if(ig) return '<div class="'+cls+'">'+lbl+'<div class="vidbox ig"><iframe src="https://www.instagram.com/'+(ig[1].toLowerCase()==='p'?'p':'reel')+'/'+ig[2]+'/embed" title="Video del vehículo en Instagram" loading="lazy" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" allowfullscreen></iframe></div>'+ttMas+'</div>';
   if(/(?:facebook\.com\/(?:[^?#]+\/videos\/|reel\/|watch\/?\?v=)|fb\.watch\/)/i.test(url))
     return '<div class="'+cls+'">'+lbl+'<div class="vidbox tt"><iframe src="https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(url)+'&show_text=false&width=340&height=604" title="Video del vehículo en Facebook" loading="lazy" scrolling="no" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share" allowfullscreen></iframe></div>'+ttMas+'</div>';
   const yt=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
