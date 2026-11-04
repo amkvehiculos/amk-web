@@ -747,9 +747,18 @@ function v360De(v){
    tamaño de la foto 360°, en vez de estirarse al ancho completo de la columna. */
 function videoDe(v, chico){
   const url=(v.video||'').trim();
-  if(!url) return '';
   const cls='vidwrap'+(chico?' vidwrap-chico':'');
   const lbl='<div class="medialabel">Video</div>';
+  /* 04/11/2026 (Andre: las barras blancas de Instagram desentonan con la página): si Sistema dejó el ARCHIVO del video
+     (mp4, lo entrega Facebook y vence en ~4 días; Sistema lo renueva), se reproduce con el reproductor propio, vertical y
+     limpio, como TikTok. Si el link venció o no carga, se reemplaza solo por el reproductor de Instagram/Facebook. */
+  if(v.mp4&&(!v.mp4Exp||v.mp4Exp>Date.now()+3600e3)){
+    const resp=url?videoDe({video:url},chico):'';
+    const k='vf'+Math.random().toString(36).slice(2,9); VID_RESP[k]=resp;
+    const ttMas2='<a class="ttmas" href="https://www.tiktok.com/@amk.vehiculos" target="_blank" rel="noopener">Más videos en TikTok →</a>';
+    return '<div class="'+cls+'" id="'+k+'">'+lbl+'<div class="vidbox tt"><video src="'+String(v.mp4).replace(/"/g,'&quot;')+'#t=0.1" controls playsinline preload="metadata" onerror="vidFalla(\''+k+'\')"></video></div>'+ttMas2+'</div>';
+  }
+  if(!url) return '';
   /* TikTok (03/11/2026, Andre): se reproduce ahí mismo con el reproductor oficial (vertical). Con el link largo
      (…/@cuenta/video/NÚMERO) sale directo; con el corto que copia el celular (vm.tiktok.com/…) se le pregunta a TikTok
      el número del video (oembed) y, si no responde, queda el botón para verlo en TikTok. */
@@ -774,6 +783,8 @@ function videoDe(v, chico){
   if(/\.(mp4|webm|mov|m4v)(\?|#|$)/i.test(url)) return '<div class="'+cls+'">'+lbl+'<div class="vidbox"><video src="'+url+'" controls preload="metadata" playsinline></video></div></div>';
   return '<div class="'+cls+'">'+lbl+'<a class="vidlink" href="'+url+'" target="_blank" rel="noopener">▶ Ver video del vehículo</a></div>';
 }
+const VID_RESP={};
+function vidFalla(k){ const el=document.getElementById(k); if(!el) return; const r=VID_RESP[k]||''; if(r){ const t=document.createElement('div'); t.innerHTML=r; el.replaceWith(t.firstElementChild||t); } else el.remove(); }
 const ttFrame=id=>'<iframe src="https://www.tiktok.com/player/v1/'+id+'?description=0&music_info=0&rel=0" title="Video del vehículo en TikTok" loading="lazy" allow="autoplay;fullscreen;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
 function ttResuelve(){ document.querySelectorAll('[data-ttsrc]').forEach(box=>{ const u=box.dataset.ttsrc; box.removeAttribute('data-ttsrc');
   fetch('https://www.tiktok.com/oembed?url='+encodeURIComponent(u)).then(r=>r.json()).then(j=>{ const id=j&&(j.embed_product_id||((j.html||'').match(/data-video-id="(\d+)"/)||[])[1]);
@@ -1146,7 +1157,7 @@ function detalleHTML(v){
      (no estirado a todo el ancho de esa columna) — y las características, en ese caso, vuelven
      a la grilla compacta de 4 columnas para no verse desproporcionadas junto a ese video chico. */
   const hay360=!!fotosDe360(v).length;
-  const hayVid=!!(v.video||'').trim();
+  const hayVid=!!((v.video||'').trim()||v.mp4);
   const v360html=v360De(v);
   const vidHtml=videoDe(v, hay360);
   const mediaExtra = hay360 ? v360html : (hayVid ? vidHtml : '');
