@@ -755,7 +755,7 @@ function videoDe(v, chico){
     const resp=url?videoDe({video:url},chico):'';
     const k='vf'+Math.random().toString(36).slice(2,9); VID_RESP[k]=resp;
     const ttMas2='<a class="ttmas" href="https://www.tiktok.com/@amk.vehiculos" target="_blank" rel="noopener">Más videos en TikTok →</a>';
-    return '<div class="'+cls+'" id="'+k+'">'+lbl+'<div class="vidbox tt"><video src="'+String(v.mp4).replace(/"/g,'&quot;')+'#t=0.1" controls playsinline preload="metadata" onerror="vidFalla(\''+k+'\')"></video></div>'+ttMas2+'</div>';
+    return '<div class="'+cls+'" id="'+k+'">'+lbl+'<div class="vidbox tt"><video src="'+String(v.mp4).replace(/"/g,'&quot;')+'#t=0.1" controls playsinline preload="metadata" referrerpolicy="no-referrer" onerror="vidFalla(\''+k+'\')"></video></div>'+ttMas2+'</div>';
   }
   if(!url) return '';
   /* TikTok (03/11/2026, Andre): se reproduce ahí mismo con el reproductor oficial (vertical). Con el link largo
