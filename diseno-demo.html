@@ -609,6 +609,41 @@ html[data-tarjeta="pt-borde"] .price a{border-color:rgba(255,255,255,.38)}
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
 <script>
+/* BLINDAJE (amk-seguridad, 05/11/2026): todo texto que llega de la nube pasa por aquí antes de que la app lo use.
+   Otra cuenta (Corea, Vendedores) o alguien que le robe la clave podría escribir código disfrazado de texto
+   (<img onerror=…>, comillas para salirse de un atributo) y la app lo pintaría con innerHTML, ejecutándolo con la sesión de Sistema.
+   Se cambian < > " ' ` por sus parecidos tipográficos, que se ven casi igual pero el navegador no interpreta.
+   Los textos que son JSON (respaldos de remesas/embarques) se limpian por dentro y siguen siendo JSON válido. */
+(function(){
+  var fs=window.firebase&&firebase.firestore; if(!fs||fs.__amkBlindado) return; fs.__amkBlindado=true;
+  var MAL=/[<>"'`]/;
+  function txt(s){
+    if(!MAL.test(s)) return s;
+    var t=s.trim();
+    if(t[0]==='{'||t[0]==='['){ try{ return JSON.stringify(val(JSON.parse(s))); }catch(e){} }
+    return s.replace(/</g,'‹').replace(/>/g,'›').replace(/"/g,'″').replace(/'/g,'’').replace(/`/g,'´');
+  }
+  function val(v){
+    if(typeof v==='string') return txt(v);
+    if(Array.isArray(v)) return v.map(val);
+    if(v&&typeof v==='object'&&(Object.getPrototypeOf(v)===Object.prototype||Object.getPrototypeOf(v)===null)){
+      var o={}; for(var k in v) o[txt(k)]=val(v[k]); return o;
+    }
+    return v;   /* números, fechas de Firestore, referencias: tal cual */
+  }
+  window.amkLimpiaNube=val;
+  ['DocumentSnapshot','QueryDocumentSnapshot'].forEach(function(n){
+    var C=fs[n]; if(!C||!C.prototype) return; var p=C.prototype;
+    var d=Object.getOwnPropertyDescriptor(p,'data');
+    if(d&&typeof d.value==='function'){ var od=d.value; p.data=function(){ return val(od.apply(this,arguments)); }; }
+    var g=Object.getOwnPropertyDescriptor(p,'get');
+    if(g&&typeof g.value==='function'){ var og=g.value; p.get=function(){ return val(og.apply(this,arguments)); }; }
+    var i=Object.getOwnPropertyDescriptor(p,'id');
+    if(i&&i.get){ var oi=i.get; Object.defineProperty(p,'id',{get:function(){ return txt(String(oi.call(this))); },configurable:true}); }
+  });
+})();
+</script>
+<script>
 let V=[];  /* el catálogo se lee solo desde Firestore (colección catalogoPublico) */
 const COL={'Blanco':'#E9EAE6','Negro':'#20262A','Gris':'#8A9296','Plateado':'#B9C0C3','Azul':'#1F4E86','Rojo':'#9B2A28',
  'Beige':'#C9B79A','Amarillo':'#D6A81C','Naranja':'#C4661F','Dorado':'#B29246','Burdeo':'#6B2231','Verde':'#2C5B41','Marrón':'#6A4C38'};
