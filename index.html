@@ -1068,7 +1068,7 @@ function card(v){
 }
 /* 06/11/2026 (Andre): con poco stock los filtros específicos (marca, modelo, año, tracción…) sobran: se muestran
    recién desde MIN_FILTROS vehículos publicados. Antes de eso queda solo "Buscar" (y los atajos rápidos en computador). */
-const MIN_FILTROS=40;
+const MIN_FILTROS=30;
 function render(){
   const pocos=V.length<MIN_FILTROS, fl=document.querySelector('.filters');
   if(fl) fl.classList.toggle('pocos',pocos);
@@ -1188,7 +1188,7 @@ if(!quieto&&'IntersectionObserver' in window){
   document.addEventListener('click',e=>{ if(!w.contains(e.target)){ d.hidden=true; b.setAttribute('aria-expanded','false'); } });
   new MutationObserver(()=>w.classList.toggle('oculto',!$('#lightbox').hidden)).observe($('#lightbox'),{attributes:true,attributeFilter:['hidden']});
 })();
-const MIN_CIFRAS=50;
+const MIN_CIFRAS=30;  /* 06/11/2026 (Andre): bajó de 50 a 30, igual que MIN_FILTROS */
 if(V.length>=MIN_CIFRAS){
   $('#stripNum').hidden=false; $('#stripTxt').hidden=true;
   $('#sIqq').textContent=V.filter(v=>v.st==='IQQ').length;
