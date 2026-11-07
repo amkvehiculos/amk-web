@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>AMK Vehículos Selectos</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AMK Vehículos Selectos">
+<meta property="og:title" content="AMK Vehículos Selectos · Importación directa desde Corea">
+<meta property="og:description" content="Vehículos elegidos en persona en Corea. Stock en Iquique, Zona Franca: SUV, camionetas y vehículos de trabajo.">
+<meta property="og:image" content="https://amkvehiculos.cl/og.jpg">
+<script>
+/* 07/11/2026: amkvehiculos.cl/v/CHASIS/ es la página corta de cada vehículo (la crea Sistema, con su foto para la
+   miniatura al compartir). Si todavía no existe o el vehículo ya salió de la web, se llega acá: salta a su ficha
+   (?ch=CHASIS) o, si no es un link de vehículo, a la portada. Así ningún link compartido queda roto. */
+(function(){
+  var m=location.pathname.match(/^\/v\/([^\/?#]+)/), q=new URLSearchParams(location.search);
+  if(m){ q.set('ch',decodeURIComponent(m[1])); location.replace('/?'+q+location.hash); }
+  else location.replace('/');
+})();
+</script>
+</head><body style="font-family:system-ui,sans-serif;padding:24px"><a href="/">Ir a AMK Vehículos Selectos</a></body></html>
