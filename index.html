@@ -600,6 +600,25 @@ footer a{transition:color .25s ease}footer a:hover{color:var(--oro)}
 .filters.pocos .frow .f:not(:first-child),.filters.pocos .fmas{display:none!important}
 .filters.pocos .frow{grid-template-columns:minmax(0,1fr)}
 @media(min-width:701px){.filters.pocos .frow .f:first-child{max-width:420px}}
+/* 07/11/2026 (Andre): con video pero sin fotos todavía */
+.sinfoto{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#EAF0F1;text-align:center;padding:0 16px}
+.sinfoto i{font-style:normal;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(4,18,25,.55);border:1px solid color-mix(in srgb,var(--oro) 70%,transparent);color:var(--oro);font-size:17px;padding-left:3px}
+.sinfoto b{font-family:var(--disp);font-size:13.5px;letter-spacing:.02em}.sinfoto small{font-size:12px;color:var(--s100)}
+/* 07/11/2026 (Andre): vendidos, como prueba de que movemos vehículos */
+#vendidos{padding-top:8px}
+.vtot{font-family:var(--disp);font-weight:800;color:var(--oro)}
+.vrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(214px,236px);gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:4px 2px 14px;margin-top:18px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.vcard{scroll-snap-align:start;background:var(--n600);border:1px solid rgba(61,93,107,.55);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.vcard .vth{position:relative;aspect-ratio:4/3;overflow:hidden;background-image:linear-gradient(135deg,rgba(255,255,255,.28),rgba(0,0,0,.22))}
+.vcard .vth img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.75) brightness(.9)}
+.vcard .vth .b{position:absolute;top:10px;left:10px;background:rgba(4,18,25,.78);color:var(--s050);border:1px solid rgba(200,210,212,.35);box-shadow:none}
+.vcard .vb{padding:12px 13px 13px;display:flex;flex-direction:column;gap:3px;flex:1}
+.vcard .vt{font-family:var(--disp);font-weight:800;font-size:14.5px;text-transform:uppercase;color:#EAF0F1;letter-spacing:-.01em;line-height:1.25}
+.vcard .vt .y{color:var(--s300)}
+.vcard .vm{font-family:var(--mono);font-size:11px;color:var(--s300);letter-spacing:.05em}
+.vcard .vv{margin-top:auto;padding-top:8px;font-size:13px;font-weight:700;color:var(--s050);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.vcard .vv:hover{color:var(--oro)}
+@media(max-width:700px){.vrow{grid-auto-columns:68%;margin-right:-20px;padding-right:20px}}
 </style></head><body>
 
 <header><div class="wrap">
@@ -684,6 +703,12 @@ footer a{transition:color .25s ease}footer a:hover{color:var(--oro)}
 
   <p class="count" id="cnt"></p>
   <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="vendidos" hidden><div class="wrap">
+  <h2>Ya vendidos</h2>
+  <p class="sub" id="vSub"></p>
+  <div class="vrow" id="vGrid"></div>
 </div></section>
 
 <section class="band" id="proceso"><div class="wrap">
@@ -1061,7 +1086,7 @@ function card(v){
   const fotos=fotosDe(v);
   const foto=fotos[0]?'<img src="'+fotos[0]+'" alt="'+v.ma+' '+v.mo+'" loading="lazy" decoding="async" onload="'+VERT_JS+'">':'';
   return '<article class="card" data-ch="'+v.ch+'" tabindex="0" role="button" aria-label="Ver '+v.ma+' '+v.mo+'">'
-   +'<div class="thumb" style="background-color:'+c+'">'+foto+'<div class="badges">'+badgesDe(v)+'</div></div>'
+   +'<div class="thumb" style="background-color:'+c+'">'+(foto||((v.video||v.mp4)?'<div class="sinfoto"><i aria-hidden="true">▶</i><b>Mira el video</b><small>Fotos muy pronto</small></div>':''))+'<div class="badges">'+badgesDe(v)+'</div></div>'
    +'<div class="cbody"><div class="ctitle">'+v.ma+' '+v.mo+' <span class="y">'+(v.an||'')+'</span></div>'
    +'<div class="chas">'+String(v.ce||'').toUpperCase()+'</div>'
    +(dat?'<div class="cdat">'+dat+'</div>':'')+(dest?'<div class="cdest">'+dest+'</div>':'')
@@ -1082,6 +1107,31 @@ function render(){
   $('#nPas').textContent=V.filter(v=>!v.trab).length;
   $('#nTrab').textContent=V.filter(v=>v.trab).length;
   $('#nAll').textContent=V.length;
+}
+/* ===== Vendidos (Andre, 07/11/2026) =====
+   Sistema deja en catalogoPublico/__vendidos el total y los 24 más recientes (sin precio, cliente ni chasis).
+   Las fotos de un vendido se van borrando (la poda deja 3); si la portada ya no está, queda el color del auto.
+   El video (Facebook/Instagram/TikTok) no se borra, así que el link sigue sirviendo. */
+const MESES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const escW=x=>String(x==null?'':x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function pintaVendidos(d){
+  const sec=$('#vendidos'), L=(d&&Array.isArray(d.items))?d.items.filter(x=>x&&x.mo):[];
+  if(!sec) return;
+  if(!L.length){ sec.hidden=true; return; }
+  const tot=Math.max(+d.total||0,L.length);
+  $('#vSub').innerHTML='<span class="vtot">'+tot+'</span> '+(tot===1?'vehículo vendido':'vehículos vendidos')+' desde Iquique. Si buscas uno parecido, lo traemos a pedido desde Corea.';
+  const okVideo=u=>/^https:\/\/(www\.|m\.|vm\.)?(facebook\.com|fb\.watch|instagram\.com|tiktok\.com)\//i.test(String(u||''));
+  $('#vGrid').innerHTML=L.map(v=>{
+    const m=/^(\d{4})-(\d{2})/.exec(v.mes||''), cuando=m?MESES[+m[2]-1]+' '+m[1]:'';
+    const nom=escW(v.ma)+' '+escW(v.mo);
+    const img=/^(https:\/\/|data:image\/)/.test(v.foto||'')?'<img src="'+escW(v.foto)+'" alt="'+nom+' vendido" loading="lazy" decoding="async" onerror="this.remove()">':'';
+    return '<article class="vcard"><div class="vth" style="background-color:'+colorDe(v.ce)+'">'+img+'<span class="b">Vendido</span></div>'
+      +'<div class="vb"><div class="vt">'+nom+' <span class="y">'+escW(v.an||'')+'</span></div>'
+      +(cuando?'<div class="vm">'+(v.trab?'TRABAJO · ':'')+cuando.toUpperCase()+'</div>':'')
+      +(okVideo(v.video)?'<a class="vv" href="'+escW(v.video)+'" target="_blank" rel="noopener">▶ Ver su video <span aria-hidden="true">→</span></a>':'')
+      +'</div></article>';
+  }).join('');
+  sec.hidden=false;
 }
 /* Tocar una tarjeta (fuera del link de WhatsApp) abre el detalle con el carrusel */
 $('#grid').addEventListener('click',e=>{
@@ -1176,7 +1226,7 @@ function alBajar(){ hdr.classList.toggle('solido',scrollY>30);
   if(flt){ const t=flt.getBoundingClientRect().top; flt.classList.toggle('pegado',t<=80&&scrollY>200); } }
 addEventListener('scroll',alBajar,{passive:true}); alBajar();
 /* Secciones que aparecen al bajar */
-const rvEls=document.querySelectorAll('#stock h2, #proceso h2, #proceso .sub, #proceso .col, #franquicia h2, #franquicia .sub, #franquicia .col, #franquicia .note, #contacto h2, #contacto p, #contacto .ctas, footer .wrap>div, .strip.banda div');
+const rvEls=document.querySelectorAll('#stock h2, #vendidos h2, #vendidos .sub, #proceso h2, #proceso .sub, #proceso .col, #franquicia h2, #franquicia .sub, #franquicia .col, #franquicia .note, #contacto h2, #contacto p, #contacto .ctas, footer .wrap>div, .strip.banda div');
 if(!quieto&&'IntersectionObserver' in window){
   rvEls.forEach(e=>e.classList.add('rv'));
   const io=new IntersectionObserver(es=>es.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('on'); io.unobserve(x.target); } }),{rootMargin:'0px 0px -8% 0px'});
@@ -1520,6 +1570,7 @@ window.addEventListener('popstate',()=>{
       if(!V.length) aviso('Por ahora no hay vehículos publicados.');
     }, e=>{ console.error('catalogo',e); aviso('No se pudo cargar el stock en este momento.'); });
     let unsub=escucha(col.where('lista','==',true));
+    col.doc('__vendidos').onSnapshot(d=>{ try{ pintaVendidos(d.exists?d.data():null); }catch(e){ console.error('vendidos',e); } }, e=>console.error('vendidos',e));
   }catch(e){ console.error('firebase',e); aviso('No se pudo cargar el stock. Revisa tu conexión y recarga la página.'); }
 })();
 </script>
