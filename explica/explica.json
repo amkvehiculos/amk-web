@@ -1,5 +1,16 @@
 [
  {
+  "id": "chasis_anio",
+  "fecha": "2026-11-27",
+  "titulo": "El chasis te dice el año del auto",
+  "sub": "¿Sabías que?",
+  "fb": "1564758085485995",
+  "respaldo": "https://www.instagram.com/reel/DgQtPjbh49V/",
+  "mp4": "https://video.xx.fbcdn.net/o1/v/t2/f2/m366/AQN7E7qxIL6A2zGEl-_ISDHOoblZ2nx64brX-Y-um_blUO3cKC5BzcfG767zor4EWNiBcwKnO_QmC8M8ZXPsyrTPphr89r5VQovchEZoeU4i4g.mp4?_nc_cat=102&_nc_oc=AdrjHq_Cka7lbwoe0_zC_JfJKVRmbIi3xMfdhzkyVHEKw9PSf9Ya0b6KdqyOzHCAeXE&_nc_sid=5e9851&_nc_ht=scontent.fscl25-1.fna.fbcdn.net&_nc_ohc=Xwi-DR6Op10Q7kNvwGZORGC&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuNzIwLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjQzMTQ3NjU1MDIxNDY2MzksImFzc2V0X2FnZV9kYXlzIjowLCJ2aV91c2VjYXNlX2lkIjoxMDEyMiwiZHVyYXRpb25fcyI6MzAsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=e5b08a9fc4b2b67f&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC8wRDMxM0M0QkNGM0E0Njk1OUREQkQwRTQ2MkJEMjAwQl9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50L0VFQkVENUFERTgxNTRDNjE5NUI4MUM0ODE3M0IxMTYyX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwOIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRJjb3B5X3NhbXBsZV9ncm91cHMBMRUAACaeoduQtJCqDxUCKAJDMywXQD5u2RaHKwIYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUCZZSeAQA&_nc_gid=qYeQvWS2ad8Vl7EV4cpQPg&edm=APRAPSkEAAAA&_nc_map=urlgen_bucketless&_nc_zt=28&_nc_tpa=Q5bMBQKC5V_UJsJEp7ck8OMByeXIusKi9PDM48yNJRAZhF0j3CDEcLMEPvM0k5Dq_zNujOohnR0l4Isp3Q&oh=00_AQWVWoRkuVqE_PCHQ5w0R4q75osYVNdJlzR24bs4L20c1w&oe=6B0FDFDA&bitrate=584095&tag=dash_h264-basic-gen2_720p",
+  "portada": "https://scontent.fscl25-1.fna.fbcdn.net/v/t15.5256-10/903307570_1564758645485939_4407894150989220588_n.jpg?_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=e3495b&_nc_ohc=hsDvPUyNk10Q7kNvwHoQHe7&_nc_oc=Adowa1tzkKfJCRzd9kqN6q5F0ByaUXQPX2Ir1vrICKUBB4jl_DsYqbNtoi_LvCsgTEY&_nc_zt=23&_nc_ht=scontent.fscl25-1.fna&edm=APRAPSkEAAAA&_nc_gid=qYeQvWS2ad8Vl7EV4cpQPg&_nc_tpa=Q5bMBQLicHGmu_tCQG5ACnqBYmwMEFUILq8f6BHdMZmsCgTVEE_xPqWZiyjnb07r9MRze54GSLW6neGNLQ&oh=00_AQU1BlWJzmQ0SGbwL1l3BM5Cti6Ym89vPscWM6YHOWm5jA&oe=6B0FB8BF",
+  "exp": 1796192447
+ },
+ {
   "id": "salitre",
   "fecha": "2026-11-24",
   "titulo": "En Iquique tu auto se oxida más rápido",
